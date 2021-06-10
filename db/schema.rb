@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2021_06_10_131822) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "cart_items_tables", force: :cascade do |t|
+  create_table "cart_items", force: :cascade do |t|
     t.bigint "cart_id"
     t.bigint "menu_item_id"
     t.string "menu_item_name"
@@ -24,20 +24,20 @@ ActiveRecord::Schema.define(version: 2021_06_10_131822) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "cart_tables", force: :cascade do |t|
+  create_table "carts", force: :cascade do |t|
     t.datetime "date"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "menu_categories_tables", force: :cascade do |t|
+  create_table "menu_categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "menu_items_tables", force: :cascade do |t|
+  create_table "menu_items", force: :cascade do |t|
     t.bigint "menu_category_id"
     t.string "name"
     t.text "description"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2021_06_10_131822) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "order_items_tables", force: :cascade do |t|
+  create_table "order_items", force: :cascade do |t|
     t.bigint "order_id"
     t.bigint "menu_item_id"
     t.string "menu_item_name"
@@ -55,14 +55,14 @@ ActiveRecord::Schema.define(version: 2021_06_10_131822) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "orders_tables", force: :cascade do |t|
+  create_table "orders", force: :cascade do |t|
     t.datetime "date"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users_tables", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"
