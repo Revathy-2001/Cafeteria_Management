@@ -22,16 +22,21 @@
         <%# To iterate over each category item and to render it %>
          <% MenuCategory.all.each do |category| %>
             <section class = "CategorySection-item">
-
                 <%# To display the name of the category%>
-                <p class = "Category" ><%= category.name %></p>
+                <p class = "Category"> <%= category.name %> </p>
+
                 <%# To render the Edit and the update icon on hover %>
-                <section class = "Update-delete">
+                 <% temp = render :partial => "editCategory", :locals => {:head => "Update Category"} %>
+                 <section class = "Update-delete">
 
-                    <a href = "javascript:void(0)">
-                        <img src = "updateimg.png" class = "Category_update") >
+                    <a href="#" onclick = "Display()" >
+                      <img src = "updateimg.png" class = "Category_update">
                     </a>
-
+                    <script>
+                       function Display() {
+                           document.getElementById("edit_category_modal").display = "block";
+                       }
+                    </script>
                     <a href="javascript:void(0)">
                       <%= form_with(url: "/menu_categories/#{category.id}", method: "delete") do %>
                          <%= image_submit_tag("trash.png" , class: "Category_delete") %>
@@ -42,4 +47,11 @@
        <% end %>
    </section>
 </main>
- <%= render partial: "modalform" %>
+<!-- Button trigger modal -->
+<%= render partial: "modalform"%>
+
+
+ <%= link_to image_submit_tag("updateimg.png" , id:class: "Category_update"),
+                            menu_categories_path,
+                            {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#edit_category_modal'}
+                        %>

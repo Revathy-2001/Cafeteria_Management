@@ -9,11 +9,13 @@
   padding-top: 20px;
   overflow: hidden;
 }
-
+.home {
+  margin-top: 30px;
+}
 .Dashboard-list a {
-  padding: 34px 6px 6px 32px;
+  padding: 14px 6px 6px 32px;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 18px;
   display: block;
   margin-bottom: 20px;
   font-family: Opens Sans, sans-serif;
@@ -22,6 +24,7 @@
 
 .Dashboard-list a:hover {
   color: blue;
+  text-decoration: none;
 }
 
 .PageHead {
@@ -39,12 +42,11 @@
   font-size: 17px;
   padding: 10px;
   margin-left: 80px;
-  font-weight: 560;
 }
 .Categories-main {
   font-family: Opens Sans, sans-serif;
   margin: 10px 14px 2px 210px;
-  max-width: 85%;
+  max-width: 100%;
   max-height: fit-content;
   overflow-x: hidden;
 }
@@ -57,22 +59,27 @@
   width: 100%;
   align-items: center;
   margin-top: 30px;
-  font-weight: 700;
   position: fixed;
   overflow-x: hidden;
   margin-left: 200px;
   border-bottom: 2px solid rgb(82, 225, 181);
 }
-.Add_category {
+.Add_category_btn {
+  font-family: Opens Sans, sans-serif;
   background-color: rgb(82, 225, 181);
   color: #000;
   outline: none;
   border: none;
-  margin-right: 18%;
+  margin-right: 17%;
   cursor: pointer;
   height: 40px;
-  padding: 0px 20px;
+  padding: 10px 20px;
   font-size: 16px;
+  text-align: center;
+}
+.Add_category_btn:hover {
+  text-decoration: none;
+  color: #000;
 }
 .Categories-title {
   font-family: Opens Sans, sans-serif;
@@ -89,7 +96,7 @@
 
 .CategorySection-item {
   display: flex;
-  padding: 12px;
+  padding: 10px;
   border: 0.5px solid rgb(82, 225, 181);
   justify-content: space-between;
   margin-bottom: 10px;
@@ -110,17 +117,53 @@
   visibility: visible;
 }
 .Category_delete {
-  width: 24px;
+  width: 20px;
   text-decoration: none;
   visibility: hidden;
 }
 
 .Category_update {
-  width: 24px;
+  width: 20px;
   text-decoration: none;
   visibility: hidden;
   margin-right: 30px;
 }
 .Update-delete {
   display: inline-flex;
+}
+
+.AddCategory {
+  font-family: Opens Sans, sans-serif;
+  padding: 15px;
+}
+
+.AddCategory-text {
+  padding: 10px;
+  justify-content: center;
+  margin: 10px;
+  width: 280px;
+  border: 0.5px solid rgb(82, 225, 181);
+  border-radius: 5px;
+}
+
+.closemodal {
+  color: red;
+  outline: gainsboro;
+  border: none;
+  font-size: 20px;
+  background-color: transparent;
+}
+
+.modal-header {
+  align-items: center;
+  font-family: Opens Sans, sans-serif;
+}
+.CreateCategory-button {
+  justify-content: center;
+  margin: 0px auto;
+  background-color: rgb(82, 225, 181);
+  padding: 10px 20px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
 }

@@ -1,0 +1,21 @@
+
+<%# To display the popup form %>
+<div id="edit_category_modal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            Update Category
+            <button type="button" class="closemodal" data-dismiss="modal">x</button>
+            </div>
+            <div class="modal-body">
+               <%= form_with(url: "menu_categories/id", method: "put" , class: "AddCategory") do %>
+                    Category Name:
+                    <%= text_field_tag 'name', nil, class: 'AddCategory-text' %>
+                     <div class="modal-footer">
+                         <%= submit_tag "Update", class: "CreateCategory-button" %>
+                    </div>
+               <% end %>
+            </div>
+        </div>
+    </div>
+</div>
