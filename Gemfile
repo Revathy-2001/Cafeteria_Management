@@ -55,5 +55,3 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "pg", "~> 1.2"
-gem 'bootstrap'
-gem 'popper_js', '~> 1.11', '>= 1.11.1'
