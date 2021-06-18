@@ -1,37 +1,39 @@
-<%# For the side Menu Bar %>
-<div class="Dashboard-list">
-    <a href="#" class = "home"><i style="font-size:24px" class="fa">&#xf015;</i>  Dashboard</a>
-    <a href="#"><i class="fa fa-list-alt" aria-hidden="true"></i>  Categories</a>
-    <a href="#"><i style="font-size:24px" class="fa">&#xf07a;</i>  Orders</a>
-    <a href="#"><i class="fa fa-bars"></i>  Menu Items</a>
-    <a href="#"><i style="font-size:24px" class="fa">&#xf08b;</i>  Logout</a>
-</div>
-
-<%# To display Categories Head %>
+<%# displays head section for menu categories page %>
 <section class = "Categories-head">
     <h1 class = "Categories-title">Categories</h1>
+    <%# fetches the CSS selector given in data-target and renders it with the help of link to tag %>
     <%= link_to 'Add Category',
-         menu_categories_path,
-         {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#add_category_modal',class: "Add_category_btn"}
-    %>
+        menu_categories_path,
+        {:remote => true,
+         'data-toggle' =>  "modal",
+         'data-target' => '#add_category_modal',
+          class: "Add_category_btn"
+        }
+    %> <%# sets link for adding new category %>
 </section>
+<%# renders partial file named modalform %>
+<%= render partial: "modalform" %>
 
+<%# this block display's the  main content for the menu categories page %>
 <main class = "Categories-main">
  <section class = "CategorySection">
-        <% check = false %>
-        <%# To iterate over each category item and to render it %>
+        <%# iterates over each category item and renders it %>
          <% MenuCategory.all.each do |category| %>
             <section class = "CategorySection-item">
 
-                <%# To display the name of the category%>
+                <%# displays the name of the category%>
                 <p class = "Category" ><%= category.name %></p>
-                <%# To render the Edit and the update icon on hover %>
+
+                <%# renders the Edit and the update icon on hover %>
                 <section class = "Update-delete">
-
-                    <a href = "javascript:void(0)">
-                        <img src = "updateimg.png" class = "Category_update") >
-                    </a>
-
+                    <%= link_to image_tag("updateimg.png",class: "Category_update",title: "Update Category"),
+                        menu_categories_path,
+                        {:remote => true,
+                        'data-toggle' =>  "modal",
+                        'data-target' => '#edit_category_modal'
+                        }
+                     %>
+                     <%= render partial: "editCategory",locals: {id:category.id} %>
                     <a href="javascript:void(0)">
                       <%= form_with(url: "/menu_categories/#{category.id}", method: "delete") do %>
                          <%= image_submit_tag("trash.png" , class: "Category_delete") %>
@@ -42,4 +44,3 @@
        <% end %>
    </section>
 </main>
- <%= render partial: "modalform" %>

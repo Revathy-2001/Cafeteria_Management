@@ -14,6 +14,15 @@
   <body>
     <%# To display the Profile on top of the page %>
     <section class = "PageHead"><p class = "PageHead-title">Cafeteria Management System</p></section>
+
+    <%# For the side Menu Bar %>
+    <div class="Dashboard-list">
+        <a href="#" class = "home"><i style="font-size:24px" class="fa">&#xf015;</i>  Dashboard</a>
+        <a href="#"><i class="fa fa-list-alt" aria-hidden="true"></i>  Categories</a>
+        <a href="#"><i style="font-size:24px" class="fa">&#xf07a;</i>  Orders</a>
+        <a href="#"><i class="fa fa-bars"></i>  Menu Items</a>
+        <a href="#"><i style="font-size:24px" class="fa">&#xf08b;</i>  Logout</a>
+    </div>
     <%= yield %>
   </body>
 </html>
