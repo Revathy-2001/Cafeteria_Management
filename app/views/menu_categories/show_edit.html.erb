@@ -1,0 +1,9 @@
+<div class = "CategorySection">
+  <%= form_with(url: "/menu_categories/#{@id}", method: "put") do %>
+    Category Name:
+    <%= text_field_tag 'name', @category.name, class: 'AddCategory-text' %>
+      <div class="modal-footer">
+          <%= submit_tag "Update", class: "CreateCategory-button" %>
+    </div>
+  <% end %>
+</div>

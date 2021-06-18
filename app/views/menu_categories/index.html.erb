@@ -26,19 +26,14 @@
 
                 <%# renders the Edit and the update icon on hover %>
                 <section class = "Update-delete">
-                    <%= link_to image_tag("updateimg.png",class: "Category_update",title: "Update Category"),
-                        menu_categories_path,
-                        {:remote => true,
-                        'data-toggle' =>  "modal",
-                        'data-target' => '#edit_category_modal'
-                        }
-                     %>
-                     <%= render partial: "editCategory",locals: {id:category.id} %>
-                    <a href="javascript:void(0)">
-                      <%= form_with(url: "/menu_categories/#{category.id}", method: "delete") do %>
-                         <%= image_submit_tag("trash.png" , class: "Category_delete") %>
+                      <%= form_with(url: "/menu_categories/edit/#{category.id}", method: "get") do %>
+                        <%= image_submit_tag("updateimg.png" , class: "Category_update") %>
                       <% end %>
-                    </a>
+                      <a href="javascript:void(0)">
+                        <%= form_with(url: "/menu_categories/#{category.id}", method: "delete") do %>
+                            <%= image_submit_tag("trash.png" , class: "Category_delete") %>
+                        <% end %>
+                      </a>
                 </section>
             </section>
        <% end %>

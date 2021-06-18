@@ -24,6 +24,11 @@ class MenuCategoriesController < ApplicationController
     redirect_to menu_categories_path
   end
 
+  def show_edit
+    @id = params[:id]
+    @category = MenuCategory.find(@id)
+  end
+
   def destroy
     id = params[:id]
     category = MenuCategory.find(id)
