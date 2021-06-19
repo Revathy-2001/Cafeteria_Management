@@ -52,9 +52,12 @@
                           <p><%= item.name %></p>
                           <%# shows edit icon and delete icon on hovering the menu item %>
                           <section class = "Update-delete">
+
+                              <%# shows the front end page to update the menu item details on clicking the link %>
                               <%= link_to image_tag("updateimg.png",class: "Item_update",title: "Update Menu Item"),
                                   "/menu_items/show_update/#{item.id}"
                               %>
+
                               <%= link_to image_tag("destroy.png",class: "Item_delete",title: "Delete Menu Item"),
                                   menu_items_path
                               %>

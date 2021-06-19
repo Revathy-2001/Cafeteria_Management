@@ -3,29 +3,40 @@
     <h1 class = "MenuItems-title">Add Menu Item</h1>
 </section>
 
+<%# to add a new menu item to the belonging category %>
 <main class = "Categories-main">
     <div class="AddMenuItem-section">
         <div class="card-body">
+
+          <%# form to add new menu item %>
           <%= form_with(url: "/menu_items", method: "post") do %>
               <%= hidden_field_tag 'id', @id %>
+
+              <%# name of menu item %>
               <div class = "Menu_item_section">
                 <p class = "Update_input_text">Item Name</p>
                 <%= text_field_tag 'name', nil, class: 'AddItem-input',required: true%>
               </div>
+
+              <%# price of the item %>
               <div class = "Menu_item_section">
                 <p class = "Update_input_text">Price</p>
                 <%= number_field_tag "price", nil, class: 'AddPrice-input',required: true,min: 1,placeholder:"Rs." %>
               </div>
+
+              <%# description of the item %>
               <div class = "Menu_item_section">
                 <p class = "Update_input_text">Description</p>
                 <%= text_area_tag 'description',nil,class: 'AddDescription-input' %>
               </div>
 
+              <%# submit button to add the menu item %>
               <div class = "Submit-cancel-btn">
                 <%= submit_tag "Create",class:'CreateMenuItem' %>
                 <%= link_to "Cancel",menu_items_path,class: "Cancel-button" %>
               </div>
           <% end %>
+
         </div>
     </div>
 </main>

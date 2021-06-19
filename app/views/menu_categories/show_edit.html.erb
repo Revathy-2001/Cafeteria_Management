@@ -1,9 +1,20 @@
-<div class = "CategorySection">
-  <%= form_with(url: "/menu_categories/#{@id}", method: "put") do %>
-    Category Name:
-    <%= text_field_tag 'name', @category.name, class: 'AddCategory-text' %>
-      <div class="modal-footer">
-          <%= submit_tag "Update", class: "CreateCategory-button" %>
-    </div>
-  <% end %>
-</div>
+<%# Display's the head section in update category page %>
+<section class = "UpdateCategories-head">
+    <h1 class = "UpdateCategories-title">Update Menu Category</h1>
+</section>
+
+<%# this block edits the category %>
+<main class = "Categories-main">
+    <section class = "Update_menu_category">
+
+      <%# form to update the category name %>
+      <%= form_with(url: "/menu_categories/#{@id}", method: "put") do %>
+        Category Name:<br>
+        <%= text_field_tag 'name', @category.name, class: 'Update_category_input' %><br><br>
+            <div class = "UpdateCategory-buttons">
+              <%= submit_tag "Update", class: "UpdateCategory-submit" %>
+              <%= link_to "Cancel",menu_categories_path,class: "UpdateCategory-cancel" %>
+            </div>
+      <% end %>
+    </section>
+</main>

@@ -1,0 +1,53 @@
+/* side navbar styling */
+.Dashboard-list {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  border: 0.5px solid #0000004d;
+  background-color: white;
+  padding-top: 20px;
+  overflow: hidden;
+  margin-top: 30px;
+}
+
+/* all anchor inside side navbar */
+.Dashboard-list a {
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 20px;
+  font-family: Opens Sans, sans-serif;
+  color: #000;
+}
+
+/* sidebar each item on hover */
+.Dashboard-list a:hover {
+  color: white;
+  text-decoration: none;
+  background-color: #012636;
+}
+
+/* top navbar styling */
+.PageHead {
+  background-color: #012636;
+  font-family: Opens Sans, sans-serif;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  z-index: 1;
+}
+
+/* top navbar styling */
+.PageHead-title {
+  color: white;
+  font-size: 17px;
+  padding: 10px;
+  margin-left: 80px;
+  float: right;
+}

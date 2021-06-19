@@ -1,6 +1,9 @@
+/* new menu items head  */
 .MenuItems-head {
   z-index: 1;
 }
+
+/* add menu items section */
 .AddMenuItem-section {
   max-height: fit-content;
   color: black;
@@ -8,13 +11,19 @@
   max-width: 30rem;
   margin-top: 70px;
 }
+
+/* menu items section */
 .Menu_item_section {
   color: #685f5f;
   margin: 20px;
 }
+
+/* update menu item input box */
 .Update_input_text {
   line-height: 2;
 }
+
+/* add item input box */
 .AddItem-input {
   outline: none;
   border: 1.5px solid #ccc5c5;
@@ -22,6 +31,8 @@
   padding: 8px;
   width: 100%;
 }
+
+/* description input box */
 .AddDescription-input {
   outline: none;
   border: 1.5px solid #ccc5c5;
@@ -30,6 +41,8 @@
   width: 100%;
   height: 100px;
 }
+
+/* price input box */
 .AddPrice-input {
   outline: none;
   border: 1.5px solid #ccc5c5;
@@ -42,4 +55,24 @@
   justify-content: center;
   margin: 10px auto;
   display: flex;
+}
+.Cancel-button {
+  background-color: white;
+  padding: 8px 20px;
+  outline: none;
+  border: 0.2px solid #c4c0c0;
+  border-radius: 3px;
+  color: black;
+}
+.Cancel-button:hover {
+  text-decoration: none;
+  color: black;
+}
+.CreateMenuItem {
+  background-color: #008895;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  color: white;
+  margin-right: 10px;
 }

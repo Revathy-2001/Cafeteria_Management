@@ -19,3 +19,7 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 import "bootstrap"
+
+$('.popover-dismiss').popover({
+  trigger: 'focus'
+})

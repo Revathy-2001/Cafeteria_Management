@@ -1,3 +1,8 @@
+<% if(flash[:error]) %>
+  <script>
+     setTimeout(function(){ alert("Hello"); }, 3000);
+  </script>
+<% end %>
 <%# displays head section for menu categories page %>
 <section class = "Categories-head">
     <h1 class = "Categories-title">Categories</h1>
@@ -7,12 +12,13 @@
         {:remote => true,
          'data-toggle' =>  "modal",
          'data-target' => '#add_category_modal',
-          class: "Add_category_btn"
+          class: "Add_category_btn",
         }
     %> <%# sets link for adding new category %>
 </section>
+
 <%# renders partial file named modalform %>
-<%= render partial: "modalform" %>
+<%= render partial: "addCategory" %>
 
 <%# this block display's the  main content for the menu categories page %>
 <main class = "Categories-main">
@@ -26,14 +32,16 @@
 
                 <%# renders the Edit and the update icon on hover %>
                 <section class = "Update-delete">
+
+                      <%# fetches the front end page to edit category details with the help of given url %>
                       <%= form_with(url: "/menu_categories/edit/#{category.id}", method: "get") do %>
                         <%= image_submit_tag("updateimg.png" , class: "Category_update") %>
                       <% end %>
-                      <a href="javascript:void(0)">
-                        <%= form_with(url: "/menu_categories/#{category.id}", method: "delete") do %>
-                            <%= image_submit_tag("trash.png" , class: "Category_delete") %>
-                        <% end %>
-                      </a>
+
+                      <%# deletes the category when delete icon is clicked %>
+                      <%= form_with(url: "/menu_categories/#{category.id}", method: "delete") do %>
+                          <%= image_submit_tag("trash.png" , class: "Category_delete") %>
+                      <% end %>
                 </section>
             </section>
        <% end %>

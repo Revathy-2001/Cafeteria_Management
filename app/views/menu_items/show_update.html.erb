@@ -1,27 +1,37 @@
-<%# Display's the head section in add menu items page %>
+<%# Display's the head section in update menu item Wpage %>
 <section class = "MenuItems-head">
     <h1 class = "MenuItems-title">Update Menu Item</h1>
 </section>
 
+<%# to update a menu item to the belonging category %>
 <main class = "Categories-main">
     <div class="AddMenuItem-section">
         <div class="card-body">
+
+          <%# form to update an existing item %>
           <%= form_with(url: "/menu_items/#{@menu_item_id}", method: "put") do %>
+
+              <%# updates the item name %>
               <div class = "Menu_item_section">
                 <p class = "Update_input_text">Item Name</p>
                 <%= text_field_tag 'name', @menu_item.name, class: 'AddItem-input',required: true%>
               </div>
+
+              <%# updates the item price %>
               <div class = "Menu_item_section">
                 <p class = "Update_input_text">Price</p>
                 <%= number_field_tag "price", @menu_item.price, class: 'AddPrice-input',required: true,min: 1,placeholder:"Rs." %>
               </div>
+
+              <%# updates the item description %>
               <div class = "Menu_item_section">
                 <p class = "Update_input_text">Description</p>
                 <%= text_area_tag 'description',@menu_item.description,class: 'AddDescription-input' %>
               </div>
 
+              <%# submits the updated value %>
               <div class = "Submit-cancel-btn">
-                <%= submit_tag "Create",class:'CreateMenuItem' %>
+                <%= submit_tag "Update",class:'CreateMenuItem' %>
                 <%= link_to "Cancel",menu_items_path,class: "Cancel-button" %>
               </div>
           <% end %>

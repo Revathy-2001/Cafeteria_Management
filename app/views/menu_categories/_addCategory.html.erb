@@ -1,17 +1,24 @@
-
-<%# To display the popup form %>
+<%# displays the bootstrap modal %>
 <div id="add_category_modal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <%# Contents of the form(to Add category) %>
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+
+            <%# boostrap modal header %>
             <div class="modal-header">
-            Add Category
-            <button type="button" class="closemodal" data-dismiss="modal">&times;</button>
+                Add Category
+                <button type="button" class="closemodal" data-dismiss="modal">&times;</button>
             </div>
+
+            <%# boostrap modal body %>
             <div class="modal-body">
+               <%# form to get the name of the category to add it to categories %>
                <%= form_with(url: "menu_categories", method: "post" , class: "AddCategory") do %>
                     Category Name:
                     <%= text_field_tag 'name', nil, class: 'AddCategory-text',required: true %>
-                     <div class="modal-footer">
+                    <%# submits the form %>
+                    <div class="modal-footer">
                          <%= submit_tag "Create", class: "CreateCategory-button" %>
                     </div>
                <% end %>
