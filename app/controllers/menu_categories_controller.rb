@@ -14,7 +14,7 @@ class MenuCategoriesController < ApplicationController
     if new_category.save
       redirect_to menu_categories_path
     else
-      flash[:error] = new_category.errors.full_messages.join(", ")
+      flash[:error] = new_category.errors.full_messages.join("\n")
       redirect_to menu_categories_path
     end
   end
@@ -41,5 +41,8 @@ class MenuCategoriesController < ApplicationController
     category = MenuCategory.find(id)
     category.destroy
     redirect_to menu_categories_path
+  end
+
+  def categories
   end
 end

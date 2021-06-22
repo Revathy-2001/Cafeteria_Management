@@ -7,7 +7,6 @@
 <%# this block display's the  main content for the menu items page %>
 <main class = "Categories-main">   <%# style's the main contents %>
     <section class = "CategorySection">  <%# style's each category section %>
-
         <%# iterates over each category item & renders it %>
          <% MenuCategory.all.each do |category| %>
 
@@ -56,12 +55,11 @@
                               <%# shows the front end page to update the menu item details on clicking the link %>
                               <%= link_to image_tag("updateimg.png",class: "Item_update",title: "Update Menu Item"),
                                   "/menu_items/show_update/#{item.id}"
-                              %>
+                               %>
 
-                              <%= link_to image_tag("destroy.png",class: "Item_delete",title: "Delete Menu Item"),
-                                  menu_items_path
-                              %>
-
+                               <%= form_with(url: "menu_items/#{item.id}", method: "delete") do %>
+                                  <%= image_submit_tag("destroy.png" , class: "Item_delete") %>
+                              <% end %>
                           </section>
                       </div>
                   <% end %>

@@ -20,6 +20,7 @@ class MenuItemsController < ApplicationController
     if new_menu_item.save
       redirect_to menu_items_path
     else
+      flash[:error] = new_menu_item.errors.full_messages.join("\n")
       redirect_to menu_items_path
     end
   end
@@ -37,6 +38,13 @@ class MenuItemsController < ApplicationController
     menu_item.price = params[:price]
     menu_item.description = params[:description]
     menu_item.save!
+    redirect_to menu_items_path
+  end
+
+  def destroy
+    id = params[:id]
+    menu_item = MenuItem.find(id)
+    menu_item.destroy
     redirect_to menu_items_path
   end
 end

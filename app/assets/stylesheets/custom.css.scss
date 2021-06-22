@@ -4,3 +4,23 @@
 body {
   background-color: aliceblue;
 }
+.Flash-error {
+  margin: auto;
+  color: darkred;
+  margin-bottom: 30px;
+  font-size: 16px;
+  background-color: rgba(255, 7, 0, 0.3);
+  padding: 12px;
+  border-radius: 4px;
+  line-height: 1.5;
+  max-width: 700px;
+}
+.close-error {
+  color: darkred;
+  float: right;
+  text-decoration: none;
+}
+.close-error:hover {
+  color: darkred;
+  text-decoration: none;
+}

@@ -1,8 +1,3 @@
-<% if(flash[:error]) %>
-  <script>
-     setTimeout(function(){ alert("Hello"); }, 3000);
-  </script>
-<% end %>
 <%# displays head section for menu categories page %>
 <section class = "Categories-head">
     <h1 class = "Categories-title">Categories</h1>
@@ -23,6 +18,13 @@
 <%# this block display's the  main content for the menu categories page %>
 <main class = "Categories-main">
  <section class = "CategorySection">
+         <% if flash[:error] %>
+            <p class = "Flash-error">
+            <%= flash[:error] %>
+                <%= link_to "X",menu_categories_path ,class: "close-error"
+             %>
+            </p>
+         <% end %>
         <%# iterates over each category item and renders it %>
          <% MenuCategory.all.each do |category| %>
             <section class = "CategorySection-item">

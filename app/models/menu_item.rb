@@ -1,4 +1,7 @@
 class MenuItem < ActiveRecord::Base
+  validates :name, presence: true
+  validates :price, presence: true
+
   # one menu item belongs to one menu category
   belongs_to :menu_category
 

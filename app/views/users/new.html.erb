@@ -1,0 +1,59 @@
+<section class = "Signup-form">
+    <p class = "NewUsers-title">Sign up</p>
+
+    <section class = "Usersnew">
+      <%= form_with(url: users_path) do |form| %>
+      <%= hidden_field_tag 'role', 'user' %>
+        <div class = "Form-section">
+          <%= form.text_field :first_name,
+              placeholder:"First Name",
+              class:"signup-input",
+              required:true %>
+        </div>
+
+        <div class = "Form-section">
+          <%= form.email_field :email,
+              placeholder:"Email" ,
+              class:"signup-input",
+              required:true ,
+              :pattern => '^[a-zA-Z0-9+_.-]+@+gmail.com+$',
+              :title=> "example@gmail.com" %>
+        </div>
+
+         <div class = "Form-section">
+          <%= form.telephone_field :phone_no,
+          placeholder:"Phone Number" ,
+          class:"signup-input",
+          required:true,
+          :pattern => "[0-9]{10}",
+          :title=> "Must contain 10 numbers"   %>
+        </div>
+
+        <div class = "Form-section">
+          <%= form.password_field :password,
+              placeholder:"Password" ,
+              class:"signup-input",
+              required:true,
+              :pattern=>"(?=.*[a-z])(?=.*[A-Z]).{8,}" ,
+              :title=>"Must contain at least one uppercase and lowercase letter, and at least 8 or more characters"%>
+        </div>
+
+        <div class = "Form-section">
+          <%= text_area_tag :address,nil,
+              placeholder:"Address" ,
+              class:"signup-input",
+              required:true   %>
+        </div>
+
+
+        <div class = "Form-section">
+        <%= form.submit "Sign-up", class:"Form-submit"  %>
+        </div>
+
+        <div class= "NewAccount" >
+          <p class = "Existing-user-text">Already Existing User?</p>
+          <%= link_to "Sign-in", new_sessions_path%>
+        </div>
+      <% end %>
+    </section>
+</section>

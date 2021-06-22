@@ -16,7 +16,7 @@
                <%# form to get the name of the category to add it to categories %>
                <%= form_with(url: "menu_categories", method: "post" , class: "AddCategory") do %>
                     Category Name:
-                    <%= text_field_tag 'name', nil, class: 'AddCategory-text',required: true %>
+                    <%= text_field_tag 'name', nil, class: 'AddCategory-text' %>
                     <%# submits the form %>
                     <div class="modal-footer">
                          <%= submit_tag "Create", class: "CreateCategory-button" %>
