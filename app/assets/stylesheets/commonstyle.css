@@ -20,7 +20,7 @@
   display: block;
   margin-bottom: 20px;
   font-family: Opens Sans, sans-serif;
-  color: #000;
+  color: #012636;
 }
 
 /* sidebar each item on hover */
@@ -50,4 +50,15 @@
   padding: 10px;
   margin-left: 80px;
   float: right;
+}
+.Welcome {
+  color: white;
+  align-items: center;
+  padding: 12px;
+  background-color: #012636;
+  border-radius: 3px;
+  position: fixed;
+  top: 50px;
+  right: 0;
+  font-family: sans-serif;
 }

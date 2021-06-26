@@ -1,0 +1,56 @@
+.Navbar_users {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #012636;
+  font-family: Opens Sans, sans-serif;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  top: 0;
+}
+
+.Navbar_users_contents {
+  float: left;
+}
+
+.Navbar_users_contents a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.Navbar_users_contents a:hover {
+  background-color: #008895;
+}
+
+.Categories_card_Section {
+  margin: 0 auto;
+  margin-top: 80px;
+  max-width: 600px;
+}
+
+.Categories_block {
+  display: flex;
+  border-bottom: 1px solid rgb(9, 157, 160);
+  margin: 30px;
+  padding-bottom: 20px;
+  font-family: Open-sans, sans-serif;
+  justify-content: space-between;
+}
+.View_item {
+  background-color: #009efb;
+  color: white;
+  padding: 10px;
+  border-radius: 3px;
+}
+.View_item:hover {
+  text-decoration: none;
+  color: white;
+}
+.Category_name {
+  margin-top: 20px;
+}
