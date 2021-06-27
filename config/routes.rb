@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :menu_categories, :menu_items, :users
+  resources :menu_categories, :menu_items, :users, :carts, :cart_items
 
   get "/menu_items/new/:id" => "menu_items#new"
   get "/menu_items/show_update/:id" => "menu_items#show_update", as: :menuitems_update_view
@@ -9,4 +9,8 @@ Rails.application.routes.draw do
   post "signin" => "sessions#create", as: :sessions
   delete "signout" => "sessions#destroy", as: :destroy_session
   get "categories" => "menu_categories#categories"
+
+  get "show_menu_items/:id" => "menu_items#menu_items", as: :show_menu_items
+
+  post "update_quantity/:act/:id" => "cart_items#update_quantity", as: :update_quantity
 end

@@ -47,4 +47,8 @@ class MenuItemsController < ApplicationController
     menu_item.destroy
     redirect_to menu_items_path
   end
+
+  def menu_items
+    @id = params[:id]
+  end
 end

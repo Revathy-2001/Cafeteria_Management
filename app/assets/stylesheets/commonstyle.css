@@ -55,10 +55,5 @@
   color: white;
   align-items: center;
   padding: 12px;
-  background-color: #012636;
-  border-radius: 3px;
-  position: fixed;
-  top: 50px;
-  right: 0;
   font-family: sans-serif;
 }

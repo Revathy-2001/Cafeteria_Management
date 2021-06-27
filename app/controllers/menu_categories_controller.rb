@@ -8,8 +8,10 @@ class MenuCategoriesController < ApplicationController
   # creates a new category
   def create
     category_name = params[:name]
+    status = params[:status].nil? ? "Inactive" : "Active"
     new_category = MenuCategory.new(
       :name => category_name,
+      :status => status,
     )
     if new_category.save
       redirect_to menu_categories_path
@@ -23,9 +25,11 @@ class MenuCategoriesController < ApplicationController
   def update
     id = params[:id]
     name = params[:name]
-    category_name = MenuCategory.find(id)
-    category_name.name = name
-    category_name.save!
+    status = params[:status].nil? ? "Inactive" : "Active"
+    category = MenuCategory.find(id)
+    category.name = name
+    category.status = status
+    category.save!
     redirect_to menu_categories_path
   end
 

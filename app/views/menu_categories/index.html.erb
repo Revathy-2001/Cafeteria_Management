@@ -31,10 +31,8 @@
 
                 <%# displays the name of the category%>
                 <p class = "Category" ><%= category.name %></p>
-
                 <%# renders the Edit and the update icon on hover %>
                 <section class = "Update-delete">
-
                       <%# fetches the front end page to edit category details with the help of given url %>
                       <%= form_with(url: "/menu_categories/edit/#{category.id}", method: "get") do %>
                         <%= image_submit_tag("updateimg.png" , class: "Category_update") %>

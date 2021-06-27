@@ -10,9 +10,11 @@ class UsersController < ApplicationController
                     address: params[:address],
                     role: params[:role])
     if user.save
-      render plain: "Created"
+      session[:current_user_id] = user.id
+      redirect_to categories_path
     else
-      render plain: "Not created"
+      flash[:error] = new_user.errors.full_messages.join(", ")
+      redirect_to "/users/new"
     end
   end
 end
