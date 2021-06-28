@@ -1,0 +1,9 @@
+.Checkout_page {
+  display: flex;
+}
+.confirm_order_section {
+  margin-top: 100px;
+}
+.AddNew_address {
+  background-color: tomato;
+}

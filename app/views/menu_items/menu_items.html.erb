@@ -69,7 +69,7 @@
                     <p class = "subtotal_amt"> &#8377; <%= CartItem.show_cart_item(cart.id).sum(:temp_price) %></p>
                   </div>
                   <div class = "Checkout_clear">
-                    <%= link_to "Checkout >",new_sessions_path,class: "Checkout_button"  %>
+                    <%= link_to "Checkout >",cart_items_path,class: "Checkout_button"  %>
                     <%= link_to "ClearCart",menu_items_path,class:"clearCart"%>
                   </div>
               </div>

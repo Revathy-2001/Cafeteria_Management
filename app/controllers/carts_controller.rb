@@ -11,6 +11,8 @@ class CartsController < ApplicationController
       if (item)
         item.quantity += 1
         item.temp_price += item.menu_item_price
+        item.save!
+        redirect_to show_menu_items_path(id: category_id)
       else
         cart_item = CartItem.create!(
           cart_id: cart.id,

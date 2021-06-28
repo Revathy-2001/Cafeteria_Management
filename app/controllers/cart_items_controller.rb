@@ -1,4 +1,7 @@
 class CartItemsController < ApplicationController
+  def index
+  end
+
   def create
     cart_item = CartItem.create!(
       cart_id: cart.id,
