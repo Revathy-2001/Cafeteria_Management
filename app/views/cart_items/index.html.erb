@@ -24,25 +24,16 @@
             </div>
          <% else %>
             <div class = "Delivery_address">
-                <div class = "address_row">
-                  <p class="display_address" id = "display_address_check">
-                     <%= @current_user.first_name %><br><br>
-                     <%= Address.Show_current_user_address(@current_user.id).first.address %>
-                  </p>
-
-                  <div class = "address_block">
-                    <div class = "address_block_text">
-                      <p class = "address_text">Delivery Address</p>
-                      <i class="fa fa-check-circle" style="font-size:32px;color:green"></i>
-                    </div>
-
-                    <%= link_to "Add New Address",cart_items_path,{:remote => true,
-                      'data-toggle' =>  "modal",
-                      'data-target' => '#add_new_address',
-                       class:"AddAddress_new"
-                      } %>
+                  <div class = "address_block_text">
+                        <p class = "address_text">Delivery Address To </p>
+                        <p class = "address_user_name"><%= @current_user.first_name %></p>
+                        <i class="fa fa-check-circle" style="font-size:32px;color:green"></i>
+                        <%= link_to "Add New Address",cart_items_path,{:remote => true,
+                        'data-toggle' =>  "modal",
+                        'data-target' => '#add_new_address',
+                        class:"AddAddress_new"
+                   } %>
                   </div>
-                </div>
 
                 <div class = "phone_no_block">
                   <%= form_with(url: "/users/#{@current_user.id}", method: "patch") do %>
@@ -62,15 +53,20 @@
                 </div>
             </div>
 
-            <% check = "checked" %>
+
             <div class = "Saved_Addresses">
-                <% Address.Show_current_user_address(@current_user.id).each do |address| %>
+                <% delivery_id = @current_user.addresses.find_by(delivery_address: true).id %>
+
+                <% Address.Show_current_user_address(@current_user.id).order(:delivery_address).each do |address| %>
                       <div class = "Saved_address_block">
                           <div class = "Saved_address_text">
                               <%= form_with(url: "delivery_address_change/#{address.id}", method: "put") do %>
-                                <input type = "radio" name = "address" onclick="CheckAddress('<%= address.address %>')",  <%= check %>>
+                                  <% if(delivery_id == address.id) %>
+                                    <input type = "radio" name = "address" checked onclick="this.form.submit()" >
+                                  <% else%>
+                                    <input type = "radio" name = "address" onclick="this.form.submit()" >
+                                  <% end %>
                               <% end %>
-                              <% check = "" %>
                               <label class = "Saved_address_words"><%= address.address %></label>
                           </div>
 
@@ -135,8 +131,12 @@
                   <p class = "subtotal_amt"> &#8377; <%= CartItem.show_cart_item(cart.id).sum(:temp_price) %></p>
                 </div>
                 <div class = "Checkout_clear">
-                    <button class = "confirm_order_btn" id = "confirm_btn" disabled>Confirm Order</button>
-                    <%= link_to "ClearCart",destroy_all_cart_items_path,method:"delete",class:"clearCart"%>
+                   <% if(@current_user.addresses.count > 0)%>
+                      <button class = "confirm_order_btn" id = "confirm_btn">Confirm Order</button>
+                   <% else %>
+                      <button class = "confirm_order_btn" id = "confirm_btn" disabled>Confirm Order</button>
+                   <% end %>
+                   <%= link_to "ClearCart",destroy_all_cart_items_path,method:"delete",class:"clearCart"%>
                 </div>
             </div>
           </div>
@@ -146,13 +146,18 @@
 </div>
 
 <script>
-function CheckAddress(value) {
-   document.querySelector('p.display_address').innerHTML = value;
-}
-$(function () {
-  $('[data-toggle="popover"]').popover()
-})
 
+// function CheckAddress(value) {
+//    document.querySelector('p.display_address').innerHTML = value;
+//    alert($(this).attr("id"))
+// }
+// $(function () {
+//   $('[data-toggle="popover"]').popover()
+// })
+
+// $(".Check_address_radio").click(function() {
+//   $(this).submit()
+// })
 
 // function focusInput() {
 //   var focus = document.getElementById('Change_ph_no');

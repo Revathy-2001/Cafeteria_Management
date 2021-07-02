@@ -88,6 +88,7 @@
   color: #123456;
   border: 1px solid #123456;
   font-size: 14px;
+  margin-left: 10px;
 }
 .AddAddress_new:hover {
   text-decoration: none;
@@ -101,22 +102,18 @@
   align-items: baseline;
   color: #818181;
   justify-content: center;
-  margin: 10px;
+  margin: 30px;
   margin-top: 60px;
 }
-.address_row {
+/* .address_row {
   margin-top: 20px;
   display: flex;
   margin-bottom: 10px;
-}
-.address_block {
-  display: block;
-  margin: 5px;
-}
+} */
+
 .address_text {
   font-size: 20px;
   color: orangered;
-  margin-bottom: 50px;
   margin-right: 10px;
 }
 .phone_no_block {
@@ -129,7 +126,7 @@
   outline: none;
   border-radius: 5px;
   overflow-wrap: break-word;
-  width: 50%;
+  width: 40%;
   margin-bottom: 10px;
 }
 .Change_ph_no {
@@ -143,8 +140,13 @@
   font-size: 14px;
 }
 
+.address_user_name {
+  margin-right: 7px;
+}
 .address_block_text {
   display: flex;
+  margin: 20px 0px;
+  align-items: center;
 }
 
 .Saved_Addresses {
