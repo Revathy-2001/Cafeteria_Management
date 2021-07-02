@@ -57,3 +57,32 @@
   padding: 12px;
   font-family: sans-serif;
 }
+.Navbar_profile {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  float: right;
+  color: white;
+  padding: 12px 20px;
+}
+.Navbar_profile:focus {
+  outline: none;
+}
+
+.dropdown .dropdown-menu {
+  padding: 10px;
+  line-height: 2;
+  margin-top: 5px;
+  border: 1px solid rgb(79, 167, 207);
+}
+
+.dropdown-menu a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.dropdown-menu li:hover {
+  background-color: #012636;
+  color: white;
+  padding-left: 5px;
+}

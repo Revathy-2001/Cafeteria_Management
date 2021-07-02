@@ -3,23 +3,26 @@
   <head>
     <title>CafeteriaManagement</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <%# To display the Profile on top of the page %>
-    <%# <section class = "PageHead"><p class = "PageHead-title">Cafeteria Management System</p></section> %>
+    <%# <section class = "PageHead"><p class = "PageHead-title">Cafeteria Management System</p></section>
 
-    <%# <div class="Dashboard-list">
+    <div class="Dashboard-list">
         <a href="#"><i style="font-size:24px" class="fa">&#xf015;</i>  Dashboard</a>
-        <a href="#"><i class="fa fa-list-alt" aria-hidden="true"></i>  Categories</a>
+        <a href="/menu_categories"><i class="fa fa-list-alt" aria-hidden="true"></i>  Categories</a>
         <a href="#"><i style="font-size:24px" class="fa">&#xf07a;</i>  Orders</a>
-        <a href="#"><i class="fa fa-bars"></i>  Menu Items</a>
+        <a href="/menu_items"><i class="fa fa-bars"></i>  Menu Items</a>
         <a href="#"><i style="font-size:24px" class="fa">&#xf08b;</i>  Logout</a>
     </div> %>
     <%= yield %>

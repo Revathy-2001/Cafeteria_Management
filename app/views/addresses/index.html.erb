@@ -1,0 +1,17 @@
+<ul class = "Navbar_users">
+  <li class = "Navbar_users_contents"><a href="#">Menu Categories</a></li>
+  <li class = "Navbar_users_contents"><a href="#">Your orders</a></li>
+  <li class = "Navbar_users_contents"><a href="#">Menu Items</a></li>
+  <li class = "Navbar_users_contents" style="float:right">   <%= link_to "Sign out",destroy_session_path,method:"delete" %></li>
+  <li class = "Welcome" style="float:right">Welcome <%= @current_user.first_name %></li>
+</ul>
+
+<div class = "Edit_Address_section">
+ <%= form_with(url: "/addresses/#{@id}", method: "put") do %>
+      <%= text_field_tag 'address', @address.address %>
+      <%# submits the form %>
+      <div class="modal-footer">
+            <%= submit_tag "Update" %>
+      </div>
+  <% end %>
+</div>

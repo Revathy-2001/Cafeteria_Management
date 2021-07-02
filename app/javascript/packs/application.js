@@ -5,17 +5,19 @@
 
 import Rails from "@rails/ujs"
 
-//= require jquery
+//= require jquery3
+//= require jquery_ujs
 //= require popper
 //= require turbolinks
 //= require bootstrap
 //= require_tree.
 
+import "bootstrap"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+global.$ = jQuery;
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-import "bootstrap"

@@ -156,19 +156,17 @@
 .Cart_Section {
   width: 350px;
   margin-top: 70px;
-  height: 65%;
+  height: 85%;
   background-color: white;
   position: fixed;
   right: 20px;
   box-shadow: -2px 0px 6px 0px #818181;
-  overflow: auto;
-  -ms-overflow-style: none;
-  scroll-behavior: none;
+  margin-bottom: 20px;
 }
 .Cart_Section::-webkit-scrollbar {
   display: none;
 }
-.Cart_Section .cart_title {
+.cart_title {
   font-size: 24px;
   color: #012636;
   text-align: center;
@@ -183,17 +181,32 @@
 }
 .EmptyCart_img {
   max-width: 200px;
-  margin: 50px 50px;
+  margin: 10px auto;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
 }
 .EmptyCart_msg {
   font-family: sans-serif;
   font-size: 14px;
   color: #818181;
   text-align: center;
+  justify-content: center;
+  padding: 30px;
 }
 .CartItems_block {
   margin-top: 50px;
   padding: 20px;
+  overflow: auto;
+  position: fixed;
+  height: 60%;
+  width: 350px;
+  -ms-overflow-style: none;
+  scroll-behavior: none;
+  background-color: white;
+}
+.CartItems_block::-webkit-scrollbar {
+  display: none;
 }
 .CartItems_single {
   margin-top: 20px;
@@ -201,7 +214,8 @@
   font-family: sans-serif;
   justify-content: space-between;
   color: #818181;
-  border-bottom: 0.4px solid #818181;
+  box-shadow: 2px 1px rgb(82, 225, 181, 0.2);
+  padding: 5px;
 }
 
 .CartAdd_btn {
@@ -240,10 +254,11 @@
   font-size: 1.1rem;
   font-weight: 560;
 }
-.Cart_Section .cart_footer {
+.cart_footer {
   position: fixed;
-  bottom: 30px;
+  margin-top: 20px;
   right: 20px;
+  bottom: 20px;
   width: 350px;
   height: 100px; /* Height of the footer */
   background: white;
@@ -269,8 +284,12 @@
   margin-right: 10px;
   width: 50%;
   text-align: center;
+  border-radius: 3px;
 }
-
+.Checkout_button:hover {
+  text-decoration: none;
+  color: white;
+}
 .clearCart {
   background-color: white;
   border: 1px solid #012636;
@@ -278,11 +297,9 @@
   padding: 10px;
   width: 50%;
   text-align: center;
+  border-radius: 3px;
 }
-.Checkout_button:hover {
-  text-decoration: none;
-  color: white;
-}
+
 .clearCart:hover {
   text-decoration: none;
   color: #012636;

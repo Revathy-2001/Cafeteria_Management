@@ -76,3 +76,20 @@
   color: white;
   margin-right: 10px;
 }
+.No_menu_items {
+  margin: 20px auto;
+  display: block;
+  text-align: center;
+  justify-content: center;
+  max-width: 400px;
+}
+
+.No_items_message {
+  color: #818181;
+  text-align: center;
+  font-family: sans-serif;
+  margin-left: 30px;
+}
+.active {
+  background-color: #008895;
+}

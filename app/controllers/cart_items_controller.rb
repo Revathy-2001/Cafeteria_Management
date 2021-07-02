@@ -3,15 +3,6 @@ class CartItemsController < ApplicationController
   end
 
   def create
-    cart_item = CartItem.create!(
-      cart_id: cart.id,
-      menu_item_id: id,
-      menu_item_name: menu_item.name,
-      menu_item_price: menu_item.price,
-      quantity: 1,
-      temp_price: menu_item.price,
-    )
-    redirect_to show_menu_items_path(id: category_id)
   end
 
   def destroy
@@ -37,5 +28,11 @@ class CartItemsController < ApplicationController
     end
     cart_item.save!
     redirect_to (show_menu_items_path(category_id))
+  end
+
+  def destroy_all
+    cart = Cart.find_by(user_id: @current_user.id)
+    cart.cart_items.destroy_all
+    redirect_to show_menu_items_path(MenuCategory.first.id)
   end
 end

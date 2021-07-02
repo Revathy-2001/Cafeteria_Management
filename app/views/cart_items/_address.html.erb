@@ -1,0 +1,28 @@
+<%# displays the bootstrap modal %>
+<div id="add_new_address" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true">
+
+    <%# Contents of the form(to Add category) %>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <%# boostrap modal header %>
+            <div class="modal-header">
+                <%= head %>
+                <button type="button" class="closemodal" data-dismiss="modal">&times;</button>
+            </div>
+
+            <%# boostrap modal body %>
+            <div class="modal-body">
+               <%# form to get the name of the category to add it to categories %>
+               <%= form_with(url: url, method: request) do %>
+
+                    <%= text_field_tag 'address', text_value,required: true,class:"AddAddress_modal",placeholder:"Address" %>
+                    <%# submits the form %>
+                    <div class="modal-footer">
+                         <%= submit_tag submit_value,class:"AddAddress_btn_modal" %>
+                    </div>
+               <% end %>
+            </div>
+        </div>
+    </div>
+</div>

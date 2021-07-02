@@ -2,8 +2,331 @@
   display: flex;
 }
 .confirm_order_section {
+  background-color: white;
+  margin: 65px 60px;
+  height: 85%;
+  position: fixed;
+  box-shadow: -2px 0px 6px 0px #818181;
+  width: 62%;
+  font-family: sans-serif;
+  padding: 10px;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scroll-behavior: none;
+}
+
+.confirm_order_section::-webkit-scrollbar {
+  display: none;
+}
+.Edit_Address_section {
   margin-top: 100px;
 }
+.To_pay {
+  color: black;
+  font-size: 16px;
+  font-weight: 560;
+  display: flex;
+  justify-content: space-between;
+  font-family: sans-serif;
+  margin-bottom: 20px;
+}
+.NewUser_Delivery_address {
+  margin: 100px auto;
+  max-width: 400px;
+}
+.checkout_head {
+  background-color: rgb(170, 218, 224);
+  padding: 10px;
+  margin: -10px;
+  border-bottom: 0.5px solid #e6e9ecb9;
+  position: fixed;
+  width: 62%;
+}
+.NewUser_address_feild {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #818181;
+  height: 100px;
+  outline: none;
+}
+.NewUser_address_feild:hover {
+  outline: 1px solid rgb(79, 167, 207);
+}
 .AddNew_address {
-  background-color: tomato;
+  color: white;
+  padding: 10px;
+  margin-right: 10px;
+  width: 50%;
+  text-align: center;
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+  border-radius: 5px;
+  background-color: #004563;
+}
+.AddNew_address:hover {
+  background-color: #012636;
+}
+.display_address {
+  padding: 10px;
+  border: 1px solid #818181;
+  height: 100px;
+  outline: none;
+  border-radius: 5px;
+  width: 50%;
+  overflow-wrap: break-word;
+}
+.AddAddress_new {
+  color: white;
+  padding: 7px 12px;
+  border-radius: 2px;
+  background-color: white;
+  color: #123456;
+  border: 1px solid #123456;
+  font-size: 14px;
+}
+.AddAddress_new:hover {
+  text-decoration: none;
+  color: white;
+  background-color: #123456;
+}
+.Delivery_address {
+  display: block;
+  box-shadow: -2px 0px 6px 0px #818181;
+  padding: 10px;
+  align-items: baseline;
+  color: #818181;
+  justify-content: center;
+  margin: 10px;
+  margin-top: 60px;
+}
+.address_row {
+  margin-top: 20px;
+  display: flex;
+  margin-bottom: 10px;
+}
+.address_block {
+  display: block;
+  margin: 5px;
+}
+.address_text {
+  font-size: 20px;
+  color: orangered;
+  margin-bottom: 50px;
+  margin-right: 10px;
+}
+.phone_no_block {
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.phone_no_text {
+  padding: 8px;
+  border: 1px solid #818181;
+  outline: none;
+  border-radius: 5px;
+  overflow-wrap: break-word;
+  width: 50%;
+  margin-bottom: 10px;
+}
+.Change_ph_no {
+  color: white;
+  padding: 10px 20px;
+  border-radius: 2px;
+  background-color: #004563;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  font-size: 14px;
+}
+
+.address_block_text {
+  display: flex;
+}
+
+.Saved_Addresses {
+  margin: 20px auto;
+  display: block;
+  padding: 10px;
+}
+.Saved_address_block {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 10px;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 2px 2px rgb(82, 225, 181, 0.2);
+  color: #818181;
+}
+.Saved_address_text {
+  display: flex;
+  align-items: center;
+}
+.Saved_address_options {
+  display: flex;
+  padding: 10px;
+}
+.Saved_address_words {
+  max-width: 350px;
+  margin-left: 10px;
+  overflow-wrap: break-word;
+}
+.Cart_Section_checkout {
+  width: 350px;
+  margin-top: 70px;
+  height: 85%;
+  background-color: white;
+  position: fixed;
+  right: 20px;
+  box-shadow: -2px 0px 6px 0px #818181;
+  margin-bottom: 20px;
+}
+.Cart_Section_checkout::-webkit-scrollbar {
+  display: none;
+}
+@media screen and (min-width: 300px) and (max-width: 550px) {
+  .Checkout_page {
+    display: block;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .address_row {
+    display: block;
+    margin: 10px auto;
+  }
+  .confirm_order_section {
+    margin-top: 100px;
+    width: 80%;
+    height: fit-content;
+  }
+  .Cart_Section_checkout {
+    display: none;
+  }
+  .checkout_head {
+    width: 80%;
+  }
+  .Saved_address_words {
+    max-width: 110px;
+  }
+}
+
+@media screen and (min-width: 501px) and (max-width: 750px) {
+  .Checkout_page {
+    display: block;
+    margin-bottom: 20px;
+  }
+  .confirm_order_section {
+    margin-top: 100px;
+    width: 80%;
+    height: fit-content;
+  }
+  /* .Cart_Section_checkout {
+    bottom: 0;
+    min-height: 40%;
+    margin: auto;
+    justify-content: center;
+    width: 70%;
+  } */
+  .checkout_head {
+    width: 80%;
+  }
+  .Saved_address_words {
+    max-width: 110px;
+  }
+}
+.confirm_order_btn {
+  background-color: #012636;
+  border: none;
+  outline: none;
+  width: 80%;
+  margin-right: 10px;
+  color: white;
+  border-radius: 3px;
+}
+.update_address {
+  width: 16px;
+}
+
+.AddAddress_modal {
+  width: 80%;
+  margin: 10px auto;
+  justify-content: center;
+  display: flex;
+  padding: 8px;
+  outline: none;
+  border: 1px solid #123456;
+  border-radius: 5px;
+  font-family: sans-serif;
+}
+.AddAddress_btn_modal {
+  background-color: #012636;
+  border: none;
+  outline: none;
+  margin: auto;
+  justify-content: center;
+  display: flex;
+  padding: 8px 20px;
+  font-size: 14px;
+  color: white;
+  border-radius: 4px;
+  font-family: sans-serif;
+}
+.Address_modal {
+  background-color: #012636;
+  z-index: 1;
+  margin-top: 100px;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+}
+.Update_phone_no {
+  background-color: #012636;
+  border: none;
+  outline: none;
+  margin: auto;
+  font-size: 14px;
+  color: white;
+  border-radius: 4px;
+  font-family: sans-serif;
+  padding: 10px;
+  cursor: pointer;
+}
+.phone_no {
+  display: flex;
+  margin: 10px auto;
+  justify-content: center;
+  border: 1px solid #818181;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: aliceblue;
+}
+.phone_no_text_collapse {
+  max-width: 100%;
+  border-radius: 5px;
+  padding: 8px;
+  border: 1px solid #818181;
+  outline: none;
+  margin-right: 5px;
+}
+
+.edit_address_block {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0px 0px 0px 2px rgb(82, 225, 181, 0.2);
+  color: #818181;
+  width: 90%;
+}
+.Address_change_text {
+  width: 100%;
+  border: none;
+  outline: none;
+}
+.Update_phone_no {
+  float: right;
 }

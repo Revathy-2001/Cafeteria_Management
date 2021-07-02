@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   get "show_menu_items/:id" => "menu_items#menu_items", as: :show_menu_items
 
   post "update_quantity/:act/:id" => "cart_items#update_quantity", as: :update_quantity
+  delete "/delete_all_cart_items" => "cart_items#destroy_all", as: :destroy_all_cart_items
+
+  put "delivery_address_change/:id" => "addresses#delivery_address_update"
 end

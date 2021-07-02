@@ -1,105 +1,191 @@
-<ul class = "Navbar_users">
-  <li class = "Navbar_users_contents"><a href="#">Menu Categories</a></li>
-  <li class = "Navbar_users_contents"><a href="#">Your orders</a></li>
-  <li class = "Navbar_users_contents"><a href="#">Menu Items</a></li>
-  <li class = "Navbar_users_contents" style="float:right">
-   <%= link_to "Sign out",destroy_session_path,method:"delete" %>
-  </li>
-  <li class = "Welcome" style="float:right">Welcome <%= @current_user.first_name %></li>
-</ul>
+<div class = "Navbar_users">
+  <div class = "Navbar_users_contents"><a href="/categories">Menu Categories</a></div>
+  <div class = "Navbar_users_contents"><a href=<%="/show_menu_items/#{MenuCategory.first.id}" %>>Menu Items</a></div>
+  <div class="dropdown">
+    <button class="Navbar_profile" type="button" data-toggle="dropdown"><%= @current_user.first_name%>
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="#">Profile</a></li>
+      <li><a href="#">Orders</a></li>
+      <li><%= link_to "Sign out",destroy_session_path,method:"delete" %></li>
+    </ul>
+  </div>
+</div>
+
 <div class = "Checkout_page">
     <div class = "confirm_order_section">
-       <%= link_to "Add New",cart_items_path,{:remote => true,
-         'data-toggle' =>  "modal",
-         'data-target' => '#add_new_address',
-         class:"AddNew_address"
-        } %>
+         <div class = "checkout_head">CHECKOUT</div>
+         <% if(Address.Show_current_user_address(@current_user.id).empty?) %>
+            <div class = "NewUser_Delivery_address">
+              <%= form_with(url: "/addresses", method: "post") do %>
+                    <%= text_area_tag 'address', nil,placeholder: "Address Here",required: true,class: "NewUser_address_feild",id:"check_address" %>
+                    <%= submit_tag "Add",class: "AddNew_address" %>
+              <% end %>
+            </div>
+         <% else %>
+            <div class = "Delivery_address">
+                <div class = "address_row">
+                  <p class="display_address" id = "display_address_check">
+                     <%= @current_user.first_name %><br><br>
+                     <%= Address.Show_current_user_address(@current_user.id).first.address %>
+                  </p>
 
-       <div class = "Delivery_address">
-         <% Address.Show_current_user_address(@current_user.id).each do |address| %>
-           <label><%= address.address %></label>
-           <input type = "radio" name = "address">
-           <%= form_with(url: "addresses/#{address.id}", method: "delete") do %>
-              <%= image_submit_tag "destroy.png", class: "Close_cart_item" %>
-           <% end %>
-           <br>
-         <% end %>
-       </div>
-    </div>
-    <div class="Cart_Section">
-          <p class = "cart_title">Cart</p>
-          <% cart = Cart.find_by(user_id: @current_user.id) %>
-          <% if(CartItem.show_cart_item(cart.id).empty?) %>
-            <%= image_tag "emptycart.png",class: "EmptyCart_img" %>
-            <p class = "EmptyCart_msg">Your cart is Empty<br>Looks like you haven't added anything to your cart yet.</p>
-          <%else%>
-            <div class = "CartItems_block">
-                <% CartItem.show_cart_item(cart.id).each do |cart_item| %>
-                  <div class = "CartItems_single">
-                      <div class = "CartItem_firstrow">
+                  <div class = "address_block">
+                    <div class = "address_block_text">
+                      <p class = "address_text">Delivery Address</p>
+                      <i class="fa fa-check-circle" style="font-size:32px;color:green"></i>
+                    </div>
 
-                          <div class = "CartItem_firstrow_left">
-                              <%= form_with(url: "/cart_items/#{cart_item.id}", method: "delete") do %>
-                                    <%= image_submit_tag "destroy.png", class: "Close_cart_item" %>
+                    <%= link_to "Add New Address",cart_items_path,{:remote => true,
+                      'data-toggle' =>  "modal",
+                      'data-target' => '#add_new_address',
+                       class:"AddAddress_new"
+                      } %>
+                  </div>
+                </div>
+
+                <div class = "phone_no_block">
+                  <%= form_with(url: "/users/#{@current_user.id}", method: "patch") do %>
+                    <%= text_field_tag "phone_no",@current_user.phone_no,class:"phone_no_text",id:"Change_ph_no" ,disabled:true %>
+                    <button class="Change_ph_no" type="button" data-toggle="collapse"
+                      data-target="#PhoneNo_collapse" aria-expanded="false" aria-controls="collapseExample">
+                      Change Phone No.
+                    </button>
+
+                    <div class="collapse phone_no" id="PhoneNo_collapse">
+                      <div class="collapse_body">
+                          <%= text_field_tag "phone_no",@current_user.phone_no,class:"phone_no_text_collapse",id:"Change_ph_no"%>
+                          <%= submit_tag "Update",class: "Update_phone_no"%>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+            </div>
+
+            <% check = "checked" %>
+            <div class = "Saved_Addresses">
+                <% Address.Show_current_user_address(@current_user.id).each do |address| %>
+                      <div class = "Saved_address_block">
+                          <div class = "Saved_address_text">
+                              <%= form_with(url: "delivery_address_change/#{address.id}", method: "put") do %>
+                                <input type = "radio" name = "address" onclick="CheckAddress('<%= address.address %>')",  <%= check %>>
                               <% end %>
-                              <p><%= cart_item.menu_item_name %></p>
+                              <% check = "" %>
+                              <label class = "Saved_address_words"><%= address.address %></label>
                           </div>
 
-                          <div class = "CartAdd_btn">
-                              <%= form_with(url: "/update_quantity/#{"add"}/#{cart_item.id}", method: "post") do %>
-                                  <%= submit_tag "+", class: "PlusButton"%>
-                              <% end %>
-                              <p class = "cart_quantity"><%= cart_item.quantity %></p>
-                              <%= form_with(url: "/update_quantity/#{"sub"}/#{cart_item.id}", method: "post") do %>
-                                  <%= submit_tag "-", class: "MinusButton"%>
-                              <% end %>
+                          <div class = "Saved_address_options">
+                            <%= form_with(url: "addresses/#{address.id}", method: "delete") do %>
+                                <%= image_submit_tag "deleteimage.png", class: "Close_cart_item" %>
+                            <% end %>
+                            <a href="javascript:void(0)" data-target = <%= "#Address#{address.id}" %> data-address = <%= address.address%>
+                              class= "update_address_link" data-toggle="collapse"><%= image_tag("editimage.png", class:"update_address") %>
+                            </a>
                           </div>
                       </div>
-                      <p id = "price<%=cart_item.id%>" class = "cart_price">&#8377;<%= cart_item.temp_price %></p>
+
+                      <div class = "collapse" id = <%= "Address#{address.id}" %>>
+                          <%= form_with(url: "addresses/#{address.id}", method: "put",class:"edit_address_block") do %>
+                            <%= text_field_tag "address",address.address,class:"Address_change_text" %>
+                            <%= submit_tag "Update",class: "Update_phone_no"%>
+                          <% end %>
+                      </div>
+                <% end %>
+            </div>
+         <% end %>
+    </div>
+
+    <%= render partial: "address",locals: {head: "Add New Address",submit_value: "Create",url: "/addresses",request: "post",text_value: nil} %>
+
+    <div class="Cart_Section_checkout">
+      <p class = "cart_title">Cart</p>
+      <% cart = Cart.find_by(user_id: @current_user.id) %>
+      <% if(CartItem.show_cart_item(cart.id).empty?) %>
+        <%= image_tag "emptycart.png",class: "EmptyCart_img" %>
+        <p class = "EmptyCart_msg">Your cart is Empty<br>Looks like you haven't added anything to your cart yet.</p>
+      <%else%>
+        <div class = "CartItems_block">
+            <% CartItem.show_cart_item(cart.id).each do |cart_item| %>
+              <div class = "CartItems_single">
+                  <div class = "CartItem_firstrow">
+
+                      <div class = "CartItem_firstrow_left">
+                          <%= form_with(url: "/cart_items/#{cart_item.id}", method: "delete") do %>
+                                <%= image_submit_tag "deleteimage.png", class: "Close_cart_item" %>
+                          <% end %>
+                          <p><%= cart_item.menu_item_name %></p>
+                      </div>
+
+                      <div class = "CartAdd_btn">
+                          <%= form_with(url: "/update_quantity/#{"add"}/#{cart_item.id}", method: "post") do %>
+                              <%= submit_tag "+", class: "PlusButton"%>
+                          <% end %>
+                          <p class = "cart_quantity"><%= cart_item.quantity %></p>
+                          <%= form_with(url: "/update_quantity/#{"sub"}/#{cart_item.id}", method: "post") do %>
+                              <%= submit_tag "-", class: "MinusButton"%>
+                          <% end %>
+                      </div>
                   </div>
-                <%end %>
-                <div class = "cart_footer">
-                    <div  class = "Cart_subtotal">
-                      <p> Subtotal </p>
-                      <p class = "subtotal_amt"> &#8377; <%= CartItem.show_cart_item(cart.id).sum(:temp_price) %></p>
-                    </div>
-                    <div class = "Checkout_clear">
-                      <%= link_to "Checkout >",new_sessions_path,class: "Checkout_button"  %>
-                      <%= link_to "ClearCart",menu_items_path,class:"clearCart"%>
-                    </div>
-                </div>
+                  <p id = "price<%=cart_item.id%>" class = "cart_price">&#8377;<%= cart_item.temp_price %></p>
               </div>
-          <% end %>
+            <%end %>
+             <div class = "cart_footer">
+                <div  class = "To_pay">
+                  <p> To Pay </p>
+                  <p class = "subtotal_amt"> &#8377; <%= CartItem.show_cart_item(cart.id).sum(:temp_price) %></p>
+                </div>
+                <div class = "Checkout_clear">
+                    <button class = "confirm_order_btn" id = "confirm_btn" disabled>Confirm Order</button>
+                    <%= link_to "ClearCart",destroy_all_cart_items_path,method:"delete",class:"clearCart"%>
+                </div>
+            </div>
+          </div>
+      <% end %>
     </div>
   </div>
 </div>
 
+<script>
+function CheckAddress(value) {
+   document.querySelector('p.display_address').innerHTML = value;
+}
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
 
-<%# displays the bootstrap modal %>
-<div id="add_new_address" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true">
 
-    <%# Contents of the form(to Add category) %>
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+// function focusInput() {
+//   var focus = document.getElementById('Change_ph_no');
+//   focus.value = " ";
+//   focus.focus();
+//   focus.disabled = false;
+// }
 
-            <%# boostrap modal header %>
-            <div class="modal-header">
-                Add New Address
-                <button type="button" class="closemodal" data-dismiss="modal">&times;</button>
-            </div>
+// let button = document.getElementById("confirm_btn");
+// let input = document.getElementById("check_address");
+// input.addEventListener("input", function(e) {
+// 	if(input.value.length > 5) {
+//   	button.removeAttribute("disabled")
+//   }
+// })
+// function Enable_confirm() {
+//   button.removeAttribute("disabled");
+// }
 
-            <%# boostrap modal body %>
-            <div class="modal-body">
-               <%# form to get the name of the category to add it to categories %>
-               <%= form_with(url: "/addresses", method: "post") do %>
 
-                    <%= text_field_tag 'address', nil%>
-                    <%# submits the form %>
-                    <div class="modal-footer">
-                         <%= submit_tag "Create" %>
-                    </div>
-               <% end %>
-            </div>
-        </div>
-    </div>
-</div>
+// $(document).ready(function() {
+//   $(".update_address_link").click(function () {
+//     // $(document).hide()
+//     var clicked = $(this).attr("data-attribute")
+//     var address = $(this).attr("data-address")
+//     alert(address)
+//     $(".confirm_order_section").css("z-index",-1)
+//     $("#AddressModal").show()
+//     $("#AddressModal").find("h1").html("Update Address");
+//     $("#AddressModal").find(".Address_form").attr("url", 'addresses/'+clicked);
+//     $("#AddressModal").find(".AddAddress_btn_modal").attr("value","Update");
+//     $("#AddressModal").find(".Address_form").attr("method" ,'put');
+//     $("#AddressModal").find('.AddAddress_modal').attr("value",address)
+//   })
+// });
+</script>
