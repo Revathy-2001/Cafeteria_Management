@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       session[:current_user_id] = user.id
       redirect_to categories_path
     else
-      flash[:error] = "Your login attempt was invalid. Please retry."
+      flash[:error] = "User not found."
       redirect_to new_sessions_path
     end
   end

@@ -1,0 +1,47 @@
+<section class = <%= page_classname %>>
+    <section class =  <%= head_classname %>>
+        <h1 class = "Orders-title">Orders</h1>
+    </section>
+    <div class =  <%= section_classname %>>
+      <table  class="table table-bordered table-dark">
+          <thead>
+            <tr>
+              <th class="col_name">Name</th>
+              <th class="col_phone_No">Mobile No</th>
+              <th class="col_address">Address</th>
+              <th class="col_amount">Total Amount</th>
+              <th class="col_status">Status</th>
+              <th class="col_checkout">Checkout</th>
+            </tr>
+          </thead>
+      </table>
+      <section class = "Orders_section">
+        <table class="table table-bordered">
+          <tbody class = "Orders_body">
+            <% query.each do |order| %>
+                <tr class = "Orders_row">
+                  <td class="column_name"><%= User.find(order.user_id).first_name %></td>
+                  <td class="column_phone_no"><%= User.find(order.user_id).phone_no %></td>
+                  <td class="column_address"><%= order.delivery_address %></td>
+                  <td class="column_total_amt">&#8377; <%= order.total_amount %></td>
+                  <% if(owner) %>
+                    <% if(order.delivered_at) %>
+                      <th class="column_status"><p class = "Delivered">Delivered</p></th>
+                    <% else %>
+                      <th class="column_status"><%= link_to "Pending Delivery",mark_as_delivered_path(order.id),class: "pending_delivery" %></th>
+                    <% end %>
+                  <% else %>
+                      <% if(order.delivered_at) %>
+                        <th class="column_status"><p class = "customer_status-delivered"><%= order.delivered_at.to_s(:long) %></p></th>
+                      <% else %>
+                        <th class="column_status"><p class = "customer_status-pending">Pending Delivery</p></th>
+                      <% end %>
+                  <% end %>
+                  <td class="column_checkout"><%= link_to "View Items",order_details_path(order.id),class: "view_order_btn" %></td>
+                </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </section>
+    </div>
+</section>

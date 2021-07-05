@@ -13,6 +13,11 @@
 </div>
 
 <div class = "Checkout_page">
+    <% if (MenuCategory.all.empty?)%>
+        <%= link_to image_tag("previous.png",class:"previous_btn"),categories_path %>
+    <% else %>
+        <%= link_to image_tag("previousicon.png",class:"previous_btn"),show_menu_items_path(MenuCategory.first) %>
+    <% end %>
     <div class = "confirm_order_section">
          <div class = "checkout_head">CHECKOUT</div>
          <% if(Address.Show_current_user_address(@current_user.id).empty?) %>
@@ -128,13 +133,11 @@
              <div class = "cart_footer">
                 <div  class = "To_pay">
                   <p> To Pay </p>
-                  <p class = "subtotal_amt"> &#8377; <%= CartItem.show_cart_item(cart.id).sum(:temp_price) %></p>
+                  <p class = "subtotal_amt"> &#8377; <%= cart.cart_items.sum(:temp_price) %></p>
                 </div>
                 <div class = "Checkout_clear">
-                   <% if(@current_user.addresses.count > 0)%>
-                      <button class = "confirm_order_btn" id = "confirm_btn">Confirm Order</button>
-                   <% else %>
-                      <button class = "confirm_order_btn" id = "confirm_btn" disabled>Confirm Order</button>
+                   <%= form_with(url: "orders", method: "post") do %>
+                      <%= submit_tag "Confirm Order",class:"confirm_order_btn", disabled: (@current_user.addresses.empty?) ? true : false %>
                    <% end %>
                    <%= link_to "ClearCart",destroy_all_cart_items_path,method:"delete",class:"clearCart"%>
                 </div>

@@ -1,6 +1,9 @@
 <%# Display's the head section in add menu items page %>
 <section class = "MenuItems-head">
     <h1 class = "MenuItems-title">Add Menu Item</h1>
+    <%= link_to menu_items_path, class: 'Back_to_orders' do %>
+         <span aria-hidden="true">&times;</span>
+     <% end %>
 </section>
 
 
@@ -19,6 +22,10 @@
           <%= form_with(url: "/menu_items", method: "post") do %>
               <%= hidden_field_tag 'id', @id %>
 
+              <div class = "Enable_option_menu_item">
+                  <label>Enable MenuItem for customer</label>
+                  <%= check_box_tag "status", value = "Active", checked: true,class: "Enable_checkbox" %>
+              </div>
               <%# name of menu item %>
               <div class = "Menu_item_section">
                 <p class = "Update_input_text">Item Name</p>

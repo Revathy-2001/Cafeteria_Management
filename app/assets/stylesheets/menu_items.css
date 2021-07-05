@@ -74,3 +74,6 @@
 .menu_items:hover .Item_delete {
   visibility: visible;
 }
+.Enable_option_menu_item {
+  text-align: center;
+}

@@ -1,6 +1,9 @@
 <%# Display's the head section in update menu item Wpage %>
 <section class = "MenuItems-head">
     <h1 class = "MenuItems-title">Update Menu Item</h1>
+    <%= link_to menu_items_path, class: 'Back_to_orders' do %>
+         <span aria-hidden="true">&times;</span>
+     <% end %>
 </section>
 
 <%# to update a menu item to the belonging category %>
@@ -10,6 +13,11 @@
 
           <%# form to update an existing item %>
           <%= form_with(url: "/menu_items/#{@menu_item_id}", method: "put") do %>
+
+              <div class = "Enable_option_menu_item">
+                  <label>Enable MenuItem for customer</label>
+                  <%= check_box_tag "status", value = "Active", checked: true,class: "Enable_checkbox" %>
+              </div>
 
               <%# updates the item name %>
               <div class = "Menu_item_section">

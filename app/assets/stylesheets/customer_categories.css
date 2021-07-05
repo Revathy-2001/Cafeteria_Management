@@ -41,14 +41,16 @@
   justify-content: space-between;
 }
 .View_item {
-  background-color: #009efb;
-  color: white;
+  background-color: transparent;
+  color: #1fbbaf;
+  border: 1px solid #1fbbaf;
   padding: 10px;
   border-radius: 3px;
 }
 .View_item:hover {
   text-decoration: none;
   color: white;
+  background-color: #1fbbaf;
 }
 .Category_name {
   margin-top: 20px;
@@ -57,4 +59,14 @@
 .No_items_image {
   width: 250px;
   height: 250px;
+}
+.View_item_unavailable {
+  border: 1px solid orangered;
+  color: orangered;
+  padding: 10px 30px;
+  border-radius: 3px;
+  cursor: context-menu;
+  opacity: 1;
+  outline: none;
+  background-color: transparent;
 }

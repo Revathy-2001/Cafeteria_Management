@@ -7,11 +7,12 @@
   left: 0;
   top: 0;
   background-color: #012636;
-  overflow-x: hidden;
+  overflow-y: scroll;
   padding-top: 20px;
-  -ms-overflow-style: none;
-  scroll-behavior: none;
+  /* -ms-overflow-style: none;
+  scroll-behavior: none; */
   border-right: 0.3px solid #818181;
+  margin-bottom: 20px;
 }
 .SideNav_categories .SideNave_categories_link {
   padding: 10px 8px 16px 16px;
@@ -33,10 +34,10 @@
   color: white;
   text-decoration: none;
 }
-
+/*
 .SideNav_categories::-webkit-scrollbar {
   display: none;
-}
+} */
 .SideNave_categories_link:hover {
   background-color: #009efb;
 }
@@ -152,6 +153,16 @@
   text-decoration: none;
   background-color: #012636;
   color: white;
+}
+.Add_item_unavailable {
+  background-color: white;
+  padding: 3px 10px;
+  color: orangered;
+  outline: none;
+  border: 0.4px solid orangered;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
 }
 .Cart_Section {
   width: 350px;

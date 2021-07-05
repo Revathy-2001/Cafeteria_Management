@@ -6,4 +6,8 @@ class MenuCategory < ActiveRecord::Base
 
   # menu category has many menu items
   has_many :menu_items
+
+  def self.show_available_category
+    all.where("status = ? ", "Active")
+  end
 end

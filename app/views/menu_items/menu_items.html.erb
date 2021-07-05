@@ -1,26 +1,11 @@
-<div class = "Navbar_users">
-  <div class = "Navbar_users_contents"><a href="/categories">Menu Categories</a></div>
-  <div class = "Navbar_users_contents"><a href=<%="/show_menu_items/#{MenuCategory.first.id}" %>>Menu Items</a></div>
-  <div class="dropdown">
-    <button class="Navbar_profile" type="button" data-toggle="dropdown"><%= @current_user.first_name%>
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><a href="#">Profile</a></li>
-      <li><a href="#">Orders</a></li>
-      <li><%= link_to "Sign out",destroy_session_path,method:"delete" %></li>
-    </ul>
-  </div>
-</div>
-
-
 <div class = "MenuItems_page">
   <div class="SideNav_categories">
-    <% MenuCategory.all.each do |category| %>
+    <% MenuCategory.show_available_category.each do |category| %>
         <p id="Categories_link"> <%= link_to  category.name,show_menu_items_path(id: "#{category.id}"),
-        class: (category.id == MenuCategory.first.id)? "SideNave_categories_link active": "SideNave_categories_link"%></p>
+        class:"SideNave_categories_link"%></p>
     <% end %>
   </div>
-  
+
   <div class = "MenuItem_cards_section">
     <% if(MenuItem.show_menu_item(@id).empty?)%>
         <div class = "No_menu_items">
@@ -34,9 +19,13 @@
               <p class = "Item_name"><%= item.name %></p>
               <div class="MenuItem_details">
                 <div class = "Item_price">&#8377;<%= item.price%></div>
-                <%= link_to "Add",carts_path(id: "#{item.id}"),method:"post",class: "Add_item" %>
+                    <% if(item.status == "Active") %>
+                      <%= link_to "Add",carts_path(id: "#{item.id}"),method:"post",class: "Add_item" %>
+                    <% else %>
+                      <button class= "Add_item_unavailable" disabled>Unavailable</button>
+                    <% end %>
+                </div>
               </div>
-            </div>
           </section>
         <% end %>
     <% end %>

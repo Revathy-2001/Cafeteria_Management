@@ -243,15 +243,19 @@
   background-color: #012636;
   border: none;
   outline: none;
-  width: 80%;
   margin-right: 10px;
   color: white;
   border-radius: 3px;
+  width: 100%;
+  padding: 10px 20px;
 }
 .update_address {
   width: 16px;
 }
-
+.confirm_order_btn:disabled {
+  color: #818181;
+  background-color: #092a3a;
+}
 .AddAddress_modal {
   width: 80%;
   margin: 10px auto;
@@ -331,4 +335,11 @@
 }
 .Update_phone_no {
   float: right;
+}
+
+.previous_btn {
+  position: fixed;
+  left: 10px;
+  top: 60px;
+  width: 40px;
 }

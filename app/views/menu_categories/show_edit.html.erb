@@ -1,6 +1,9 @@
 <%# Display's the head section in update category page %>
 <section class = "UpdateCategories-head">
     <h1 class = "UpdateCategories-title">Update Menu Category</h1>
+     <%= link_to menu_categories_path, class: 'Back_to_orders' do %>
+         <span aria-hidden="true">&times;</span>
+     <% end %>
 </section>
 
 <%# this block edits the category %>

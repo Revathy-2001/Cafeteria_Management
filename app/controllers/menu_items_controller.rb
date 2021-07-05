@@ -16,6 +16,7 @@ class MenuItemsController < ApplicationController
       :name => params[:name],
       :description => params[:description],
       :price => params[:price],
+      :status => params[:status],
     )
     if new_menu_item.save
       redirect_to menu_items_path
@@ -34,9 +35,11 @@ class MenuItemsController < ApplicationController
   # updates the menu item
   def update
     menu_item = MenuItem.find(params[:id])
+    status = params[:status].nil? ? "Inactive" : "Active"
     menu_item.name = params[:name]
     menu_item.price = params[:price]
     menu_item.description = params[:description]
+    menu_item.status = status
     menu_item.save!
     redirect_to menu_items_path
   end

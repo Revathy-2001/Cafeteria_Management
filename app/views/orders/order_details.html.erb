@@ -1,0 +1,66 @@
+<section class = "Orders-page">
+    <section class = "Orders-head">
+        <h1 class = "Orders-title">Orders Details</h1>
+        <%= link_to orders_path, class: 'Back_to_orders' do %>
+         <span aria-hidden="true">&times;</span>
+        <% end %>
+    </section>
+    <section class = "order_status">
+       <div class="card" style="margin-right:20px;">
+        <div class="card-body status_order_body">
+          <p><i class="fa" style="font-size:34px;color:orangered"> &#xf07a; </i></p>
+          <p class="card-text">Order Status</p>
+        </div>
+        <div class="card-footer status_order_footer">
+          <% if(Order.find(@id).delivered_at) %>
+             <p>Completed</p>
+          <% else %>
+             <p>Pending</p>
+          <% end %>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body status_ship_body">
+          <%= image_tag "shipping_truck.png",width:"40px",height:"40px" %>
+          <p class="card-text">Shipping Status</p>
+        </div>
+        <div class="card-footer status_ship_footer">
+          <% if(Order.find(@id).delivered_at) %>
+             <p>Delivered</p>
+          <% else %>
+             <p>Unshipped</p>
+          <% end %>
+        </div>
+      </div>
+    </section>
+     <section class = "Order_items_section" >
+      <p class = "order_id">ORDER-ID <%= @id %></p>
+      <div class="card">
+          <div class="card-header topics">
+            <p >PRODUCT</p>
+            <div class = "topic-right">
+              <p>PRICE</p>
+              <p>QUANTITY</p>
+              <p>TOTAL</p>
+            </div>
+          </div>
+          <div class="card-body ordered_items_record">
+                <% OrderItem.show_order_items(@id).all.each do |order_item| %>
+                    <div class= "order_items_row">
+                        <p class = "order_item_row-left"><%= order_item.menu_item_name %></p>
+                        <div class = "order_item_row-right">
+                            <p class = "right-price">&#8377;<%= order_item.menu_item_price %></p>
+                            <p class = "right-quantity"><%= order_item.quantity %></p>
+                            <p class = "right-total">&#8377;<%= order_item.quantity * order_item.menu_item_price %></p>
+                        </div>
+                    </div>
+                <% end %>
+          </div>
+      </div>
+      <div class="orders-footer">
+         <p>Order Total</p>
+         <p>&#8377;<%= Order.find(@id).total_amount %></p>
+      </div>
+    </section>
+
+</section>

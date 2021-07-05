@@ -1,22 +1,12 @@
-<div class = "Navbar_users">
-  <div class = "Navbar_users_contents"><a href="/categories">Menu Categories</a></div>
-  <div class = "Navbar_users_contents"><a href=<%="/show_menu_items/#{MenuCategory.first.id}" %>>Menu Items</a></div>
-  <div class="dropdown">
-    <button class="Navbar_profile" type="button" data-toggle="dropdown"><%= @current_user.first_name%>
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><a href="#">Profile</a></li>
-      <li><a href="#">Orders</a></li>
-      <li><%= link_to "Sign out",destroy_session_path,method:"delete" %></li>
-    </ul>
-  </div>
-</div>
-
 <div class = "Categories_card_Section">
   <% MenuCategory.all.each do | category | %>
      <div class = "Categories_block">
-      <p class = "Category_name"><%= category.name%></p>
-       <%= link_to "View Menu Items",show_menu_items_path(id: "#{category.id}"),class:"View_item" %>
+        <p class = "Category_name"><%= category.name%></p>
+        <% if(category.status == "Active") %>
+          <%= link_to "View Menu Items",show_menu_items_path(id: "#{category.id}"),class:"View_item" %>
+        <% else %>
+          <button class = "View_item_unavailable" disabled>Unavailable </button>
+        <% end %>
      </div>
   <% end %>
 </div>
