@@ -1,22 +1,8 @@
-<div class = "Navbar_users">
-  <div class = "Navbar_users_contents"><a href="/categories">Menu Categories</a></div>
-  <div class = "Navbar_users_contents"><a href=<%="/show_menu_items/#{MenuCategory.first.id}" %>>Menu Items</a></div>
-  <div class="dropdown">
-    <button class="Navbar_profile" type="button" data-toggle="dropdown"><%= @current_user.first_name%>
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><a href="#">Profile</a></li>
-      <li><a href="#">Orders</a></li>
-      <li><%= link_to "Sign out",destroy_session_path,method:"delete" %></li>
-    </ul>
-  </div>
-</div>
-
 <div class = "Checkout_page">
     <% if (MenuCategory.all.empty?)%>
         <%= link_to image_tag("previous.png",class:"previous_btn"),categories_path %>
     <% else %>
-        <%= link_to image_tag("previousicon.png",class:"previous_btn"),show_menu_items_path(MenuCategory.first) %>
+        <%= link_to image_tag("previousicon.png",class:"previous_btn"),show_menu_items_path(id: MenuCategory.first) %>
     <% end %>
     <div class = "confirm_order_section">
          <div class = "checkout_head">CHECKOUT</div>
@@ -60,16 +46,20 @@
 
 
             <div class = "Saved_Addresses">
-                <% delivery_id = @current_user.addresses.find_by(delivery_address: true).id %>
+
+                <% delivery_id = @current_user.addresses.find_by(delivery_address: true) %>
+                <% if(delivery_id) %>
+                   <% delivery_id = delivery_id.id %>
+                <% end %>
 
                 <% Address.Show_current_user_address(@current_user.id).order(:delivery_address).each do |address| %>
                       <div class = "Saved_address_block">
                           <div class = "Saved_address_text">
                               <%= form_with(url: "delivery_address_change/#{address.id}", method: "put") do %>
                                   <% if(delivery_id == address.id) %>
-                                    <input type = "radio" name = "address" checked onclick="this.form.submit()" >
+                                     <input type = "radio" name = "address" checked onclick="this.form.submit()" >
                                   <% else%>
-                                    <input type = "radio" name = "address" onclick="this.form.submit()" >
+                                     <input type = "radio" name = "address" onclick="this.form.submit()" >
                                   <% end %>
                               <% end %>
                               <label class = "Saved_address_words"><%= address.address %></label>
@@ -139,7 +129,7 @@
                    <%= form_with(url: "orders", method: "post") do %>
                       <%= submit_tag "Confirm Order",class:"confirm_order_btn", disabled: (@current_user.addresses.empty?) ? true : false %>
                    <% end %>
-                   <%= link_to "ClearCart",destroy_all_cart_items_path,method:"delete",class:"clearCart"%>
+                   <%= link_to "ClearCart",destroy_all_cart_items_path,method: :delete, data: { confirm: "Are you sure you want to delete?"},class:"clearCart"%>
                 </div>
             </div>
           </div>

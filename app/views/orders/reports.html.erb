@@ -1,0 +1,52 @@
+<section class = "Reports_page">
+    <section class = "Reports_head">
+        <h1 class = "Orders-title">Reports</h1>
+        <%= form_with(url: "show_reports", method: "post" , class: "Reports_date_range") do %>
+           <%= date_field_tag 'from_date', nil, class: 'From_date' ,required: true,autofocus: true %>
+           <%= date_field_tag 'to_date', nil, class: 'To_date' ,required: true,autofocus: true %>
+           <%= submit_tag "Fetch", class: "Fetch_reports-button" %>
+        <% end %>
+    </section>
+    <div class = "Reports_section">
+      <table  class="table table-bordered table-dark">
+          <thead>
+            <tr>
+              <th class="col_name">Name</th>
+              <th class="col_phone_No">Mobile No</th>
+              <th class="col_address">Address</th>
+              <th class="col_amount">Total Amount</th>
+              <th class="col_status">Status</th>
+              <th class="col_checkout">Checkout</th>
+            </tr>
+          </thead>
+      </table>
+      <section class = "Reports_section_body">
+        <table class="table table-bordered">
+          <tbody class = "Orders_body">
+            <% Order.show_date_range_reports(@from_date, @to_date).each do |order| %>
+                <tr class = "Orders_row">
+                  <td class="column_name"><%= User.find(order.user_id).first_name %></td>
+                  <td class="column_phone_no"><%= User.find(order.user_id).phone_no %></td>
+                  <td class="column_address"><%= order.delivery_address %></td>
+                  <td class="column_total_amt">&#8377; <%= order.total_amount %></td>
+                  <% if(order.delivered_at) %>
+                      <% if(User.find(order.user_id).role == "clerk") %>
+                          <th class="column_status"><p class = "walk-in-customer">Walk-in-Customer</p></th>
+                      <% else %>
+                          <th class="column_status"><p class = "Delivered"><%= order.delivered_at.to_s(:long) %></p></th>
+                      <% end %>
+                  <% else %>
+                      <% if(User.find(order.user_id).role == "clerk") %>
+                          <th class="column_status"><p class = "walk-in-customer">Walk-in-Customer</p></th>
+                      <% else %>
+                         <th class="column_status"><p class = "pending_status">Pending Delivery</p></th>
+                      <% end %>
+                  <% end %>
+                  <td class="column_checkout"><%= link_to "View Orders",admin_order_details_path(order.id),class: "view_order_btn" %></td>
+                </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </section>
+    </div>
+</section>

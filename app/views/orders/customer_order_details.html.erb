@@ -1,0 +1,10 @@
+<%= render partial: "orders_detail",locals:{
+   page_classname:"Customers-page",
+   head_classname:"Customers-details-head",
+   section_classname:"Customer_items_section",
+   owner:false,
+   back_to_orders: "Back_to_orders_customer",
+   back_to_orders_path: customer_orders_path(@current_user.id),
+   order_id:@id,
+   order_status:"order_status_customer"
+} %>

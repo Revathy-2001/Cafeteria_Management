@@ -1,8 +1,18 @@
-<section class = "Signup-form">
-    <p class = "NewUsers-title">Sign up</p>
+<% if flash[:error] %>
+  <p class = "Flash-error">
+      <%= flash[:error] %>
+  </p>
+<% end %>
 
+<section class = "Signup-form-page">
+     <section class = "New_clerk_head">
+        <h1 class = "new_user-title">Create Owner or Clerk</h1>
+        <%= link_to "/dashboard", class: "Back_to_orders" do %>
+           <span aria-hidden="true">&times;</span>
+        <% end %>
+    </section>
     <section class = "Usersnew">
-      <%= form_with(url: users_path) do |form| %>
+      <%= form_with(url: users_path,class:"Create_new_clerk_form") do |form| %>
       <%= hidden_field_tag 'role', 'user' %>
         <div class = "Form-section">
           <%= form.text_field :first_name,
@@ -38,15 +48,18 @@
               :title=>"Must contain at least one uppercase and lowercase letter, and at least 8 or more characters"%>
         </div>
 
+        <div class = "Role">
+         <p class = "role_text">Role</p>
+         <div class = "role_buttons">
+          <p class = "radio_owner"><%= form.radio_button :role, 'owner' %> Owner</p>
+          <p class = "radio_clerk"><%= form.radio_button :role, 'clerk',checked: true %> Clerk</p>
+        </div>
+        </div>
 
         <div class = "Form-section">
-        <%= form.submit "Sign-up", class:"Form-submit"  %>
+          <%= form.submit "Create", class:"Form-submit"  %>
         </div>
 
-        <div class= "NewAccount" >
-          <p class = "Existing-user-text">Already Existing User?</p>
-          <%= link_to "Sign-in", new_sessions_path%>
-        </div>
       <% end %>
     </section>
 </section>

@@ -15,16 +15,10 @@
 <%# renders partial file named modalform %>
 <%= render partial: "addCategory" %>
 
+
 <%# this block display's the  main content for the menu categories page %>
 <main class = "Categories-main">
  <section class = "CategorySection">
-         <% if flash[:error] %>
-            <p class = "Flash-error">
-            <%= flash[:error] %>
-                <%= link_to "X",menu_categories_path ,class: "close-error"
-             %>
-            </p>
-         <% end %>
         <%# iterates over each category item and renders it %>
          <% MenuCategory.all.each do |category| %>
             <section class = "CategorySection-item">
@@ -33,15 +27,19 @@
                 <p class = "Category" ><%= category.name %></p>
                 <%# renders the Edit and the update icon on hover %>
                 <section class = "Update-delete">
+                      <p class = <%= (category.status == "Active") ? "Active_status" : "Inactive_status" %>>
+                            <%= (category.status == "Active") ? "Active" : "Inactive" %>
+                      </p>
                       <%# fetches the front end page to edit category details with the help of given url %>
                       <%= form_with(url: "/menu_categories/edit/#{category.id}", method: "get") do %>
                         <%= image_submit_tag("updateimg.png" , class: "Category_update") %>
                       <% end %>
 
                       <%# deletes the category when delete icon is clicked %>
-                      <%= form_with(url: "/menu_categories/#{category.id}", method: "delete") do %>
-                          <%= image_submit_tag("trash.png" , class: "Category_delete") %>
-                      <% end %>
+
+                    <%= link_to image_tag("trash.png" , class: "Category_delete"),"menu_categories/#{category.id}", method: :delete,
+                    data: { confirm: "Are you sure you want to delete?"} %>
+
                 </section>
             </section>
        <% end %>

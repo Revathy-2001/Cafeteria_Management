@@ -1,6 +1,12 @@
+
+<% if flash[:error] %>
+  <p class = "Flash-error">
+      <%= flash[:error] %>
+  </p>
+<% end %>
+
 <section class = "Signin-form">
   <p class = "NewUsers-title">Sign In</p>
-
   <section class = "ExistingUser">
     <%= form_with(url: new_sessions_path) do |form| %>
       <div class = "Form-section">

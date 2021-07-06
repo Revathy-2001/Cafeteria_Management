@@ -1,0 +1,44 @@
+<div class="card text-center clerk_Cart_Section">
+  <% cart = Cart.find_by(user_id: @current_user.id) %>
+  <div class="card-header Clerk_cart_head">
+    <p>Cart</p>
+  </div>
+  <div class="card-body Cart_body_block">
+      <% cart.cart_items.each do |cart_item| %>
+          <div class = "CartItems_single">
+              <div class = "CartItem_firstrow">
+
+                  <div class = "CartItem_firstrow_left">
+                      <%= form_with(url: "/cart_items/#{cart_item.id}", method: "delete") do %>
+                            <%= image_submit_tag "deleteimage.png", class: "Close_cart_item" %>
+                      <% end %>
+                      <p><%= cart_item.menu_item_name %></p>
+                  </div>
+
+                  <div class = "CartAdd_btn">
+                      <%= form_with(url: "/update_quantity/#{"add"}/#{cart_item.id}", method: "post") do %>
+                          <%= submit_tag "+", class: "PlusButton"%>
+                      <% end %>
+                      <p class = "cart_quantity"><%= cart_item.quantity %></p>
+                      <%= form_with(url: "/update_quantity/#{"sub"}/#{cart_item.id}", method: "post") do %>
+                          <%= submit_tag "-", class: "MinusButton"%>
+                      <% end %>
+                  </div>
+              </div>
+              <p id = "price<%=cart_item.id%>" class = "cart_price">&#8377;<%= cart_item.temp_price %></p>
+          </div>
+      <%end %>
+  </div>
+  <div class="card-footer text-muted">
+    <div  class = "Cart_subtotal">
+      <p> Subtotal </p>
+      <p class = "subtotal_amt"> &#8377; <%= CartItem.show_cart_item(cart.id).sum(:temp_price) %></p>
+    </div>
+    <div class = "Checkout_clear">
+       <%= form_with(url: "orders", method: "post") do %>
+          <%= submit_tag "Confirm Order",class:"confirm_order_btn"%>
+       <% end %>
+      <%= link_to "ClearCart",destroy_all_cart_items_path,method:"delete", data: { confirm: "Are you sure you want to delete?"},class:"clearCart"%>
+    </div>
+  </div>
+</div>

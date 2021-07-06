@@ -9,14 +9,22 @@ Rails.application.routes.draw do
   post "signin" => "sessions#create", as: :sessions
   delete "signout" => "sessions#destroy", as: :destroy_session
   get "categories" => "menu_categories#categories"
+  post "update_profile" => "users#update_profile", as: :update_profile_path
 
-  get "show_menu_items/:id" => "menu_items#menu_items", as: :show_menu_items
+  get "show_menu_items" => "menu_items#menu_items", as: :show_menu_items
 
   post "update_quantity/:act/:id" => "cart_items#update_quantity", as: :update_quantity
   delete "/delete_all_cart_items" => "cart_items#destroy_all", as: :destroy_all_cart_items
 
   put "delivery_address_change/:id" => "addresses#delivery_address_update"
-  get "/order_details/:id" => "orders#order_details", as: :order_details
+  get "/order_details/:id" => "orders#admin_order_details", as: :admin_order_details
+  get "/myorder_details/:id" => "orders#customer_order_details", as: :customer_order_details
   get "myorders/:id" => "orders#customer_orders", as: :customer_orders
   get "mark_as_delivered/:id" => "orders#mark_as_delivered", as: :mark_as_delivered
+  get "create_new" => "users#create_new"
+  get "clerks" => "users#clerks"
+  get "clerk_checkout" => "cart_items#clerk_checkout", as: :clerk_checkout
+  get "reports" => "orders#reports", as: :reports
+  post "show_reports" => "orders#show_reports"
+  get "dashboard" => "orders#dashboard"
 end

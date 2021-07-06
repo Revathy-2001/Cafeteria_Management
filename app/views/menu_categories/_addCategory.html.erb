@@ -1,6 +1,5 @@
 <%# displays the bootstrap modal %>
 <div id="add_category_modal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true">
-
     <%# Contents of the form(to Add category) %>
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -15,7 +14,6 @@
             <div class="modal-body">
                <%# form to get the name of the category to add it to categories %>
                <%= form_with(url: "menu_categories", method: "post" , class: "AddCategory") do %>
-
                     <div class = "AddCategoryBody_section">
                         <p class = "Category_label"> Category Name:</p>
                         <div class = "Enable_option">
@@ -23,7 +21,7 @@
                             <%= check_box_tag "status", value = "Active", checked: true,class: "Enable_checkbox" %>
                         </div>
                     </div>
-                    <%= text_field_tag 'name', nil, class: 'AddCategory-text' %>
+                    <%= text_field_tag 'name', nil, class: 'AddCategory-text',required:true %>
                     <%# submits the form %>
                     <div class="modal-footer">
                          <%= submit_tag "Create", class: "CreateCategory-button" %>

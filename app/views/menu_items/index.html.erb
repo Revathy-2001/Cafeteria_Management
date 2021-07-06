@@ -21,10 +21,12 @@
                       <%= "#{category.name}"%>
                     </p>
 
+
                     <%# renders the add menu icon and redirects path to create a new menu item on click %>
                     <%= form_with(url: "/menu_items/new/#{category.id}", method: "get") do %>
                       <%= image_submit_tag("menu_item_add.png" , class: "AddIcon_menu_item",title: "Add Menu Item") %>
                     <% end %>
+
               </section>
 
               <%# renders the items belongs to each category %>
@@ -50,15 +52,16 @@
                           <p><%= item.name %></p>
                           <%# shows edit icon and delete icon on hovering the menu item %>
                           <section class = "Update-delete">
-
+                              <p class = <%= (item.status == "Active") ? "Active_status_item" : "Inactive_status_item" %>>
+                                 <%= (item.status) ? "Active" : "Inactive" %>
+                              </p>
                               <%# shows the front end page to update the menu item details on clicking the link %>
                               <%= link_to image_tag("updateimg.png",class: "Item_update",title: "Update Menu Item"),
-                                  "/menu_items/show_update/#{item.id}"
-                               %>
+                                  "/menu_items/show_update/#{item.id}"%>
 
-                               <%= form_with(url: "menu_items/#{item.id}", method: "delete") do %>
-                                  <%= image_submit_tag("destroy.png" , class: "Item_delete") %>
-                              <% end %>
+                              <%= link_to image_tag("destroy.png" , class: "Item_delete") ,"menu_items/#{item.id}", method: :delete,
+                              data: { confirm: "Are you sure you want to delete?"} %>
+
                           </section>
                       </div>
                   <% end %>

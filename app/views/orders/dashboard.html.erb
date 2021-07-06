@@ -1,0 +1,36 @@
+<div class = "Dashboard_page">
+     <section class = "Dashboard_head">
+        <h1 class = "Orders-title">Dashboard</h1>
+    </section>
+    <div class = "Dashboard_section">
+      <div class = "top_card">
+          <div class="card  card1 mb-3">
+            <div class="card-body dashboard-card">
+              <h5 class="card-title Total"><%= Order.all.count %></h5>
+              <p class="card-text dashboard-text"> Total Orders <i style="font-size:36px" class="fa">&#xf07a;</i></p>
+            </div>
+          </div>
+          <div class="card card2 mb-3">
+            <div class="card-body dashboard-card">
+              <h5 class="card-title Total"><%= Order.all.where("delivered_at = ?",nil).count %></h5>
+              <p class="card-text dashboard-text"> Pending Orders <img src = "pending-order.png" width="36px" height= "34px"> </p>
+            </div>
+          </div>
+          <div class="card card3 mb-3">
+            <div class="card-body dashboard-card">
+              <h5 class="card-title Total"><%= Order.all.where("delivered_at IS NOT ?",nil).count %></h5>
+              <p class="card-text dashboard-text"> Completed <img src = "cart-check.png" width="36px"></p>
+            </div>
+          </div>
+          <div class="card card4 mb-3">
+            <div class="card-body dashboard-card">
+              <h5 class="card-title Total"><%= User.all.count %></h5>
+              <p class="card-text dashboard-text">   Users <i class="fa fa-user" style="font-size:36px"></i></p>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class= "Add_clerk_btn">
+       <%= link_to "Add Owners or clerk",create_new_path %>
+    </div>
+</div>

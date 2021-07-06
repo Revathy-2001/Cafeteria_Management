@@ -15,34 +15,58 @@
   </head>
 
   <body>
-    <%# To display the Profile on top of the page %>
-    <%# <section class = "PageHead"><p class = "PageHead-title">Cafeteria Management System</p></section>
+    <%if(@current_user) %>
+      <% if (@current_user.role == "user" || @current_user.role == "clerk" ) %>
+        <div class = "Navbar_users">
+          <% if(@current_user.role == "user") %>
+             <div class = "Navbar_users_contents"><a href="/categories">Home</a></div>
+          <% else %>
+             <div class = "Navbar_users_contents"><a href="/clerks">Home</a></div>
+          <% end %>
+          <div class = "Navbar_users_contents"><a href="/categories">Menu Categories</a></div>
+          <div class = "Navbar_users_contents"><%= link_to "Menu Items",show_menu_items_path(id: MenuCategory.first.id) %></div>
 
-    <div class="Dashboard-list">
-        <a href="#"><i style="font-size:24px" class="fa">&#xf015;</i>  Dashboard</a>
-        <a href="/menu_categories"><i class="fa fa-list-alt" aria-hidden="true"></i>  Categories</a>
-        <a href = "/orders">
-          <i style="font-size:24px" class="fa">&#xf07a;</i>  Orders</i>
-        </a>
-        <a href="/menu_items"><i class="fa fa-bars"></i>  Menu Items</a>
-        <a href="#"><i style="font-size:24px" class="fa">&#xf08b;</i>  Logout</a>
-    </div>
- %>
-
-    <div class = "Navbar_users">
-      <div class = "Navbar_users_contents"><a href="/categories">Menu Categories</a></div>
-      <div class = "Navbar_users_contents"><a href=<%="/show_menu_items/#{MenuCategory.first.id}" %>>Menu Items</a></div>
-      <div class="dropdown">
-        <button class="Navbar_profile" type="button" data-toggle="dropdown"><%= @current_user.first_name%>
-           <i style="font-size:16px" class="fa">&#xf0d7;</i>
-        </button>
-        <ul class="dropdown-menu">
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Orders</a></li>
-          <li><%= link_to "Sign out",destroy_session_path,method:"delete" %></li>
-        </ul>
-      </div>
-    </div>
+          <div class="dropdown">
+            <button class="Navbar_profile" type="button" data-toggle="dropdown"><%= @current_user.first_name%>
+              <i style="font-size:16px" class="fa">&#xf0d7;</i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href = "#" data-toggle="modal" data-target="#update_profile"><i class="fa fa-user" style="font-size:24px"></i>  Profile </a></li>
+              <li>
+                  <%= link_to customer_orders_path(@current_user.id) do %>
+                    <i style="font-size:24px" class="fa">&#xf07a;</i>  Orders
+                  <% end %>
+              </li>
+               <li>
+                  <%= link_to destroy_session_path,method:"delete" do %>
+                    <i style="font-size:24px" class="fa">&#xf08b;</i> Logout
+                  <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <% elsif(@current_user.role == "owner") %>
+          <section class = "PageHead"><p class = "PageHead-title">Cafeteria Management System</p></section>
+            <div class="Dashboard-list">
+                <a href="/dashboard"><i style="font-size:24px" class="fa">&#xf015;</i>  Dashboard</a>
+                <a href="/menu_categories"><i class="fa fa-list-alt" aria-hidden="true"></i>  Categories</a>
+                <a href = "/orders">
+                  <i style="font-size:24px" class="fa">&#xf07a;</i>  Orders
+                </a>
+                <a href = "/reports">
+                   <i class="fa fa-bar-chart" aria-hidden="true"></i>  Reports
+                </a>
+                <a href="/menu_items"><i class="fa fa-bars"></i>  Menu Items</a>
+                <a href="#" data-toggle="modal" data-target="#update_profile"><i class="fa fa-user" style="font-size:24px"></i>  Profile </a>
+                <%= link_to destroy_session_path,method:"delete" do %>
+                   <i style="font-size:24px" class="fa">&#xf08b;</i>  Logout
+                <% end %>
+            </div>
+        <% end %>
+      <% end %>
     <%= yield %>
   </body>
 </html>
+<% if(@current_user) %>
+  <%=render partial: "users/update_profile" %>
+<% end %>

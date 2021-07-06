@@ -1,8 +1,8 @@
 <section class = <%= page_classname %>>
-    <section class =  <%= head_classname %>>
+    <section class =  <%= (@current_user.role == "clerk") ? "Clerk_head" : head_classname %>>
         <h1 class = "Orders-title">Orders</h1>
     </section>
-    <div class =  <%= section_classname %>>
+    <div class =  <%= (@current_user.role == "clerk") ? "Clerk_section_order" : section_classname %>>
       <table  class="table table-bordered table-dark">
           <thead>
             <tr>
@@ -16,7 +16,7 @@
           </thead>
       </table>
       <section class = "Orders_section">
-        <table class="table table-bordered">
+        <table class="table table-responsive table-bordered">
           <tbody class = "Orders_body">
             <% query.each do |order| %>
                 <tr class = "Orders_row">
@@ -26,18 +26,38 @@
                   <td class="column_total_amt">&#8377; <%= order.total_amount %></td>
                   <% if(owner) %>
                     <% if(order.delivered_at) %>
-                      <th class="column_status"><p class = "Delivered">Delivered</p></th>
+                       <% if(User.find(order.user_id).role == "clerk") %>
+                           <th class="column_status"><p class = "walk-in-customer">Walk-in-Customer</p></th>
+                       <% else %>
+                          <th class="column_status"><p class = "Delivered">Delivered</p></th>
+                       <% end %>
                     <% else %>
-                      <th class="column_status"><%= link_to "Pending Delivery",mark_as_delivered_path(order.id),class: "pending_delivery" %></th>
+                        <% if(User.find(order.user_id).role == "clerk") %>
+                           <th class="column_status"><p class = "walk-in-customer">Walk-in-Customer</p></th>
+                        <% else %>
+                           <th class="column_status"><%= link_to "Pending Delivery",mark_as_delivered_path(order.id),class: "pending_delivery" %></th>
+                        <% end %>
                     <% end %>
                   <% else %>
                       <% if(order.delivered_at) %>
-                        <th class="column_status"><p class = "customer_status-delivered"><%= order.delivered_at.to_s(:long) %></p></th>
+                        <% if(User.find(order.user_id).role == "clerk") %>
+                           <th class="column_status"><p class = "walk-in-customer">Walk-in-Customer</p></th>
+                        <% else %>
+                           <th class="column_status"><p class = "customer_status-delivered"><%= order.delivered_at.to_s(:long) %></p></th>
+                        <% end %>
                       <% else %>
-                        <th class="column_status"><p class = "customer_status-pending">Pending Delivery</p></th>
+                         <% if(User.find(order.user_id).role == "clerk") %>
+                           <th class="column_status"><p class = "walk-in-customer">Walk-in-Customer</p></th>
+                         <% else %>
+                           <th class="column_status"><p class = "customer_status-pending">Pending Delivery</p></th>
+                         <% end %>
                       <% end %>
                   <% end %>
-                  <td class="column_checkout"><%= link_to "View Items",order_details_path(order.id),class: "view_order_btn" %></td>
+                  <% if(owner) %>
+                     <td class="column_checkout"><%= link_to "View Orders",admin_order_details_path(order.id),class: "view_order_btn" %></td>
+                  <% else %>
+                     <td class="column_checkout"><%= link_to "View Orders",customer_order_details_path(order.id),class: "view_order_btn" %></td>
+                  <% end %>
                 </tr>
             <% end %>
           </tbody>

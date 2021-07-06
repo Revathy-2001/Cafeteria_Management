@@ -1,8 +1,11 @@
 <div class = "MenuItems_page">
   <div class="SideNav_categories">
     <% MenuCategory.show_available_category.each do |category| %>
-        <p id="Categories_link"> <%= link_to  category.name,show_menu_items_path(id: "#{category.id}"),
-        class:"SideNave_categories_link"%></p>
+        <p id="Categories_link">
+        <%= form_with(url: "/show_menu_items",method:"get") do %>
+              <%= hidden_field_tag 'id',category.id %>
+              <%= submit_tag category.name, class:"SideNave_categories_link" %>
+        <% end %></p>
     <% end %>
   </div>
 
@@ -70,8 +73,8 @@
                     <p class = "subtotal_amt"> &#8377; <%= CartItem.show_cart_item(cart.id).sum(:temp_price) %></p>
                   </div>
                   <div class = "Checkout_clear">
-                    <%= link_to "Checkout >",cart_items_path,class: "Checkout_button"  %>
-                    <%= link_to "ClearCart",destroy_all_cart_items_path,method:"delete",class:"clearCart"%>
+                    <%= link_to "Checkout",(@current_user.role == "clerk") ? clerk_checkout_path : cart_items_path ,class: "Checkout_button" %>
+                    <%= link_to "ClearCart",destroy_all_cart_items_path,method: :delete, data: { confirm: "Are you sure you want to delete?"},class:"clearCart"%>
                   </div>
               </div>
             </div>

@@ -1,0 +1,130 @@
+.top_card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+  margin-top: 70px;
+}
+.top_card div,
+.bottom_card div {
+  margin-right: 20px;
+}
+.bottom_card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+  margin-top: 10px;
+}
+.Dashboard_page {
+  font-family: Opens Sans, sans-serif;
+}
+.Dashboard_head {
+  background-color: white;
+  color: black;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-top: 30px;
+  position: fixed;
+  overflow-x: hidden;
+  margin-left: 200px;
+  border-bottom: 2px solid #0807074d;
+  z-index: 1;
+}
+.Dashboard_section {
+  margin: 10px auto;
+  max-width: 100%;
+  justify-content: center;
+  padding: 10px;
+  margin-left: 200px;
+}
+.card1,
+.card2,
+.card3,
+.card4,
+.card5,
+.card6,
+.card7,
+.card8 {
+  color: #000;
+  box-shadow: 0 8px 6px -6px #888888;
+}
+.card1,
+.card8 {
+  background-color: rgb(107, 241, 228);
+  width: 15rem;
+  border-radius: 0%;
+  background-image: linear-gradient(to right, rgb(206, 241, 250), cyan);
+}
+.card2,
+.card7 {
+  background-color: rgb(165, 241, 165);
+  width: 15rem;
+  border-radius: 0%;
+  background-image: linear-gradient(to right, rgb(176, 176, 223), dodgerblue);
+}
+.card3,
+.card6 {
+  background-color: rgb(240, 196, 240);
+  width: 15rem;
+  border-radius: 0%;
+  background-image: linear-gradient(
+    to right,
+    rgb(125, 240, 125),
+    rgb(238, 238, 108)
+  );
+}
+.card4,
+.card5 {
+  background-image: linear-gradient(
+    to right,
+    rgb(223, 185, 115),
+    rgb(241, 179, 63)
+  );
+  width: 15rem;
+  border-radius: 0%;
+}
+.Total {
+  color: #000;
+  font-size: 48px;
+}
+.dashboard-text {
+  font-size: 14px;
+}
+.Add_clerk_btn {
+  max-width: 300px;
+  margin-top: 40px;
+  margin-left: 550px;
+  text-align: center;
+  justify-self: center;
+  background-color: #123456;
+  color: white;
+  padding: 20px;
+  cursor: pointer;
+}
+.Add_clerk_btn a {
+  color: white;
+}
+
+@media screen and (min-width: 300px) and (max-width: 800px) {
+  .top_card {
+    display: block;
+  }
+  .Add_clerk_btn {
+    margin: 10px;
+    justify-content: center;
+    max-width: 200px;
+    display: flex;
+    margin-left: 230px;
+  }
+}
+.Add_clerk_btn:hover {
+  background-color: teal;
+}
+.Add_clerk_btn a:hover {
+  text-decoration: none;
+  color: white;
+}
