@@ -27,12 +27,15 @@ class CartItemsController < ApplicationController
       end
     end
     cart_item.save!
-    redirect_to (show_menu_items_path(category_id))
+    redirect_to show_menu_items_path(id: category_id)
+  end
+
+  def clerk_checkout
   end
 
   def destroy_all
     cart = Cart.find_by(user_id: @current_user.id)
     cart.cart_items.destroy_all
-    redirect_to show_menu_items_path(MenuCategory.first.id)
+    redirect_to show_menu_items_path(id: MenuCategory.first.id)
   end
 end
