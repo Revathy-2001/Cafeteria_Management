@@ -77,3 +77,11 @@
 .Enable_option_menu_item {
   text-align: center;
 }
+.Active_status_item {
+  color: #1fbba6;
+  margin-right: 40px;
+}
+.Inactive_status_item {
+  color: orange;
+  margin-right: 40px;
+}

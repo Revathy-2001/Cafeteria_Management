@@ -18,7 +18,7 @@
 .Form-input {
   padding: 10px;
   font-size: 14px;
-  border: 1.5px solid rgb(219, 214, 214);
+  border: 1.5px solid rgb(165, 120, 120);
   width: 100%;
   border-radius: 4px;
   outline: mediumturquoise;
@@ -30,7 +30,7 @@
 }
 
 .Form-submit {
-  font-size: 20px;
+  font-size: 16px;
   padding: 10px 30px;
   background-color: #012636;
   border-radius: 5px;
@@ -70,4 +70,106 @@
 .Existing-user-text {
   color: black;
   margin-right: 10px;
+}
+.Role {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: #000;
+  font-size: 18px;
+  align-items: center;
+}
+.role_text {
+  margin-right: 10px;
+}
+.role_buttons {
+  display: flex;
+  align-items: center;
+  border: 2px solid #dce0e8;
+  padding: 10px;
+  background-color: white;
+  font-size: 14px;
+}
+.radio_owner {
+  margin-right: 40px;
+}
+.Clerk_section {
+  max-width: 400px;
+  margin: 0px auto;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 100px;
+  font-family: sans-serif;
+}
+.clerk_greeting {
+  font-size: 24px;
+  text-align: center;
+}
+.see_all_orders,
+.create_new_order {
+  padding: 10px;
+  background-color: white;
+}
+.clerk_options a {
+  display: block;
+  margin: 20px auto;
+  width: 80%;
+  text-align: center;
+  color: #000;
+}
+.clerk_options a:hover {
+  text-decoration: none;
+  background-color: #008895;
+  color: white;
+}
+.clerk_options {
+  margin-top: 60px;
+}
+.clerk-body {
+  background-color: rgb(184, 223, 219);
+}
+.update_profile_form {
+  max-width: 300px;
+  margin: 10px auto;
+  font-family: sans-serif;
+}
+.Profile-input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #c1c7d3;
+  width: 100%;
+  border-radius: 4px;
+  outline: mediumturquoise;
+}
+.Signup-form-page {
+  font-family: Opens Sans, sans-serif;
+  max-height: fit-content;
+  overflow-x: hidden;
+  padding: 20px;
+  color: black;
+  display: block;
+  margin-top: 5px;
+}
+.Create_new_clerk_form {
+  max-width: 350px;
+  margin: 10px auto;
+  font-family: sans-serif;
+  margin-top: 140px;
+}
+.New_clerk_head {
+  background-color: white;
+  color: black;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-top: 10px;
+  position: fixed;
+  overflow-x: hidden;
+  margin-left: 180px;
+  border-bottom: 2px solid #0807074d;
+}
+.new_user-title {
+  color: #000;
 }
