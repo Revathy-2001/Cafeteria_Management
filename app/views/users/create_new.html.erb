@@ -1,64 +1,62 @@
-<% if flash[:error] %>
-  <p class = "Flash-error">
-      <%= flash[:error] %>
-  </p>
-<% end %>
+<%# renders page for owners to create clerks or other owners %>
 
 <section class = "Signup-form-page">
-     <section class = "New_clerk_head">
+
+    <section class = "New_clerk_head">
         <h1 class = "new_user-title">Create Owner or Clerk</h1>
         <%= link_to "/dashboard", class: "Back_to_orders" do %>
            <span aria-hidden="true">&times;</span>
         <% end %>
-    </section>
+    </section> <%# renders heading section %>
+
     <section class = "Usersnew">
       <%= form_with(url: users_path,class:"Create_new_clerk_form") do |form| %>
-      <%= hidden_field_tag 'role', 'user' %>
-        <div class = "Form-section">
-          <%= form.text_field :first_name,
-              placeholder:"First Name",
-              class:"signup-input",
-              required:true %>
-        </div>
+          <%= hidden_field_tag 'role', 'user' %>
+          <div class = "Form-section">
+            <%= form.text_field :first_name,
+                placeholder:"First Name",
+                class:"signup-input",
+                required:true %>
+          </div>   <%# accepts first name input feild %>
 
-        <div class = "Form-section">
-          <%= form.email_field :email,
-              placeholder:"Email" ,
-              class:"signup-input",
-              required:true ,
-              :pattern => '[a-z0-9]+@[a-z0-9.-]+\.[a-z]{2,}$',
-              :title=> "example@gmail.com" %>
-        </div>
+          <div class = "Form-section">
+            <%= form.email_field :email,
+                placeholder:"Email" ,
+                class:"signup-input",
+                required:true ,
+                :pattern => '[a-z0-9]+@[a-z0-9.-]+\.[a-z]{2,}$',
+                :title=> "example@gmail.com" %>
+          </div>  <%# accepts email input feild %>
 
-         <div class = "Form-section">
-          <%= form.telephone_field :phone_no,
-          placeholder:"Phone Number" ,
-          class:"signup-input",
-          required:true,
-          :pattern => "[0-9]{10}",
-          :title=> "Must contain 10 numbers"   %>
-        </div>
+          <div class = "Form-section">
+            <%= form.telephone_field :phone_no,
+            placeholder:"Phone Number" ,
+            class:"signup-input",
+            required:true,
+            :pattern => "[0-9]{10}",
+            :title=> "Must contain 10 numbers"   %>
+          </div>  <%# accepts phone no input feild %>
 
-        <div class = "Form-section">
-          <%= form.password_field :password,
-              placeholder:"Password" ,
-              class:"signup-input",
-              required:true,
-              :pattern=>"(?=.*[a-z])(?=.*[A-Z]).{8,}" ,
-              :title=>"Must contain at least one uppercase and lowercase letter, and at least 8 or more characters"%>
-        </div>
+          <div class = "Form-section">
+            <%= form.password_field :password,
+                placeholder:"Password" ,
+                class:"signup-input",
+                required:true,
+                :pattern=>"(?=.*[a-z])(?=.*[A-Z]).{8,}" ,
+                :title=>"Must contain at least one uppercase and lowercase letter, and at least 8 or more characters"%>
+          </div>  <%# accepts password input feild %>
 
-        <div class = "Role">
-         <p class = "role_text">Role</p>
-         <div class = "role_buttons">
-          <p class = "radio_owner"><%= form.radio_button :role, 'owner' %> Owner</p>
-          <p class = "radio_clerk"><%= form.radio_button :role, 'clerk',checked: true %> Clerk</p>
-        </div>
-        </div>
+          <div class = "Role">
+              <p class = "role_text">Role</p>
+              <div class = "role_buttons">
+                <p class = "radio_owner"><%= form.radio_button :role, 'owner' %> Owner</p>
+                <p class = "radio_clerk"><%= form.radio_button :role, 'clerk',checked: true %> Clerk</p>
+              </div>
+          </div> <%# accepts role (other owner/clerk) %>
 
-        <div class = "Form-section">
-          <%= form.submit "Create", class:"Form-submit"  %>
-        </div>
+          <div class = "Form-section">
+            <%= form.submit "Create", class:"Form-submit"  %>
+          </div> <%# submits form after accepting all the required values %>
 
       <% end %>
     </section>

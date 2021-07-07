@@ -6,25 +6,29 @@
      <% end %>
 </section>
 
-<%# this block edits the category %>
+<%# this block edits the category details %>
 <main class = "Categories-main">
     <section class = "Update_menu_category">
 
-      <%# form to update the category name %>
+      <%# form to update the category details %>
       <%= form_with(url: "/menu_categories/#{@id}", method: "put") do %>
 
-       <div class = "AddCategoryBody_section">
-          <p class = "Category_label"> Category Name:</p>
-          <div class = "Enable_option">
-              <label>Enable Category for customer</label>
-              <%= check_box_tag "status", value = "Active", checked: true,class: "Enable_checkbox" %>
-          </div>
-        </div>
-        <%= text_field_tag 'name', @category.name, class: 'Update_category_input' %><br><br>
-            <div class = "UpdateCategory-buttons">
-              <%= submit_tag "Update", class: "UpdateCategory-submit" %>
-              <%= link_to "Cancel",menu_categories_path,class: "UpdateCategory-cancel" %>
-            </div>
-      <% end %>
+         <div class = "AddCategoryBody_section">
+            <p class = "Category_label"> Category Name:</p>
+            <div class = "Enable_option">
+                <label>Enable Category for customer</label>
+                <%= check_box_tag "status", value = "Active", checked: true,class: "Enable_checkbox" %>
+            </div>  <%# owner can update status of a category%>
+         </div>
+
+         <%# accepts name, with the default value filled in %>
+         <%= text_field_tag 'name', @category.name, class: 'Update_category_input' %><br><br>
+
+         <%# buttons to submit and cancel %>
+         <div class = "UpdateCategory-buttons">
+            <%= submit_tag "Update", class: "UpdateCategory-submit" %>
+            <%= link_to "Cancel",menu_categories_path,class: "UpdateCategory-cancel" %>
+         </div>
+     <% end %>
     </section>
 </main>

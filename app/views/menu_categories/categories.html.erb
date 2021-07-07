@@ -1,7 +1,11 @@
+<%# renders all categories for customer view %>
 <div class = "Categories_card_Section">
+  <%# iterates over each category %>
   <% MenuCategory.all.each do | category | %>
      <div class = "Categories_block">
-        <p class = "Category_name"><%= category.name%></p>
+        <p class = "Category_name"><%= category.name%></p> <%# Name of the category %>
+
+        <%# Status of the Category %>
         <% if(category.status == "Active") %>
           <%= link_to "View Menu Items",show_menu_items_path(id: "#{category.id}"),class:"View_item" %>
         <% else %>

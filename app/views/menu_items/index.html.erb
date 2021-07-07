@@ -17,7 +17,7 @@
                   <%# renders the collapse with the help of css selector given in data target %>
 
                     <p class = "Category" >  <%# renders the dropdown caret symbol and name of the category %>
-                      <i class="fa fa-caret-right" onclick = "myFunc()"  id =<%= "text#{category.id}" %>></i>
+                      <i class="fa fa-caret-right"  id =<%= "text#{category.id}" %>></i>
                       <%= "#{category.name}"%>
                     </p>
 
@@ -31,16 +31,6 @@
 
               <%# renders the items belongs to each category %>
               <div class="collapse" id=<%= "id#{category.id}" %>>
-                  <%# change the caret to down when respective id clicked %>
-                  <script>
-                    function  myFunc() {
-                      $(document).ready(function(){
-                        $(<%= "text#{category.id}" %>.id).click(function(){
-                          $(<%= "text#{category.id}" %>.id).toggleClass("fa fa-caret-down");
-                        });
-                      });
-                    }
-                  </script>
 
                   <%# stores id of each category in a variable and sends to model method %>
                   <% category_id = "id#{category.id}"[2..].to_i %> <%# stores id of each category in a variable and sends to model method %>
@@ -55,10 +45,11 @@
                               <p class = <%= (item.status == "Active") ? "Active_status_item" : "Inactive_status_item" %>>
                                  <%= (item.status) ? "Active" : "Inactive" %>
                               </p>
-                              <%# shows the front end page to update the menu item details on clicking the link %>
+                              <%# shows the front end page to update the menu item details on clicking the update icon %>
                               <%= link_to image_tag("updateimg.png",class: "Item_update",title: "Update Menu Item"),
                                   "/menu_items/show_update/#{item.id}"%>
 
+                              <%# deletes the record %>
                               <%= link_to image_tag("destroy.png" , class: "Item_delete") ,"menu_items/#{item.id}", method: :delete,
                               data: { confirm: "Are you sure you want to delete?"} %>
 

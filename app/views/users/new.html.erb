@@ -1,15 +1,18 @@
+<%# renders sign up page %>
 <section class = "Signup-form">
-    <p class = "NewUsers-title">Sign up</p>
 
+    <p class = "NewUsers-title">Sign up</p> <%# renders sign up title %>
+
+    <%# renders form to sign up %>
     <section class = "Usersnew">
       <%= form_with(url: users_path) do |form| %>
       <%= hidden_field_tag 'role', 'user' %>
         <div class = "Form-section">
-          <%= form.text_field :first_name,
+            <%= form.text_field :first_name,
               placeholder:"First Name",
               class:"signup-input",
               required:true %>
-        </div>
+        </div>    <%# renders first name input feild %>
 
         <div class = "Form-section">
           <%= form.email_field :email,
@@ -18,7 +21,7 @@
               required:true ,
               :pattern => '[a-z0-9]+@[a-z0-9.-]+\.[a-z]{2,}$',
               :title=> "example@gmail.com" %>
-        </div>
+        </div>   <%# renders email input feild %>
 
          <div class = "Form-section">
           <%= form.telephone_field :phone_no,
@@ -27,7 +30,7 @@
           required:true,
           :pattern => "[0-9]{10}",
           :title=> "Must contain 10 numbers"   %>
-        </div>
+        </div>   <%# renders phone no input feild %>
 
         <div class = "Form-section">
           <%= form.password_field :password,
@@ -36,17 +39,17 @@
               required:true,
               :pattern=>"(?=.*[a-z])(?=.*[A-Z]).{8,}" ,
               :title=>"Must contain at least one uppercase and lowercase letter, and at least 8 or more characters"%>
-        </div>
+        </div>   <%# renders password input feild %>
 
 
         <div class = "Form-section">
-        <%= form.submit "Sign-up", class:"Form-submit"  %>
-        </div>
+           <%= form.submit "Sign-up", class:"Form-submit"  %>
+        </div> <%# submits form with the details given %>
 
         <div class= "NewAccount" >
           <p class = "Existing-user-text">Already Existing User?</p>
           <%= link_to "Sign-in", new_sessions_path%>
-        </div>
+        </div>  <%# existing user link %>
       <% end %>
     </section>
 </section>

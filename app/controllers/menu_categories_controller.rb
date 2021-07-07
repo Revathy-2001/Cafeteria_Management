@@ -48,5 +48,6 @@ class MenuCategoriesController < ApplicationController
   end
 
   def categories
+    render "categories"
   end
 end

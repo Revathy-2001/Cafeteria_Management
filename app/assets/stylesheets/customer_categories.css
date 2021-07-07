@@ -42,8 +42,8 @@
 }
 .View_item {
   background-color: transparent;
-  color: #1fbbaf;
-  border: 1px solid #1fbbaf;
+  color: #012636;
+  border: 1px solid #012636;
   padding: 10px;
   border-radius: 3px;
   font-size: 14px;
@@ -51,7 +51,7 @@
 .View_item:hover {
   text-decoration: none;
   color: white;
-  background-color: #1fbbaf;
+  background-color: #012636;
 }
 .Category_name {
   margin-top: 20px;
@@ -64,8 +64,9 @@
 .View_item_unavailable {
   border: 1px solid orangered;
   color: orangered;
-  padding: 10px 30px;
+  padding: 10px 28px;
   border-radius: 3px;
+  font-size: 14px;
   cursor: context-menu;
   opacity: 1;
   outline: none;

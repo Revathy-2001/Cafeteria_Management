@@ -31,3 +31,7 @@ body {
   color: darkred;
   text-decoration: none;
 }
+.close:focus {
+  outline: none;
+  box-shadow: none;
+}

@@ -44,6 +44,7 @@ class MenuItemsController < ApplicationController
     redirect_to menu_items_path
   end
 
+  # destroys the menu item
   def destroy
     id = params[:id]
     menu_item = MenuItem.find(id)
@@ -51,6 +52,7 @@ class MenuItemsController < ApplicationController
     redirect_to menu_items_path
   end
 
+  # renders menu item page for customers
   def menu_items
     @id = params[:id]
   end

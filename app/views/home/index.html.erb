@@ -1,11 +1,13 @@
+<%# renders home page  %>
 <div class = "Home_page">
     <div class = "home_container">
+      <%# logo for an application %>
       <%= image_tag "cafeteria_logo.png",class:"Logo_style" %>
       <div class = "home_container-right">
           <h1 class = "App_name_text">CAFE-TEA-AREA</h1>
           <p class = "sub-text">Appetizing topnotch Foods on the whole for FOODIE.Beyond the boundaries of taste & light oily delicacies.Enjoy the Ethnic dishes.</p>
           <p class = "slogan">EAT  PAUSE  LOOP</p>
-          <%= link_to "Order now",new_sessions_path,class:"Order_now_btn"%>
+          <%= link_to "Order now",new_sessions_path,class:"Order_now_btn"%> <%# takes user to sign in page %>
       </div>
    </div>
 </div>

@@ -1,3 +1,4 @@
+<%# shows all orders belongs to the currently logged in customers %>
 <%= render partial: "orders",
 locals:{owner:false,clerk:false,query: @current_user.orders,
  page_classname: "Customers-page",

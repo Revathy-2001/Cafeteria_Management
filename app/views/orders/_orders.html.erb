@@ -1,8 +1,11 @@
+<%# shows orders page for both customer and owner based on the user signing in %>
 <section class = <%= page_classname %>>
+    <%# UI styling for customer,clerk and user %>
     <section class =  <%= (@current_user.role == "clerk") ? "Clerk_head" : head_classname %>>
         <h1 class = "Orders-title">Orders</h1>
     </section>
     <div class =  <%= (@current_user.role == "clerk") ? "Clerk_section_order" : section_classname %>>
+      <%# shows all records in a table %>
       <table  class="table table-bordered table-dark">
           <thead>
             <tr>
@@ -18,20 +21,25 @@
       <section class = "Orders_section">
         <table class="table table-responsive table-bordered">
           <tbody class = "Orders_body">
-            <% query.each do |order| %>
+            <%# shows all the order details according the query from respected view %>
+            <% query.order(date: :desc).each do |order| %>
                 <tr class = "Orders_row">
                   <td class="column_name"><%= User.find(order.user_id).first_name %></td>
                   <td class="column_phone_no"><%= User.find(order.user_id).phone_no %></td>
                   <td class="column_address"><%= order.delivery_address %></td>
                   <td class="column_total_amt">&#8377; <%= order.total_amount %></td>
-                  <% if(owner) %>
+
+                  <% if(owner) %> <%# status check for owners %>
                     <% if(order.delivered_at) %>
+                       <%# if order is delivered and signed in user is clerk %>
                        <% if(User.find(order.user_id).role == "clerk") %>
                            <th class="column_status"><p class = "walk-in-customer">Walk-in-Customer</p></th>
                        <% else %>
+                          <%# if order is delivered %>
                           <th class="column_status"><p class = "Delivered">Delivered</p></th>
                        <% end %>
                     <% else %>
+                        <%# if order is cancelled %>
                         <% if(order.is_cancel) %>
                            <th class="column_status"><p class = "Cancelled-order">Order Cancelled</p></th>
                         <% elsif(User.find(order.user_id).role == "clerk") %>
@@ -41,6 +49,7 @@
                         <% end %>
                     <% end %>
                   <% else %>
+                      <%# status check for customers %>
                       <% if(order.delivered_at) %>
                         <% if(User.find(order.user_id).role == "clerk") %>
                            <th class="column_status"><p class = "walk-in-customer">Walk-in-Customer</p></th>
@@ -57,6 +66,7 @@
                          <% end %>
                       <% end %>
                   <% end %>
+                  <%# different path for owner and customer %>
                   <% if(owner) %>
                      <td class="column_checkout"><%= link_to "View Orders",admin_order_details_path(order.id),class: "view_order_btn" %></td>
                   <% else %>

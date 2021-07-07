@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
+  # renders signup page
   def new
+    render "new"
   end
 
+  # creates an new account for user
   def create
     user = User.new(first_name: params[:first_name],
                     phone_no: params[:phone_no],
@@ -23,6 +26,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # updates profile for all the users
   def update_profile
     user = @current_user
     user.first_name = params[:first_name]
@@ -31,13 +35,14 @@ class UsersController < ApplicationController
     user.save!
     if (user.role == "user")
       redirect_to categories_path
-    elsif (user.role = "clerk")
+    elsif (user.role == "clerk")
       redirect_to clerks_path
     else
       redirect_to "/dashboard"
     end
   end
 
+  # updates phone number of an user when ordering
   def update
     user = User.find(params[:id])
     user_phone_no = user.phone_no
@@ -50,9 +55,13 @@ class UsersController < ApplicationController
     redirect_to cart_items_path
   end
 
+  # shows a page to create other owners and clerks for owners
   def create_new
+    render "create_new"
   end
 
+  # clerks home page
   def clerks
+    render "clerks"
   end
 end

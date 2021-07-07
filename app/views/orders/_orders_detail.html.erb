@@ -1,15 +1,19 @@
+<%# single order details page %>
 <section class = <%= page_classname %>>
     <section class = <%= (@current_user.role == "clerk") ? "Customers-details-head" : head_classname %>>
          <div class = "orders-left">
           <h1 class = "Orders-title">Orders Details</h1>
+          <%# cancel order button %>
           <% if (!Order.find(order_id).is_cancel && Order.find(order_id).delivered_at == nil) %>
             <%= link_to "Cancel Order",cancel_order_path(id: order_id),method:"post",class:"cancel_order_btn" %>
           <% end %>
          </div>
+         <%# back to orders button %>
           <%= link_to back_to_orders_path, class: (@current_user.role == "clerk") ? "Back_to_orders_customer" :back_to_orders do %>
             <span aria-hidden="true">&times;</span>
           <% end %>
     </section>
+    <%# status of an order completed or pending %>
     <section class = <%= (@current_user.role == "clerk") ? "order_status_customer" : order_status %>>
        <% order = Order.find(order_id) %>
        <% user_id = order.user_id %>
@@ -34,6 +38,7 @@
             <% end %>
         </div>
       </div>
+       <%# status of an order shipped or unshipped %>
       <div class="card">
         <div class="card-body status_ship_body">
           <%= image_tag "shipping_truck.png",width:"40px",height:"40px" %>
@@ -56,33 +61,43 @@
         </div>
       </div>
     </section>
-     <section class = <%= (@current_user.role == "clerk") ? "Customer_items_section" : section_classname %> >
+      <section class = <%= (@current_user.role == "clerk") ? "Customer_items_section" : section_classname %> >
+      <%# shows single order details of a user for customer,clerk and owner %>
       <div class = "Customer_details">
         <p class = "order_id">ORDER-ID <%= order_id %></p>
         <p class = "order_id"><i style="font-size:16px" class="fa">&#xf007; </i> <%= User.find(user_id).first_name %></p>
       </div>
+      <%# table head  %>
       <div class="card">
           <div class="card-header topics">
-            <p >PRODUCT</p>
-            <div class = "topic-right">
-              <p>PRICE</p>
-              <p>QUANTITY</p>
-              <p>TOTAL</p>
-            </div>
+              <p >PRODUCT</p>
+              <div class = "topic-right">
+                <p class = "topic-price">PRICE</p>
+                <p class = "topic-quantity">QUANTITY</p>
+                <p class = "topic-total">TOTAL</p>
+              </div>
           </div>
+          <%# body containing order details %>
           <div class="card-body ordered_items_record">
                 <% OrderItem.show_order_items(order_id).all.each do |order_item| %>
                     <div class= "order_items_row">
                         <p class = "order_item_row-left"><%= order_item.menu_item_name %></p>
                         <div class = "order_item_row-right">
-                            <p class = "right-price">&#8377;<%= order_item.menu_item_price %></p>
-                            <p class = "right-quantity"><%= order_item.quantity %></p>
-                            <p class = "right-total">&#8377;<%= order_item.quantity * order_item.menu_item_price %></p>
+                            <table class = "table table-bordered">
+                                <tbody>
+                                    <tr>
+                                      <th class="column_body">&#8377;<%= order_item.menu_item_price %></th>
+                                      <td class="column_body"><%= order_item.quantity %></td>
+                                      <td class="column_body">&#8377;<%= order_item.quantity * order_item.menu_item_price %></td>
+                                    </tr>
+                              </tbody>
+                            </table>
                         </div>
                     </div>
                 <% end %>
           </div>
       </div>
+      <%# footer to show the total amount of an order %>
       <div class="orders-footer">
          <p>Order Total</p>
          <p>&#8377;<%= Order.find(order_id).total_amount %></p>

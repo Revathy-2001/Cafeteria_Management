@@ -1,10 +1,5 @@
 class AddressesController < ApplicationController
-  def index
-    # @id = params[:id]
-    # @address = Address.find(@id)
-    # render partial: "cart_items/address", locals: { head: "Update Address", submit_value: "Update", url: "/addresses/#{@id}", request: "put", text_value: @address.address }
-  end
-
+  # creates an address for a user
   def create
     user_id = @current_user.id
     input_address = params[:address].delete(" ").delete(",").capitalize
@@ -30,6 +25,7 @@ class AddressesController < ApplicationController
     redirect_to cart_items_path
   end
 
+  # destroy an address of an user
   def destroy
     address = Address.find(params[:id])
     status = address.delivery_address
@@ -43,6 +39,7 @@ class AddressesController < ApplicationController
     redirect_to cart_items_path
   end
 
+  # updates user address
   def update
     address = @current_user.addresses.find(params[:id])
     address.address = params[:address]
@@ -50,6 +47,7 @@ class AddressesController < ApplicationController
     redirect_to cart_items_path
   end
 
+  # changes the delivery address
   def delivery_address_update
     delivery_address = @current_user.addresses.find_by(delivery_address: true)
     delivery_address.delivery_address = nil

@@ -1,11 +1,15 @@
+<%# renders home page for user who sign in as clerks %>
 <div class = "Clerk_section">
-<div class="card">
-  <div class="card-body clerk-body">
-    <h5 class="card-title clerk_greeting">Welcome Clerk</h5>
-    <div class = "clerk_options">
-      <%= link_to "See all Orders",orders_path,class:"see_all_orders" %>
-      <%= link_to "Create New Orders",categories_path,class:"create_new_order" %>
+
+  <%# displays a card to show options for the clerks to view %>
+  <div class="card">
+    <div class="card-body clerk-body">
+        <h5 class="card-title clerk_greeting">Welcome Clerk</h5> <%# renders welcome message %>
+        <%# Clerks can see all the orders placed by customers and also can create orders as customers do %>
+        <div class = "clerk_options">
+          <%= link_to "See all Orders",orders_path,class:"see_all_orders" %>
+          <%= link_to "Create New Orders",categories_path,class:"create_new_order" %>
+        </div>
     </div>
   </div>
-</div>
 </div>

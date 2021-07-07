@@ -1,7 +1,10 @@
 class SessionsController < ApplicationController
+  # renders a sign in page
   def new
+    render "new"
   end
 
+  # checks for an existing user
   def create
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
@@ -19,9 +22,10 @@ class SessionsController < ApplicationController
     end
   end
 
+  # singout functionality
   def destroy
     session[:current_user_id] = nil
-    # @current_user = nil
+    @current_user = nil
     redirect_to new_sessions_path
   end
 end

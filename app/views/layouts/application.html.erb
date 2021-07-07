@@ -15,7 +15,9 @@
   </head>
 
   <body>
+    <%# show navbar based on the user signing in %>
     <%if(@current_user) %>
+      <%# renders top navbar if customer or clerk logs in with the details to move on to the app  %>
       <% if (@current_user.role == "user" || @current_user.role == "clerk" ) %>
         <div class = "Navbar_users">
           <% if(@current_user.role == "user") %>
@@ -45,7 +47,7 @@
             </ul>
           </div>
         </div>
-        <% elsif(@current_user.role == "owner") %>
+        <% elsif(@current_user.role == "owner") %>   <%# if owner logs in %>
           <section class = "PageHead"><p class = "PageHead-title">Cafeteria Management System</p></section>
             <div class="Dashboard-list">
                 <a href="/dashboard"><i style="font-size:24px" class="fa">&#xf015;</i>  Dashboard</a>
@@ -68,6 +70,8 @@
     <%= yield %>
   </body>
 </html>
+
+<%# renders partial to update a profile %>
 <% if(@current_user) %>
   <%=render partial: "users/update_profile" %>
 <% end %>

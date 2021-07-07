@@ -1,27 +1,38 @@
+<%# page to show all the counts under a single page %>
 <div class = "Dashboard_page">
+     <%# head section %>
      <section class = "Dashboard_head">
         <h1 class = "Orders-title">Dashboard</h1>
     </section>
+
+    <%# dashboard section %>
     <div class = "Dashboard_section">
       <div class = "top_card">
+          <%#  total orders count %>
           <div class="card  card1 mb-3">
             <div class="card-body dashboard-card">
               <h5 class="card-title Total"><%= Order.all.count %></h5>
               <p class="card-text dashboard-text"> Total Orders <i style="font-size:36px" class="fa">&#xf07a;</i></p>
             </div>
           </div>
+
+          <%# pending order counts %>
           <div class="card card2 mb-3">
             <div class="card-body dashboard-card">
               <h5 class="card-title Total"><%= Order.all.where("delivered_at = ?",nil).count %></h5>
               <p class="card-text dashboard-text"> Pending Orders <img src = "pending-order.png" width="36px" height= "34px"> </p>
             </div>
           </div>
+
+          <%# completed order counts %>
           <div class="card card3 mb-3">
             <div class="card-body dashboard-card">
               <h5 class="card-title Total"><%= Order.all.where("delivered_at IS NOT ?",nil).count %></h5>
               <p class="card-text dashboard-text"> Completed <img src = "cart-check.png" width="36px"></p>
             </div>
           </div>
+
+          <%# all users count %>
           <div class="card card4 mb-3">
             <div class="card-body dashboard-card">
               <h5 class="card-title Total"><%= User.all.count %></h5>
@@ -30,5 +41,6 @@
           </div>
       </div>
     </div>
+    <%# link for the owner to create clerks or other owners %>
     <%= link_to "Add Owners or clerk",create_new_path,class: "Add_clerk_btn" %>
 </div>

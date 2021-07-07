@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+
+  # creates customer orders
   def create
     cart = Cart.find_by(user_id: @current_user.id)
     order = Order.new(user_id: @current_user.id,
@@ -21,9 +23,12 @@ class OrdersController < ApplicationController
     redirect_to customer_order_details_path(order.id)
   end
 
+  # renders customer order page
   def customer_orders
+    render "customer_orders"
   end
 
+  # marks status of an order
   def mark_as_delivered
     order = Order.find(params[:id])
     order.delivered_at = DateTime.now
@@ -31,6 +36,7 @@ class OrdersController < ApplicationController
     redirect_to orders_path
   end
 
+  # cancels the order
   def cancel_order
     order = Order.find(params[:id])
     order.is_cancel = true
@@ -42,10 +48,12 @@ class OrdersController < ApplicationController
     end
   end
 
+  # renders single order details for admin
   def admin_order_details
     @id = params[:id]
   end
 
+  # shows report page for owners
   def reports
     start_date = params[:start_date]
     if (start_date.nil?)
@@ -54,17 +62,19 @@ class OrdersController < ApplicationController
       end_date = params[:end_date]
       @date_arr = []
       Order.all.each do |order|
-        if (order.date.to_s.slice(0, 10).to_date >= start_date.to_date && order.date.to_s.slice(0, 10).to_date <= end_date.to_date)
+        if (order.date.strftime("%Y-%m-%d").to_date >= start_date.to_date && order.date.strftime("%Y-%m-%d").to_date <= end_date.to_date)
           @date_arr.push(order)
         end
       end
     end
   end
 
+  # renders customer order details for customer
   def customer_order_details
     @id = params[:id]
   end
 
+  # renders dashboard page for admin
   def dashboard
   end
 end

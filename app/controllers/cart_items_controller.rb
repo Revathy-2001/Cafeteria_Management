@@ -1,10 +1,9 @@
 class CartItemsController < ApplicationController
   def index
+    render "index" #renders checkout page
   end
 
-  def create
-  end
-
+  # destroys the single cart item
   def destroy
     item = CartItem.find(params[:id])
     category_id = MenuItem.find(item.menu_item_id).menu_category_id
@@ -12,6 +11,7 @@ class CartItemsController < ApplicationController
     redirect_to show_menu_items_path(id: category_id)
   end
 
+  # updates quantity of an item in the cart
   def update_quantity
     cart_item = CartItem.find(params[:id])
     category_id = MenuItem.find(cart_item.menu_item_id).menu_category_id
@@ -30,9 +30,12 @@ class CartItemsController < ApplicationController
     redirect_to show_menu_items_path(id: category_id)
   end
 
+  # renders checkout page for clerk
   def clerk_checkout
+    render "clerk_checkout"
   end
 
+  # destroys all cart items
   def destroy_all
     cart = Cart.find_by(user_id: @current_user.id)
     cart.cart_items.destroy_all

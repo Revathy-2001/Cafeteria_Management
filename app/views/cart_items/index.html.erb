@@ -1,10 +1,13 @@
 <div class = "Checkout_page">
+    <%# previous button to go back from checkout page %>
     <% if (MenuCategory.all.empty?)%>
         <%= link_to image_tag("previous.png",class:"previous_btn"),categories_path %>
     <% else %>
         <%= link_to image_tag("previousicon.png",class:"previous_btn"),show_menu_items_path(id: MenuCategory.first) %>
     <% end %>
     <div class = "confirm_order_section">
+
+         <%# renders blank address part if any new user signs in for first time  %>
          <div class = "checkout_head">CHECKOUT</div>
          <% if(Address.Show_current_user_address(@current_user.id).empty?) %>
             <div class = "NewUser_Delivery_address">
@@ -14,6 +17,7 @@
               <% end %>
             </div>
          <% else %>
+            <%# shows the address of the user which the user had already given  %>
             <div class = "Delivery_address">
                   <div class = "address_block_text">
                         <p class = "address_text">Delivery Address To </p>
@@ -26,6 +30,7 @@
                    } %>
                   </div>
 
+                <%# renders phone number block  %>
                 <div class = "phone_no_block">
                   <%= form_with(url: "/users/#{@current_user.id}", method: "patch") do %>
                     <%= text_field_tag "phone_no",@current_user.phone_no,class:"phone_no_text",id:"Change_ph_no" ,disabled:true %>
@@ -34,6 +39,7 @@
                       Change Phone No.
                     </button>
 
+                    <%# shows phone number update section %>
                     <div class="collapse phone_no" id="PhoneNo_collapse">
                       <div class="collapse_body">
                           <%= text_field_tag "phone_no",@current_user.phone_no,class:"phone_no_text_collapse",id:"Change_ph_no"%>
@@ -47,14 +53,18 @@
 
             <div class = "Saved_Addresses">
 
+                <%# checks if user have given address earlier or not %>
                 <% delivery_id = @current_user.addresses.find_by(delivery_address: true) %>
                 <% if(delivery_id) %>
                    <% delivery_id = delivery_id.id %>
                 <% end %>
 
+                <%# shows all the address which the user have given earlier %>
                 <% Address.Show_current_user_address(@current_user.id).order(:delivery_address).each do |address| %>
                       <div class = "Saved_address_block">
                           <div class = "Saved_address_text">
+
+                              <%# checks for the delivery address %>
                               <%= form_with(url: "delivery_address_change/#{address.id}", method: "put") do %>
                                   <% if(delivery_id == address.id) %>
                                      <input type = "radio" name = "address" checked onclick="this.form.submit()" >
@@ -65,6 +75,7 @@
                               <label class = "Saved_address_words"><%= address.address %></label>
                           </div>
 
+                          <%# address edit and delete options %>
                           <div class = "Saved_address_options">
                             <%= form_with(url: "addresses/#{address.id}", method: "delete") do %>
                                 <%= image_submit_tag "deleteimage.png", class: "Close_cart_item" %>
@@ -75,6 +86,7 @@
                           </div>
                       </div>
 
+                      <%# shows address edit block when edit button is clicked %>
                       <div class = "collapse" id = <%= "Address#{address.id}" %>>
                           <%= form_with(url: "addresses/#{address.id}", method: "put",class:"edit_address_block") do %>
                             <%= text_field_tag "address",address.address,class:"Address_change_text" %>
@@ -86,20 +98,27 @@
          <% end %>
     </div>
 
+    <%# renders partial for adding new address %>
     <%= render partial: "address",locals: {head: "Add New Address",submit_value: "Create",url: "/addresses",request: "post",text_value: nil} %>
 
+
+    <%# cart section %>
     <div class="Cart_Section_checkout">
       <p class = "cart_title">Cart</p>
       <% cart = Cart.find_by(user_id: @current_user.id) %>
+
+      <%# shows image when cart is empty %>
       <% if(CartItem.show_cart_item(cart.id).empty?) %>
         <%= image_tag "emptycart.png",class: "EmptyCart_img" %>
         <p class = "EmptyCart_msg">Your cart is Empty<br>Looks like you haven't added anything to your cart yet.</p>
       <%else%>
+        <%# displays all cart items %>
         <div class = "CartItems_block">
             <% CartItem.show_cart_item(cart.id).each do |cart_item| %>
               <div class = "CartItems_single">
                   <div class = "CartItem_firstrow">
 
+                      <%# cart item name %>
                       <div class = "CartItem_firstrow_left">
                           <%= form_with(url: "/cart_items/#{cart_item.id}", method: "delete") do %>
                                 <%= image_submit_tag "deleteimage.png", class: "Close_cart_item" %>
@@ -107,6 +126,7 @@
                           <p><%= cart_item.menu_item_name %></p>
                       </div>
 
+                      <%# cart item quantity button %>
                       <div class = "CartAdd_btn">
                           <%= form_with(url: "/update_quantity/#{"add"}/#{cart_item.id}", method: "post") do %>
                               <%= submit_tag "+", class: "PlusButton"%>
@@ -117,9 +137,11 @@
                           <% end %>
                       </div>
                   </div>
+                  <%# cart item price %>
                   <p id = "price<%=cart_item.id%>" class = "cart_price">&#8377;<%= cart_item.temp_price %></p>
               </div>
             <%end %>
+             <%# cart subtotal %>
              <div class = "cart_footer">
                 <div  class = "To_pay">
                   <p> To Pay </p>
@@ -137,53 +159,3 @@
     </div>
   </div>
 </div>
-
-<script>
-
-// function CheckAddress(value) {
-//    document.querySelector('p.display_address').innerHTML = value;
-//    alert($(this).attr("id"))
-// }
-// $(function () {
-//   $('[data-toggle="popover"]').popover()
-// })
-
-// $(".Check_address_radio").click(function() {
-//   $(this).submit()
-// })
-
-// function focusInput() {
-//   var focus = document.getElementById('Change_ph_no');
-//   focus.value = " ";
-//   focus.focus();
-//   focus.disabled = false;
-// }
-
-// let button = document.getElementById("confirm_btn");
-// let input = document.getElementById("check_address");
-// input.addEventListener("input", function(e) {
-// 	if(input.value.length > 5) {
-//   	button.removeAttribute("disabled")
-//   }
-// })
-// function Enable_confirm() {
-//   button.removeAttribute("disabled");
-// }
-
-
-// $(document).ready(function() {
-//   $(".update_address_link").click(function () {
-//     // $(document).hide()
-//     var clicked = $(this).attr("data-attribute")
-//     var address = $(this).attr("data-address")
-//     alert(address)
-//     $(".confirm_order_section").css("z-index",-1)
-//     $("#AddressModal").show()
-//     $("#AddressModal").find("h1").html("Update Address");
-//     $("#AddressModal").find(".Address_form").attr("url", 'addresses/'+clicked);
-//     $("#AddressModal").find(".AddAddress_btn_modal").attr("value","Update");
-//     $("#AddressModal").find(".Address_form").attr("method" ,'put');
-//     $("#AddressModal").find('.AddAddress_modal').attr("value",address)
-//   })
-// });
-</script>

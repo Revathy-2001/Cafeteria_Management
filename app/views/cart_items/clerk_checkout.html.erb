@@ -1,3 +1,4 @@
+<%# renders clerk's checkout page %>
 <div class="card text-center clerk_Cart_Section">
   <% cart = Cart.find_by(user_id: @current_user.id) %>
   <div class="card-header Clerk_cart_head">
@@ -7,7 +8,7 @@
       <% cart.cart_items.each do |cart_item| %>
           <div class = "CartItems_single">
               <div class = "CartItem_firstrow">
-
+                  <%# renders name and delete option %>
                   <div class = "CartItem_firstrow_left">
                       <%= form_with(url: "/cart_items/#{cart_item.id}", method: "delete") do %>
                             <%= image_submit_tag "deleteimage.png", class: "Close_cart_item" %>
@@ -15,6 +16,7 @@
                       <p><%= cart_item.menu_item_name %></p>
                   </div>
 
+                  <%# renders add and sub button to add quantity of an item %>
                   <div class = "CartAdd_btn">
                       <%= form_with(url: "/update_quantity/#{"add"}/#{cart_item.id}", method: "post") do %>
                           <%= submit_tag "+", class: "PlusButton"%>
@@ -25,19 +27,25 @@
                       <% end %>
                   </div>
               </div>
+              <%# renders price of an item %>
               <p id = "price<%=cart_item.id%>" class = "cart_price">&#8377;<%= cart_item.temp_price %></p>
           </div>
       <%end %>
   </div>
+
+  <%# shows subtotal and confirm button in footer %>
   <div class="card-footer text-muted">
     <div  class = "Cart_subtotal">
       <p> Subtotal </p>
-      <p class = "subtotal_amt"> &#8377; <%= CartItem.show_cart_item(cart.id).sum(:temp_price) %></p>
+      <p class = "subtotal_amt"> &#8377; <%= CartItem.show_cart_item(cart.id).sum(:temp_price) %></p>  <%# sums up the total price%>
     </div>
     <div class = "Checkout_clear">
+       <%# confirms an order cart items get deleted from cart and added to orders %>
        <%= form_with(url: "orders", method: "post") do %>
           <%= submit_tag "Confirm Order",class:"confirm_order_btn"%>
        <% end %>
+
+      <%# clear's cart items %>
       <%= link_to "ClearCart",destroy_all_cart_items_path,method:"delete", data: { confirm: "Are you sure you want to delete?"},class:"clearCart"%>
     </div>
   </div>

@@ -218,6 +218,7 @@
   padding: 2px 8px;
   border-radius: 3px;
   color: #000;
+  margin-right: 16%;
   font-size: 24px;
 }
 .Back_to_orders_customer {
@@ -336,6 +337,18 @@
 .topic-right {
   display: flex;
   align-items: center;
+}
+
+.topic-right .topic-price {
+  margin-right: 100px;
+}
+
+.topic-right .topic-quantity {
+  margin-right: 100px;
+}
+
+.topic-right .topic-total {
+  margin-right: 60px;
 }
 
 .topic-right p {
@@ -476,4 +489,8 @@ input[type="date"]::-webkit-datetime-edit-text {
 }
 .cancel_order_btn:hover {
   text-decoration: none;
+}
+.column_body {
+  width: 150px;
+  text-align: center;
 }

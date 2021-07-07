@@ -19,9 +19,10 @@
                         <div class = "Enable_option">
                             <label>Enable Category for customer</label>
                             <%= check_box_tag "status", value = "Active", checked: true,class: "Enable_checkbox" %>
-                        </div>
+                        </div>  <%# checks for status -> Category available or not %>
                     </div>
-                    <%= text_field_tag 'name', nil, class: 'AddCategory-text',required:true %>
+                    <%= text_field_tag 'name', nil, class: 'AddCategory-text',required:true %>  <%# accepts category name %>
+
                     <%# submits the form %>
                     <div class="modal-footer">
                          <%= submit_tag "Create", class: "CreateCategory-button" %>
