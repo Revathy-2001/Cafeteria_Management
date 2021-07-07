@@ -1,0 +1,54 @@
+.home_container {
+  margin: 10px auto;
+  justify-content: center;
+  margin-top: 80px;
+  display: flex;
+  font-family: sans-serif;
+}
+.App_name_text {
+  font-size: 50px;
+  text-align: center;
+  margin-right: 80px;
+  color: #123456;
+  font-weight: 550;
+}
+.sub-text {
+  color: #888888;
+  text-align: center;
+  width: 400px;
+  line-height: 1.5;
+  margin-top: 30px;
+}
+.slogan {
+  font-size: 24px;
+  margin: 0px 100px;
+  margin-top: 30px;
+  display: flex;
+  color: #123456;
+  font-weight: 550;
+}
+.Order_now_btn {
+  margin: 50px 100px;
+  text-align: center;
+  padding: 15px;
+  display: block;
+  width: 200px;
+  border-radius: 3px;
+  background-color: #02023b;
+  display: block;
+  cursor: pointer;
+  color: white;
+}
+.Order_now_btn:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.Order_now_btn:hover {
+  background-color: #010280;
+  color: white;
+}
+.Order_now_btn a {
+  text-decoration: none;
+  color: white;
+}
