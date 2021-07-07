@@ -9,6 +9,11 @@
 
          <%# renders blank address part if any new user signs in for first time  %>
          <div class = "checkout_head">CHECKOUT</div>
+          <% if flash[:error] %>
+            <p class = "Flash-error">
+                <%= flash[:error] %>
+            </p>
+          <% end %>
          <% if(Address.Show_current_user_address(@current_user.id).empty?) %>
             <div class = "NewUser_Delivery_address">
               <%= form_with(url: "/addresses", method: "post") do %>

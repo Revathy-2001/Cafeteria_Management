@@ -10,13 +10,6 @@
 <%# to add a new menu item to the belonging category %>
 <main class = "Categories-main">
     <div class="AddMenuItem-section">
-
-        <% if flash[:error] %>
-          <p class = "Flash-error">
-              * <%= flash[:error] %>
-              <%= link_to "X",menu_items_path,class: "close-error" %>
-          </p>
-        <% end %>
         <div class="card-body">
           <%# form to add new menu item %>
           <%= form_with(url: "/menu_items", method: "post") do %>

@@ -1,4 +1,7 @@
 class CartItemsController < ApplicationController
+  # before_action :ensure_user_logged_in, only: [:index, :destroy, :update_quantity, :destroy_all]
+  # before_action :ensure_clerk_logged_in, only: [:destroy, :update_quantity, :clerk_checkout, :destroy]
+
   def index
     render "index" #renders checkout page
   end

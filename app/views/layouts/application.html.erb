@@ -52,9 +52,10 @@
             <div class="Dashboard-list">
                 <a href="/dashboard"><i style="font-size:24px" class="fa">&#xf015;</i>  Dashboard</a>
                 <a href="/menu_categories"><i class="fa fa-list-alt" aria-hidden="true"></i>  Categories</a>
-                <a href = "/orders">
-                  <i style="font-size:24px" class="fa">&#xf07a;</i>  Orders
-                </a>
+                 <%= link_to orders_path,method:"get" do %>
+                   <i style="font-size:24px" class="fa">&#xf07a;</i>  Orders
+                <% end %>
+
                 <%= link_to reports_path,method:"get" do %>
                    <i class="fa fa-bar-chart" aria-hidden="true"></i>  Reports
                 <% end %>

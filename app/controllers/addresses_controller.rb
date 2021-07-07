@@ -1,4 +1,6 @@
 class AddressesController < ApplicationController
+  # before_action: :ensure_user_logged_in
+
   # creates an address for a user
   def create
     user_id = @current_user.id
@@ -21,6 +23,8 @@ class AddressesController < ApplicationController
           :address => params[:address],
         )
       end
+    else
+      flash[:error] = "Already Existing Address!!!"
     end
     redirect_to cart_items_path
   end

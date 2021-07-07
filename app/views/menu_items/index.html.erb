@@ -8,8 +8,12 @@
 <main class = "Categories-main">   <%# style's the main contents %>
     <section class = "CategorySection">  <%# style's each category section %>
         <%# iterates over each category item & renders it %>
+        <% if flash[:error] %>
+          <p class = "Flash-error-category">
+              <%= flash[:error] %>
+          </p>
+        <% end %>
          <% MenuCategory.all.each do |category| %>
-
               <section class = "CategorySection-item"
                   data-toggle="collapse"
                   data-target=<%= "#id#{category.id}" %>

@@ -1,6 +1,11 @@
 <%# renders sign up page %>
 <section class = "Signup-form">
 
+    <% if flash[:error] %>
+      <p class = "Flash-error Flash-sign-up">
+          <%= flash[:error] %>
+      </p>
+    <% end %>
     <p class = "NewUsers-title">Sign up</p> <%# renders sign up title %>
 
     <%# renders form to sign up %>

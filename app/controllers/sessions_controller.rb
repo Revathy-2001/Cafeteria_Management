@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  # skip_before_action :has_any_user_logged_in
+
   # renders a sign in page
   def new
     render "new"

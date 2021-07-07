@@ -26,34 +26,39 @@
       <section class = "Reports_section_body">
         <table class="table table-bordered">
           <tbody class = "Orders_body">
+            <% if(@date_arr.empty?) %>
+                  <%= image_tag "no-result.png",class:"no-reports" %>
+                  <p class = "No-record-found-text">No Record Found</p>
+            <% end %> <%# flash error when no reports within given date range found %>
             <%# each order from given date range %>
             <% @date_arr.each do |order| %>
-                <tr class = "Orders_row">
-                  <td class="column_name"><%= User.find(order.user_id).first_name %></td>
-                  <td class="column_phone_no"><%= User.find(order.user_id).phone_no %></td>
-                  <td class="column_address"><%= order.delivery_address %></td>
-                  <td class="column_total_amt">&#8377; <%= order.total_amount %></td>
-                  <% if(order.delivered_at) %>
-                      <%# if clerk creates an order is a walk-in-customer%>
-                      <% if(User.find(order.user_id).role == "clerk") %>
-                          <th class="column_status"><p class = "walk-in-customer">Walk-in-Customer</p></th>
-                      <% else %>
-                          <th class="column_status"><p class = "Delivered"><%= order.delivered_at.to_s(:long) %></p></th>
-                      <% end %>
-                  <% else %>
-                      <%# if order is cancelled %>
-                      <% if(order.is_cancel) %>
-                           <th class="column_status"><p class = "Cancelled-order">Order Cancelled</p></th>
-                      <% elsif(User.find(order.user_id).role == "clerk") %>
-                          <th class="column_status"><p class = "walk-in-customer">Walk-in-Customer</p></th>
-                      <% else %>
-                         <th class="column_status"><p class = "pending_status">Pending Delivery</p></th>
-                      <% end %>
-                  <% end %>
-                  <%# link to view single order details %>
-                  <td class="column_checkout"><%= link_to "View Orders",admin_order_details_path(order.id),class: "view_order_btn" %></td>
-                </tr>
-            <% end %>
+
+                  <tr class = "Orders_row">
+                    <td class="column_name"><%= User.find(order.user_id).first_name %></td>
+                    <td class="column_phone_no"><%= User.find(order.user_id).phone_no %></td>
+                    <td class="column_address"><%= order.delivery_address %></td>
+                    <td class="column_total_amt">&#8377; <%= order.total_amount %></td>
+                    <% if(order.delivered_at) %>
+                        <%# if clerk creates an order is a walk-in-customer%>
+                        <% if(User.find(order.user_id).role == "clerk") %>
+                            <th class="column_status"><p class = "walk-in-customer">Walk-in-Customer</p></th>
+                        <% else %>
+                            <th class="column_status"><p class = "Delivered"><%= order.delivered_at.to_s(:long) %></p></th>
+                        <% end %>
+                    <% else %>
+                        <%# if order is cancelled %>
+                        <% if(order.is_cancel) %>
+                            <th class="column_status"><p class = "Cancelled-order">Order Cancelled</p></th>
+                        <% elsif(User.find(order.user_id).role == "clerk") %>
+                            <th class="column_status"><p class = "walk-in-customer">Walk-in-Customer</p></th>
+                        <% else %>
+                          <th class="column_status"><p class = "pending_status">Pending Delivery</p></th>
+                        <% end %>
+                    <% end %>
+                    <%# link to view single order details %>
+                    <td class="column_checkout"><%= link_to "View Orders",admin_order_details_path(order.id),class: "view_order_btn" %></td>
+                  </tr>
+              <% end %>
           </tbody>
         </table>
       </section>

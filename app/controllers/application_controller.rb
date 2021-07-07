@@ -1,6 +1,30 @@
 class ApplicationController < ActionController::Base
-  skip_before_action :verify_authenticity_token
+  # before_action :has_any_user_logged_in
   before_action :current_user
+
+  # def has_any_user_logged_in
+  #   unless current_user
+  #     redirect_to "/"
+  #   end
+  # end
+
+  # def ensure_user_logged_in
+  #   unless current_user.role == "user"
+  #     redirect_to "/"
+  #   end
+  # end
+
+  # def ensure_admin_logged_in
+  #   unless current_user.role == "owner"
+  #     redirect_to "/"
+  #   end
+  # end
+
+  # def ensure_clerk_logged_in
+  #   unless current_user.role == "clerk"
+  #     redirect_to "/"
+  #   end
+  # end
 
   # check which user has currently logged in
   def current_user

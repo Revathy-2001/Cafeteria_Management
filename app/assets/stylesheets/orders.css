@@ -494,3 +494,13 @@ input[type="date"]::-webkit-datetime-edit-text {
   width: 150px;
   text-align: center;
 }
+.no-reports {
+  width: 420px;
+  margin: 10px auto;
+  justify-content: center;
+  display: flex;
+}
+.No-record-found-text {
+  color: #888888;
+  text-align: center;
+}

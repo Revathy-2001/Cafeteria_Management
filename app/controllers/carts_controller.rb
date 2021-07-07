@@ -1,4 +1,7 @@
 class CartsController < ApplicationController
+  # before_action :ensure_user_logged_in
+  # before_action :ensure_clerk_logged_in
+
   def create
     id = params[:id]
     menu_item = MenuItem.find(id)
@@ -21,11 +24,5 @@ class CartsController < ApplicationController
       )
     end
     redirect_to show_menu_items_path(id: category_id)
-  end
-
-  def update
-  end
-
-  def destroy
   end
 end

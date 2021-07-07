@@ -1,4 +1,7 @@
 class MenuCategoriesController < ApplicationController
+  # before_action :ensure_user_logged_in, only: [:categories]
+  # before_action :ensure_clerk_logged_in, only: [:categories]
+  # before_action :ensure_admin_logged_in, except: [:categories]
 
   # renders index.html.erb from view
   def index
@@ -48,6 +51,5 @@ class MenuCategoriesController < ApplicationController
   end
 
   def categories
-    render "categories"
   end
 end

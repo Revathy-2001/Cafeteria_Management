@@ -1,4 +1,10 @@
 class OrdersController < ApplicationController
+  # before_action :ensure_user_logged_in, only: [:create, :customer_orders, :customer_order_details_path]
+  # before_action :ensure_clerk_logged_in, except: [:reports, :dashboard]
+  # before_action :ensure_admin_logged_in, only: [:mark_as_delivered, :cancel_order, :index, :admin_order_details, :reports, :dashboard]
+
+  def index
+  end
 
   # creates customer orders
   def create
@@ -65,6 +71,9 @@ class OrdersController < ApplicationController
         if (order.date.strftime("%Y-%m-%d").to_date >= start_date.to_date && order.date.strftime("%Y-%m-%d").to_date <= end_date.to_date)
           @date_arr.push(order)
         end
+      end
+      if (@date_arr.empty?)
+        flash[:error] = "No reports with given date range!!!"
       end
     end
   end

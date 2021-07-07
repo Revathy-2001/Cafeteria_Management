@@ -1,5 +1,7 @@
 class MenuItemsController < ApplicationController
-
+  # before_action :ensure_user_logged_in, only: [:menu_items]
+  # before_action :ensure_clerk_logged_in, only: [:menu_items]
+  # before_action :ensure_admin_logged_in, except: [:menu_items]
   # renders the index page from view
   def index
   end

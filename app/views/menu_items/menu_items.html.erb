@@ -49,7 +49,6 @@
         <%# finds the user of the cart belongs to %>
         <% cart = Cart.find_by(user_id: @current_user.id) %>
 
-        <%# show empty image message when cart is empty %>
         <% if(cart.cart_items.empty?) %>
           <%= image_tag "emptycart.png",class: "EmptyCart_img" %>
           <p class = "EmptyCart_msg">Your cart is Empty<br>Looks like you haven't added anything to your cart yet.</p>
@@ -90,7 +89,7 @@
                   </div>
                   <div class = "Checkout_clear">
                     <%= link_to "Checkout",(@current_user.role == "clerk") ? clerk_checkout_path : cart_items_path ,class: "Checkout_button" %>
-                    <%= link_to "ClearCart",destroy_all_cart_items_path,method: :delete, data: { confirm: "Are you sure you want to delete?"},class:"clearCart"%>
+                    <%= link_to "ClearCart",destroy_all_cart_items_path,method: :delete, data: { confirm: "Are you sure you want to Clear?"},class:"clearCart"%>
                   </div>
               </div>
             </div>

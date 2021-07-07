@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  skip_before_action :current_user
+  # skip_before_action :has_any_user_logged_in
 
   def index
     if (current_user)
@@ -7,11 +7,9 @@ class HomeController < ApplicationController
         redirect_to categories_path
       elsif current_user.role == "clerk"
         redirect_to clerks_path
-      elsif current_user.role == "owner"
+      else
         redirect_to "/dashboard"
       end
-    else
-      render "index"
     end
   end
 end
