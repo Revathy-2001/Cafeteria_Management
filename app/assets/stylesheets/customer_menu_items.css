@@ -251,7 +251,7 @@
   font-family: sans-serif;
   justify-content: space-between;
   color: #818181;
-  box-shadow: 2px 1px rgb(82, 225, 181, 0.2);
+  box-shadow: 2px 1px rgba(82, 225, 181, 0.2);
   padding: 5px;
 }
 
