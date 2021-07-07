@@ -95,18 +95,15 @@
   font-size: 14px;
 }
 .Add_clerk_btn {
-  max-width: 300px;
-  margin-top: 40px;
-  margin-left: 550px;
+  margin: 10px auto;
+  margin-top: 60px;
+  margin-left: 620px;
   text-align: center;
-  justify-self: center;
+  justify-content: center;
   background-color: #123456;
   color: white;
-  padding: 20px;
+  padding: 15px;
   cursor: pointer;
-}
-.Add_clerk_btn a {
-  color: white;
 }
 
 @media screen and (min-width: 300px) and (max-width: 800px) {
@@ -122,9 +119,7 @@
   }
 }
 .Add_clerk_btn:hover {
-  background-color: teal;
-}
-.Add_clerk_btn a:hover {
-  text-decoration: none;
+  background-color: #010280;
   color: white;
+  text-decoration: none;
 }

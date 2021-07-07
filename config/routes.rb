@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :menu_categories, :menu_items, :users, :carts, :cart_items, :addresses, :orders, :order_items
 
+  get "/" => "home#index"
   get "/menu_items/new/:id" => "menu_items#new"
   get "/menu_items/show_update/:id" => "menu_items#show_update", as: :menuitems_update_view
   get "menu_categories/edit/:id" => "menu_categories#show_edit"
@@ -25,6 +26,6 @@ Rails.application.routes.draw do
   get "clerks" => "users#clerks"
   get "clerk_checkout" => "cart_items#clerk_checkout", as: :clerk_checkout
   get "reports" => "orders#reports", as: :reports
-  post "show_reports" => "orders#show_reports"
   get "dashboard" => "orders#dashboard"
+  post "cancel_order/:id" => "orders#cancel_order", as: :cancel_order
 end

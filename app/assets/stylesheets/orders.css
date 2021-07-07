@@ -171,7 +171,7 @@
 }
 .pending_delivery {
   background-color: white;
-  color: orangered;
+  color: orange;
   border: 1px solid #dce0e8;
   padding: 7px 12px;
   font-size: 14px;
@@ -182,7 +182,7 @@
 }
 .walk-in-customer {
   background-color: white;
-  color: green;
+  color: #1fbba6;
   border: 1px solid #dce0e8;
   padding: 7px 12px;
   font-size: 14px;
@@ -214,7 +214,6 @@
 }
 .Back_to_orders {
   border: 1px solid #dce0e8;
-  margin-right: 18%;
   background-color: #f8f9f9;
   padding: 2px 8px;
   border-radius: 3px;
@@ -355,7 +354,7 @@
 }
 .Delivered {
   background-color: white;
-  color: #1fbba6;
+  color: green;
   border: 1px solid #dce0e8;
   padding: 7px 12px;
   font-size: 14px;
@@ -366,7 +365,7 @@
   cursor: auto;
 }
 .customer_status-delivered {
-  color: #1fbba6;
+  color: green;
 }
 .customer_status-pending {
   color: orange;
@@ -448,4 +447,33 @@ input[type="date"]::-webkit-datetime-edit-text {
   outline: none;
   padding: 8px 25px;
   color: white;
+}
+.Cancelled-order {
+  background-color: white;
+  color: red;
+  border: 1px solid #dce0e8;
+  padding: 7px 12px;
+  font-size: 14px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.orders-left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cancel_order_btn {
+  border: 2px solid #dce0e8;
+  background-color: #f8f9f9;
+  padding: 8px;
+  border-radius: 3px;
+  color: #000;
+  font-size: 14px;
+  margin-left: 20px;
+}
+.cancel_order_btn:hover {
+  text-decoration: none;
 }

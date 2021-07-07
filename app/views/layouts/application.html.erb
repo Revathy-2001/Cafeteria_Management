@@ -53,9 +53,10 @@
                 <a href = "/orders">
                   <i style="font-size:24px" class="fa">&#xf07a;</i>  Orders
                 </a>
-                <a href = "/reports">
+                <%= link_to reports_path,method:"get" do %>
                    <i class="fa fa-bar-chart" aria-hidden="true"></i>  Reports
-                </a>
+                <% end %>
+
                 <a href="/menu_items"><i class="fa fa-bars"></i>  Menu Items</a>
                 <a href="#" data-toggle="modal" data-target="#update_profile"><i class="fa fa-user" style="font-size:24px"></i>  Profile </a>
                 <%= link_to destroy_session_path,method:"delete" do %>

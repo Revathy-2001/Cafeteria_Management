@@ -3,7 +3,8 @@ class OrdersController < ApplicationController
     cart = Cart.find_by(user_id: @current_user.id)
     order = Order.new(user_id: @current_user.id,
                       date: DateTime.now,
-                      delivery_address: (@current_user == "user") ? @current_user.addresses.find_by(delivery_address: true).address : nil,
+                      delivery_address: @current_user.role == "user" ? @current_user.addresses.find_by(delivery_address: true).address : "Walk-in-customer",
+                      is_cancel: false,
                       total_amount: cart.cart_items.sum(:temp_price))
     if (order.save!)
       cart.cart_items.all.each do |cart_item|
@@ -30,24 +31,42 @@ class OrdersController < ApplicationController
     redirect_to orders_path
   end
 
+  def cancel_order
+    order = Order.find(params[:id])
+    order.is_cancel = true
+    order.save!
+    if (@current_user.role == "user")
+      redirect_to customer_orders_path(id: @current_user.id)
+    else
+      redirect_to orders_path
+    end
+  end
+
   def admin_order_details
     @id = params[:id]
   end
 
   def reports
+    start_date = params[:start_date]
+    if (start_date.nil?)
+      @date_arr = Order.all
+    else
+      end_date = params[:end_date]
+      @date_arr = []
+      Order.all.each do |order|
+        if (order.date.to_s.slice(0, 10).to_date >= start_date.to_date && order.date.to_s.slice(0, 10).to_date <= end_date.to_date)
+          @date_arr.push(order)
+        end
+      end
+    end
   end
 
   def customer_order_details
     @id = params[:id]
   end
 
-  def show_reports
-    @from_date = params[:from_date].to_date
-    @to_date = params[:to_date].to_date
-    # render plain: Order.find(42).date.class
-    redirect_to reports_path
-  end
-
   def dashboard
   end
 end
+
+# (((Order.find(55).date).to_s).slice(0, 10).to_date)

@@ -32,7 +32,9 @@
                           <th class="column_status"><p class = "Delivered">Delivered</p></th>
                        <% end %>
                     <% else %>
-                        <% if(User.find(order.user_id).role == "clerk") %>
+                        <% if(order.is_cancel) %>
+                           <th class="column_status"><p class = "Cancelled-order">Order Cancelled</p></th>
+                        <% elsif(User.find(order.user_id).role == "clerk") %>
                            <th class="column_status"><p class = "walk-in-customer">Walk-in-Customer</p></th>
                         <% else %>
                            <th class="column_status"><%= link_to "Pending Delivery",mark_as_delivered_path(order.id),class: "pending_delivery" %></th>
@@ -46,7 +48,9 @@
                            <th class="column_status"><p class = "customer_status-delivered"><%= order.delivered_at.to_s(:long) %></p></th>
                         <% end %>
                       <% else %>
-                         <% if(User.find(order.user_id).role == "clerk") %>
+                         <% if(order.is_cancel) %>
+                           <th class="column_status"><p class = "Cancelled-order">Order Cancelled</p></th>
+                         <% elsif(User.find(order.user_id).role == "clerk") %>
                            <th class="column_status"><p class = "walk-in-customer">Walk-in-Customer</p></th>
                          <% else %>
                            <th class="column_status"><p class = "customer_status-pending">Pending Delivery</p></th>

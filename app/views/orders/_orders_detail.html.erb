@@ -1,9 +1,14 @@
 <section class = <%= page_classname %>>
     <section class = <%= (@current_user.role == "clerk") ? "Customers-details-head" : head_classname %>>
-        <h1 class = "Orders-title">Orders Details</h1>
-        <%= link_to back_to_orders_path, class: (@current_user.role == "clerk") ? "Back_to_orders_customer" :back_to_orders do %>
-           <span aria-hidden="true">&times;</span>
-        <% end %>
+         <div class = "orders-left">
+          <h1 class = "Orders-title">Orders Details</h1>
+          <% if (!Order.find(order_id).is_cancel && Order.find(order_id).delivered_at == nil) %>
+            <%= link_to "Cancel Order",cancel_order_path(id: order_id),method:"post",class:"cancel_order_btn" %>
+          <% end %>
+         </div>
+          <%= link_to back_to_orders_path, class: (@current_user.role == "clerk") ? "Back_to_orders_customer" :back_to_orders do %>
+            <span aria-hidden="true">&times;</span>
+          <% end %>
     </section>
     <section class = <%= (@current_user.role == "clerk") ? "order_status_customer" : order_status %>>
        <% order = Order.find(order_id) %>
@@ -14,13 +19,17 @@
           <p class="card-text">Order Status</p>
         </div>
         <div class="card-footer status_order_footer">
-           <% if(User.find(user_id).role == "clerk") %>
+           <% if(User.find(user_id).role == "clerk" && !Order.find(order_id).is_cancel ) %>
              <p>Walk-in-Customer</p>
            <% else %>
               <% if(Order.find(order_id).delivered_at) %>
                 <p>Completed</p>
               <% else %>
-                <p>Pending</p>
+                <% if(Order.find(order_id).is_cancel)%>
+                   <p>Cancelled Order</p>
+                <% else %>
+                   <p>Pending</p>
+                <% end %>
               <% end %>
             <% end %>
         </div>
@@ -31,13 +40,17 @@
           <p class="card-text">Shipping Status</p>
         </div>
         <div class="card-footer status_ship_footer">
-          <% if(User.find(user_id).role == "clerk") %>
+          <% if(User.find(user_id).role == "clerk" && !Order.find(order_id).is_cancel) %>
              <p>Walk-in-Customer</p>
           <% else %>
             <% if(Order.find(order_id).delivered_at) %>
               <p>Delivered</p>
             <% else %>
-              <p>Unshipped</p>
+                <% if(Order.find(order_id).is_cancel)%>
+                   <p>Cancelled Order</p>
+                <% else %>
+                   <p>Unshipped</p>
+                <% end %>
             <% end %>
           <% end %>
         </div>
