@@ -17,12 +17,14 @@ class UsersController < ApplicationController
                     password: params[:password],
                     role: params[:role])
     if user.save
-      session[:current_user_id] = user.id
-      cart = Cart.new(user_id: user.id, date: DateTime.now)
-      cart.save
-      if (user.role == "clerk")
-        redirect_to clerks_path
+      if (@current_user && @current_user.role == "owner")
+        if (user.role == "clerk")
+          cart = Cart.new(user_id: user.id, date: DateTime.now)
+          cart.save
+        end
+        redirect_to "/dashboard"
       else
+        session[:current_user_id] = user.id
         redirect_to categories_path
       end
     else

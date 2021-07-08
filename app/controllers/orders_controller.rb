@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
 
   before_action :ensure_not_owner, only: [:create, :customer_orders, :customer_order_details_path]
   before_action :ensure_owner_logged_in, only: [:reports, :dashboard, :single_customer_view_details, :single_customer_reports, :customer_reports]
-  before_action :ensure_not_customer, only: [:cancel_order, :index, :mark_as_delivered]
+  before_action :ensure_not_customer, only: [:index, :mark_as_delivered]
 
   def index
   end
@@ -76,9 +76,6 @@ class OrdersController < ApplicationController
         if (order.date.strftime("%Y-%m-%d").to_date >= start_date.to_date && order.date.strftime("%Y-%m-%d").to_date <= end_date.to_date)
           @date_arr.push(order)
         end
-      end
-      if (@date_arr.empty?)
-        flash[:error] = "No reports with given date range!!!"
       end
     end
   end

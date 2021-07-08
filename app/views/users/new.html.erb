@@ -24,7 +24,7 @@
               placeholder:"Email" ,
               class:"signup-input",
               required:true ,
-              :pattern => '[a-z0-9]+@[a-z0-9.-]+\.[a-z]{2,}$',
+              :pattern => "^(.+)@(.+)$",
               :title=> "example@gmail.com" %>
         </div>   <%# renders email input feild %>
 
@@ -33,8 +33,8 @@
           placeholder:"Phone Number" ,
           class:"signup-input",
           required:true,
-          :pattern => "[0-9]{10}",
-          :title=> "Must contain 10 numbers"   %>
+          :pattern => "[0-9]{4,12}",
+          :title=> "Enter Valid Number"   %>
         </div>   <%# renders phone no input feild %>
 
         <div class = "Form-section">

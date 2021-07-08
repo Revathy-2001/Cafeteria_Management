@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  skip_before_action :verify_authenticity_token
   before_action :current_user
   before_action :has_any_user_logged_in
 

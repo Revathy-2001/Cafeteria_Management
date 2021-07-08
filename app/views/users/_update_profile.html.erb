@@ -13,7 +13,6 @@
       <div class="modal-body">  <%# renders modal body with the input feilds to update user profile %>
               <%# renders form to update a profile %>
               <%= form_with(url: "update_profile",method:"post",class:"update_profile_form") do %>
-
                     <div  class = "Form-section">
                       <p class = "FormInput-label">Name: </p>
                       <%= text_field_tag 'first_name',@current_user.first_name, class: 'Profile-input' %>
