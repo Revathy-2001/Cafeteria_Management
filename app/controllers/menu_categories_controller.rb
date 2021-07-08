@@ -1,7 +1,6 @@
 class MenuCategoriesController < ApplicationController
-  # before_action :ensure_user_logged_in, only: [:categories]
-  # before_action :ensure_clerk_logged_in, only: [:categories]
-  # before_action :ensure_admin_logged_in, except: [:categories]
+  before_action :ensure_not_owner, only: [:categories]
+  before_action :ensure_owner_logged_in, except: [:categories]
 
   # renders index.html.erb from view
   def index

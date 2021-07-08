@@ -1,30 +1,42 @@
 class ApplicationController < ActionController::Base
-  # before_action :has_any_user_logged_in
   before_action :current_user
+  before_action :has_any_user_logged_in
 
-  # def has_any_user_logged_in
-  #   unless current_user
-  #     redirect_to "/"
-  #   end
-  # end
+  def ensure_not_customer
+    if current_user.role == "user"
+      render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
+    end
+  end
 
-  # def ensure_user_logged_in
-  #   unless current_user.role == "user"
-  #     render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
-  #   end
-  # end
+  def has_any_user_logged_in
+    unless current_user
+      redirect_to "/"
+    end
+  end
 
-  # def ensure_admin_logged_in
-  #   unless current_user.role == "owner"
-  #     render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
-  #   end
-  # end
+  def ensure_not_owner
+    if current_user.role == "owner"
+      render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
+    end
+  end
 
-  # def ensure_clerk_logged_in
-  #   unless current_user.role == "clerk"
-  #     render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
-  #   end
-  # end
+  def ensure_customer_logged_in
+    unless current_user.role == "user"
+      render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
+    end
+  end
+
+  def ensure_owner_logged_in
+    unless current_user.role == "owner"
+      render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
+    end
+  end
+
+  def ensure_clerk_logged_in
+    unless current_user.role == "clerk"
+      render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
+    end
+  end
 
   # check which user has currently logged in
   def current_user

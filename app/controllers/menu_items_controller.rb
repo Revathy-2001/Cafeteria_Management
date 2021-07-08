@@ -1,7 +1,7 @@
 class MenuItemsController < ApplicationController
-  # before_action :ensure_user_logged_in, only: [:menu_items]
-  # before_action :ensure_clerk_logged_in, only: [:menu_items]
-  # before_action :ensure_admin_logged_in, except: [:menu_items]
+  before_action :ensure_not_owner, only: [:menu_items]
+  before_action :ensure_owner_logged_in, except: [:menu_items]
+
   # renders the index page from view
   def index
     @menu_categories = MenuCategory.all
@@ -60,6 +60,9 @@ class MenuItemsController < ApplicationController
     @id = params[:id]
     if (@id.nil?)
       @menu_category = MenuCategory.first
+      unless (@menu_category.nil?)
+        @id = @menu_category.id
+      end
     else
       @menu_category = MenuCategory.find(@id)
     end

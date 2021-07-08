@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-  # before_action: :ensure_user_logged_in
+  before_action :ensure_customer_logged_in
 
   # creates an address for a user
   def create
@@ -12,13 +12,13 @@ class AddressesController < ApplicationController
     end
     unless (address_arr.include?(input_address))
       if (address.empty?)
-        new_address = Address.create(
+        new_address = Address.create!(
           :user_id => user_id,
           :address => params[:address],
           :delivery_address => true,
         )
       else
-        new_address = Address.create(
+        new_address = Address.create!(
           :user_id => user_id,
           :address => params[:address],
         )

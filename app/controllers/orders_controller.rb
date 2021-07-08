@@ -1,7 +1,12 @@
 class OrdersController < ApplicationController
+
   # before_action :ensure_user_logged_in, only: [:create, :customer_orders, :customer_order_details_path]
   # before_action :ensure_clerk_logged_in, except: [:reports, :dashboard]
   # before_action :ensure_admin_logged_in, only: [:mark_as_delivered, :cancel_order, :index, :admin_order_details, :reports, :dashboard]
+
+  before_action :ensure_not_owner, only: [:create, :customer_orders, :customer_order_details_path]
+  before_action :ensure_owner_logged_in, only: [:reports, :dashboard, :single_customer_view_details, :single_customer_reports, :customer_reports]
+  before_action :ensure_not_customer, only: [:cancel_order, :index, :mark_as_delivered]
 
   def index
   end
@@ -112,5 +117,3 @@ class OrdersController < ApplicationController
     @id = params[:id]
   end
 end
-
-# (((Order.find(55).date).to_s).slice(0, 10).to_date)

@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-  # skip_before_action :has_any_user_logged_in, only: [:new, :create]
-  # before_action :ensure_admin_logged_in, only: [:update_profile, :update, :create_new]
-  # before_action :ensure_clerk_logged_in, only: [:update_quantity, :update, :clerks]
-  # before_action :ensure_user_logged_in, except: [:create_new, :clerks]
+  skip_before_action :has_any_user_logged_in, only: [:new, :create]
+  before_action :ensure_not_customer, only: [:create_new]
+  before_action :ensure_clerk_logged_in, only: [:clerks]
+  before_action :ensure_customer_logged_in, only: [:update]
+
   # renders signup page
   def new
     render "new"

@@ -1,6 +1,5 @@
 class CartsController < ApplicationController
-  # before_action :ensure_user_logged_in
-  # before_action :ensure_clerk_logged_in
+  before_action :ensure_not_owner
 
   def create
     id = params[:id]
