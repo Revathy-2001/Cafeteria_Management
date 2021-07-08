@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post "signin" => "sessions#create", as: :sessions
   delete "signout" => "sessions#destroy", as: :destroy_session
   get "categories" => "menu_categories#categories"
-  post "update_profile" => "users#update_profile", as: :update_profile_path
+  post "users/update_profile" => "users#update_profile", as: :user_update_profile
 
   get "show_menu_items" => "menu_items#menu_items", as: :show_menu_items
 
