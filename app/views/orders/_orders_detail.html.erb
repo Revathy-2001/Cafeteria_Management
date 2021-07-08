@@ -2,7 +2,7 @@
 <section class = <%= page_classname %>>
     <section class = <%= (@current_user.role == "clerk") ? "Customers-details-head" : head_classname %>>
          <div class = "orders-left">
-          <h1 class = "Orders-title">Orders Details</h1>
+            <h1 class = "Orders-title">Orders Details</h1>
           <%# cancel order button %>
           <% if (!Order.find(order_id).is_cancel && Order.find(order_id).delivered_at == nil) %>
             <%= link_to "Cancel Order",cancel_order_path(id: order_id),method:"post",class:"cancel_order_btn", data: { confirm: "Are you sure you want to Cancel?"} %>

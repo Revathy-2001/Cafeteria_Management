@@ -81,12 +81,29 @@
 .column_name {
   overflow-wrap: break-word;
   width: 180px;
+  text-align: center;
+}
+
+.col_id,
+.column_id {
+  overflow-wrap: break-word;
+  width: 180px;
+  text-align: center;
 }
 
 .col_phone_No,
 .column_phone_no {
   overflow-wrap: break-word;
   width: 150px;
+  text-align: center;
+}
+.column_email,
+.col_email {
+  overflow-wrap: break-word;
+  max-width: 350px;
+  width: 350px;
+  font-size: 15px;
+  text-align: center;
 }
 
 .column_address,
@@ -103,7 +120,13 @@
   max-width: 180px;
   width: 120px;
 }
-
+.col_checkout,
+.column_checkout {
+  overflow-wrap: break-word;
+  max-width: 180px;
+  width: 180px;
+  text-align: center;
+}
 .column_status,
 .col_status {
   overflow-wrap: break-word;
@@ -495,7 +518,7 @@ input[type="date"]::-webkit-datetime-edit-text {
   text-align: center;
 }
 .no-reports {
-  width: 420px;
+  width: 300px;
   margin: 10px auto;
   justify-content: center;
   display: flex;
@@ -503,4 +526,33 @@ input[type="date"]::-webkit-datetime-edit-text {
 .No-record-found-text {
   color: #888888;
   text-align: center;
+}
+.back_to_reports {
+  color: #123456;
+}
+.back_to_reports:hover {
+  text-decoration: none;
+}
+.customer_reports_button {
+  border: 1px solid #123456;
+  padding: 10px;
+  border-radius: 4px;
+  color: #123456;
+  font-size: 15px;
+  margin-left: 20px;
+}
+.customer_reports_button:hover,
+.see_customer_reports:hover {
+  background-color: #123456;
+  color: white;
+  text-decoration: none;
+}
+.see_customer_reports {
+  border: 1px solid #dce0e8;
+  padding: 5px;
+  border-radius: 4px;
+  color: navy;
+  font-size: 14px;
+  margin-left: 20px;
+  width: 200px;
 }

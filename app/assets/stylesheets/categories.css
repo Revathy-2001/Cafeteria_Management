@@ -241,10 +241,25 @@
 }
 
 .Active_status {
-  color: #1fbba6;
+  color: #123456;
   margin-right: 30px;
 }
 .Inactive_status {
-  color: orange;
+  color: darkred;
   margin-right: 20px;
+}
+.no_categories_image {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+}
+.customer {
+  width: 300px;
+  margin-top: 100px;
+}
+.no_categories_text {
+  text-align: center;
+  color: #888888;
+  font-family: sans-serif;
 }

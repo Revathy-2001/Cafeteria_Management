@@ -13,54 +13,60 @@
               <%= flash[:error] %>
           </p>
         <% end %>
-         <% MenuCategory.all.each do |category| %>
-              <section class = "CategorySection-item"
-                  data-toggle="collapse"
-                  data-target=<%= "#id#{category.id}" %>
-                  aria-expanded="false">
-                  <%# renders the collapse with the help of css selector given in data target %>
 
-                    <p class = "Category" >  <%# renders the dropdown caret symbol and name of the category %>
-                      <i class="fa fa-caret-right"  id =<%= "text#{category.id}" %>></i>
-                      <%= "#{category.name}"%>
-                    </p>
+        <% if(@menu_categories.empty?) %>
+            <%= image_tag "no_categories.png",class:"no_categories_image" %>
+            <p class = "no_categories_text">No Categories Found</p>
+        <% else %>
+                <% MenuCategory.all.each do |category| %>
+                    <section class = "CategorySection-item"
+                        data-toggle="collapse"
+                        data-target=<%= "#id#{category.id}" %>
+                        aria-expanded="false">
+                        <%# renders the collapse with the help of css selector given in data target %>
+
+                            <p class = "Category" >  <%# renders the dropdown caret symbol and name of the category %>
+                            <i class="fa fa-caret-right"  id =<%= "text#{category.id}" %>></i>
+                            <%= "#{category.name}"%>
+                            </p>
 
 
-                    <%# renders the add menu icon and redirects path to create a new menu item on click %>
-                    <%= form_with(url: "/menu_items/new/#{category.id}", method: "get") do %>
-                      <%= image_submit_tag("menu_item_add.png" , class: "AddIcon_menu_item",title: "Add Menu Item") %>
-                    <% end %>
+                            <%# renders the add menu icon and redirects path to create a new menu item on click %>
+                            <%= form_with(url: "/menu_items/new/#{category.id}", method: "get") do %>
+                            <%= image_submit_tag("menu_item_add.png" , class: "AddIcon_menu_item",title: "Add Menu Item") %>
+                            <% end %>
 
-              </section>
+                    </section>
 
-              <%# renders the items belongs to each category %>
-              <div class="collapse" id=<%= "id#{category.id}" %>>
+                    <%# renders the items belongs to each category %>
+                    <div class="collapse" id=<%= "id#{category.id}" %>>
 
-                  <%# stores id of each category in a variable and sends to model method %>
-                  <% category_id = "id#{category.id}"[2..].to_i %> <%# stores id of each category in a variable and sends to model method %>
+                        <%# stores id of each category in a variable and sends to model method %>
+                        <% category_id = "id#{category.id}"[2..].to_i %> <%# stores id of each category in a variable and sends to model method %>
 
-                  <%# iterates over each category item and show's respected items on clicking the respective category %>
-                  <%  MenuItem.show_menu_item(category_id).each do |item| %>
-                      <div class = "menu_items">
-                          <%# renders name of the menu item %>
-                          <p><%= item.name %></p>
-                          <%# shows edit icon and delete icon on hovering the menu item %>
-                          <section class = "Update-delete">
-                              <p class = <%= (item.status == "Active") ? "Active_status_item" : "Inactive_status_item" %>>
-                                 <%= (item.status) ? "Active" : "Inactive" %>
-                              </p>
-                              <%# shows the front end page to update the menu item details on clicking the update icon %>
-                              <%= link_to image_tag("updateimg.png",class: "Item_update",title: "Update Menu Item"),
-                                  "/menu_items/show_update/#{item.id}"%>
+                        <%# iterates over each category item and show's respected items on clicking the respective category %>
+                        <%  MenuItem.show_menu_item(category_id).each do |item| %>
+                            <div class = "menu_items">
+                                <%# renders name of the menu item %>
+                                <p><%= item.name %></p>
+                                <%# shows edit icon and delete icon on hovering the menu item %>
+                                <section class = "Update-delete">
+                                    <p class = <%= (item.status == "Active") ? "Active_status_item" : "Inactive_status_item" %>>
+                                        <%= (item.status) ? "Active" : "Inactive" %>
+                                    </p>
+                                    <%# shows the front end page to update the menu item details on clicking the update icon %>
+                                    <%= link_to image_tag("updateimg.png",class: "Item_update",title: "Update Menu Item"),
+                                        "/menu_items/show_update/#{item.id}"%>
 
-                              <%# deletes the record %>
-                              <%= link_to image_tag("destroy.png" , class: "Item_delete") ,"menu_items/#{item.id}", method: :delete,
-                              data: { confirm: "Are you sure you want to delete?"} %>
+                                    <%# deletes the record %>
+                                    <%= link_to image_tag("destroy.png" , class: "Item_delete") ,"menu_items/#{item.id}", method: :delete,
+                                    data: { confirm: "Are you sure you want to delete?"} %>
 
-                          </section>
-                      </div>
-                  <% end %>
-              </div>
-       <% end %>
+                                </section>
+                            </div>
+                        <% end %>
+                    </div>
+            <% end %>
+        <% end %>
     </section>
 </main>

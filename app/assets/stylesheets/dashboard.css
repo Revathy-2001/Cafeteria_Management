@@ -54,7 +54,6 @@
 }
 .card1,
 .card8 {
-  background-color: rgb(107, 241, 228);
   width: 15rem;
   border-radius: 0%;
   background-image: linear-gradient(to right, rgb(206, 241, 250), cyan);
@@ -64,26 +63,27 @@
   background-color: rgb(165, 241, 165);
   width: 15rem;
   border-radius: 0%;
-  background-image: linear-gradient(to right, rgb(176, 176, 223), dodgerblue);
+  background-image: linear-gradient(
+    to right,
+    rgb(192, 233, 243),
+    rgb(166, 230, 230)
+  );
 }
 .card3,
 .card6 {
   background-color: rgb(240, 196, 240);
   width: 15rem;
   border-radius: 0%;
-  background-image: linear-gradient(
-    to right,
-    rgb(125, 240, 125),
-    rgb(238, 238, 108)
-  );
+  background-image: linear-gradient(to right, rgb(206, 241, 250), cyan);
 }
 .card4,
 .card5 {
   background-image: linear-gradient(
     to right,
-    rgb(223, 185, 115),
-    rgb(241, 179, 63)
+    rgb(206, 241, 250),
+    rgb(190, 224, 224)
   );
+
   width: 15rem;
   border-radius: 0%;
 }
@@ -95,31 +95,41 @@
   font-size: 14px;
 }
 .Add_clerk_btn {
-  margin: 10px auto;
-  margin-top: 60px;
-  margin-left: 620px;
-  text-align: center;
-  justify-content: center;
   background-color: #123456;
   color: white;
   padding: 15px;
   cursor: pointer;
+  margin-right: 20px;
+  width: 400px;
+  text-align: center;
 }
 
 @media screen and (min-width: 300px) and (max-width: 800px) {
   .top_card {
     display: block;
   }
-  .Add_clerk_btn {
-    margin: 10px;
-    justify-content: center;
-    max-width: 200px;
-    display: flex;
-    margin-left: 230px;
-  }
 }
-.Add_clerk_btn:hover {
+.Add_clerk_btn:hover,
+.See_customer_reports_dashboard:hover {
   background-color: #010280;
   color: white;
   text-decoration: none;
+}
+
+.Dashboard_options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  background-color: rgb(233, 241, 241);
+  margin-left: 300px;
+  width: 800px;
+}
+.See_customer_reports_dashboard {
+  background-color: #123456;
+  color: white;
+  padding: 15px;
+  cursor: pointer;
+  width: 400px;
+  text-align: center;
 }

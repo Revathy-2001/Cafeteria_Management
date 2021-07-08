@@ -1,16 +1,21 @@
-<%# renders all categories for customer view %>
-<div class = "Categories_card_Section">
-  <%# iterates over each category %>
-  <% MenuCategory.all.each do | category | %>
-     <div class = "Categories_block">
-        <p class = "Category_name"><%= category.name%></p> <%# Name of the category %>
+<% if(@menu_categories.empty?) %>
+      <%= image_tag "no_categories.png",class:"no_categories_image customer" %>
+      <p class = "no_categories_text">Oops!!! No Categories</p>
+<% else %>
+    <%# renders all categories for customer view %>
+    <div class = "Categories_card_Section">
+      <%# iterates over each category %>
+      <% MenuCategory.all.each do | category | %>
+        <div class = "Categories_block">
+            <p class = "Category_name"><%= category.name%></p> <%# Name of the category %>
 
-        <%# Status of the Category %>
-        <% if(category.status == "Active") %>
-          <%= link_to "View Menu Items",show_menu_items_path(id: "#{category.id}"),class:"View_item" %>
-        <% else %>
-          <button class = "View_item_unavailable" disabled>Unavailable </button>
-        <% end %>
-     </div>
-  <% end %>
-</div>
+            <%# Status of the Category %>
+            <% if(category.status == "Active") %>
+              <%= link_to "View Menu Items",show_menu_items_path(id: "#{category.id}"),class:"View_item" %>
+            <% else %>
+              <button class = "View_item_unavailable" disabled>Unavailable </button>
+            <% end %>
+        </div>
+      <% end %>
+    </div>
+<% end %>
