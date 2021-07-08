@@ -10,19 +10,19 @@ class ApplicationController < ActionController::Base
 
   # def ensure_user_logged_in
   #   unless current_user.role == "user"
-  #     redirect_to "/"
+  #     render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
   #   end
   # end
 
   # def ensure_admin_logged_in
   #   unless current_user.role == "owner"
-  #     redirect_to "/"
+  #     render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
   #   end
   # end
 
   # def ensure_clerk_logged_in
   #   unless current_user.role == "clerk"
-  #     redirect_to "/"
+  #     render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
   #   end
   # end
 

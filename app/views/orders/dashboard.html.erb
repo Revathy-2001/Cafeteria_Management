@@ -42,5 +42,9 @@
       </div>
     </div>
     <%# link for the owner to create clerks or other owners %>
-    <%= link_to "Add Owners or clerk",create_new_path,class: "Add_clerk_btn" %>
+      <div class = "Dashboard_options">
+        <%= link_to "Add Owners or clerk",create_new_path,class: "Add_clerk_btn" %>
+        <%= link_to "See Customer Reports",customer_reports_path,class: "See_customer_reports_dashboard" %>
+      </div>
+
 </div>

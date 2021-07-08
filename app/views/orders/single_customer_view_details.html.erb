@@ -1,0 +1,107 @@
+<%# single order details page %>
+<section class ="Orders-page">
+    <section class = "Orders-head">
+         <div class = "orders-left">
+            <h1 class = "Orders-title">Orders Details</h1>
+          <%# cancel order button %>
+          <% if (!Order.find(@id).is_cancel && Order.find(@id).delivered_at == nil) %>
+            <%= link_to "Cancel Order",cancel_order_path(id: @id),method:"post",class:"cancel_order_btn", data: { confirm: "Are you sure you want to Cancel?"} %>
+          <% end %>
+         </div>
+         <%# back to orders button %>
+          <%= link_to customer_reports_path ,class: "Back_to_orders" do %>
+            <span aria-hidden="true">&times;</span>
+          <% end %>
+    </section>
+    <%# status of an order completed or pending %>
+    <section class = "order_status">
+       <% order = Order.find(@id) %>
+       <% user_id = order.user_id %>
+       <div class="card" style="margin-right:20px;">
+        <div class="card-body status_order_body">
+          <p><i class="fa" style="font-size:34px;color:orangered"> &#xf07a; </i></p>
+          <p class="card-text">Order Status</p>
+        </div>
+        <div class="card-footer status_order_footer">
+           <% if(User.find(user_id).role == "clerk" && !Order.find(@id).is_cancel ) %>
+             <p>Walk-in-Customer</p>
+           <% else %>
+              <% if(Order.find(@id).delivered_at) %>
+                <p>Completed</p>
+              <% else %>
+                <% if(Order.find(@id).is_cancel)%>
+                   <p>Cancelled Order</p>
+                <% else %>
+                   <p>Pending</p>
+                <% end %>
+              <% end %>
+            <% end %>
+        </div>
+      </div>
+       <%# status of an order shipped or unshipped %>
+      <div class="card">
+        <div class="card-body status_ship_body">
+          <%= image_tag "shipping_truck.png",width:"40px",height:"40px" %>
+          <p class="card-text">Shipping Status</p>
+        </div>
+        <div class="card-footer status_ship_footer">
+          <% if(User.find(user_id).role == "clerk" && !Order.find(@id).is_cancel) %>
+             <p>Walk-in-Customer</p>
+          <% else %>
+            <% if(Order.find(@id).delivered_at) %>
+              <p>Delivered</p>
+            <% else %>
+                <% if(Order.find(@id).is_cancel)%>
+                   <p>Cancelled Order</p>
+                <% else %>
+                   <p>Unshipped</p>
+                <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </section>
+      <section class = "Order_items_section" >
+      <%# shows single order details of a user for customer,clerk and owner %>
+      <div class = "Customer_details">
+        <p class = "order_id">ORDER-ID <%= @id %></p>
+        <p class = "order_id"><i style="font-size:16px" class="fa">&#xf007; </i> <%= User.find(user_id).first_name %></p>
+      </div>
+      <%# table head  %>
+      <div class="card">
+          <div class="card-header topics">
+              <p >PRODUCT</p>
+              <div class = "topic-right">
+                <p class = "topic-price">PRICE</p>
+                <p class = "topic-quantity">QUANTITY</p>
+                <p class = "topic-total">TOTAL</p>
+              </div>
+          </div>
+          <%# body containing order details %>
+          <div class="card-body ordered_items_record">
+                <% OrderItem.show_order_items(@id).all.each do |order_item| %>
+                    <div class= "order_items_row">
+                        <p class = "order_item_row-left"><%= order_item.menu_item_name %></p>
+                        <div class = "order_item_row-right">
+                            <table class = "table table-bordered">
+                                <tbody>
+                                    <tr>
+                                      <th class="column_body">&#8377;<%= order_item.menu_item_price %></th>
+                                      <td class="column_body"><%= order_item.quantity %></td>
+                                      <td class="column_body">&#8377;<%= order_item.quantity * order_item.menu_item_price %></td>
+                                    </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                <% end %>
+          </div>
+      </div>
+      <%# footer to show the total amount of an order %>
+      <div class="orders-footer">
+         <p>Order Total</p>
+         <p>&#8377;<%= Order.find(@id).total_amount %></p>
+      </div>
+    </section>
+
+</section>

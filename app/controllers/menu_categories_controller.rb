@@ -5,6 +5,7 @@ class MenuCategoriesController < ApplicationController
 
   # renders index.html.erb from view
   def index
+    @menu_categories = MenuCategory.all
     render "index"
   end
 
@@ -13,7 +14,7 @@ class MenuCategoriesController < ApplicationController
     category_name = params[:name]
     status = params[:status].nil? ? "Inactive" : "Active"
     new_category = MenuCategory.new(
-      :name => category_name,
+      :name => category_name.capitalize,
       :status => status,
     )
     if new_category.save
@@ -51,5 +52,6 @@ class MenuCategoriesController < ApplicationController
   end
 
   def categories
+    @menu_categories = MenuCategory.all
   end
 end

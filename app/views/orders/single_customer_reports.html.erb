@@ -3,10 +3,15 @@
     <section class = "Reports_head">
         <%# shows title and ask for from date and to date to display %>
 
-        <h1 class = "Orders-title">Reports</h1>
-        <%= link_to "See Customer Reports",customer_reports_path,class: "customer_reports_button" %>
+        <h1 class = "Orders-title">
+            <%= link_to customer_reports_path,class: "back_to_reports" do %>
+               &larr; Back to customer Reports
+            <% end %>
+        </h1>
 
-        <%= form_with(url: "reports", method: "get" , class: "Reports_date_range") do %>
+
+        <%= form_with(url: "single_customer_reports", method: "get" , class: "Reports_date_range") do %>
+           <%= hidden_field_tag "id",@id %>
            From: <%= date_field_tag 'start_date', nil, class: 'From_date' ,required: true,autofocus: true %>
            To: <%= date_field_tag 'end_date', nil, class: 'To_date' ,required: true %>
            <%= submit_tag "Fetch", class: "Fetch_reports-button" %>
@@ -17,8 +22,8 @@
       <table  class="table table-bordered table-dark">
           <thead>
             <tr>
-              <th class="col_name">Name</th>
-              <th class="col_phone_No">Mobile No</th>
+              <th class="col_name">Order-Id</th>
+              <th class="col_phone_No">Customer Name</th>
               <th class="col_address">Address</th>
               <th class="col_amount">Total Amount</th>
               <th class="col_status">Status</th>
@@ -37,8 +42,8 @@
             <% @date_arr.each do |order| %>
 
                   <tr class = "Orders_row">
-                    <td class="column_name"><%= User.find(order.user_id).first_name %></td>
-                    <td class="column_phone_no"><%= User.find(order.user_id).phone_no %></td>
+                    <td class="column_name"><%= @user.first_name %></td>
+                    <td class="column_phone_no"><%= @user.phone_no %></td>
                     <td class="column_address"><%= order.delivery_address %></td>
                     <td class="column_total_amt">&#8377; <%= order.total_amount %></td>
                     <% if(order.delivered_at) %>
@@ -59,7 +64,7 @@
                         <% end %>
                     <% end %>
                     <%# link to view single order details %>
-                    <td class="column_checkout"><%= link_to "View Orders",admin_order_details_path(order.id),class: "view_order_btn" %></td>
+                    <td class="column_checkout"><%= link_to "View Details",single_customer_view_details_path(id: order.id),class: "view_order_btn" %></td>
                   </tr>
               <% end %>
           </tbody>

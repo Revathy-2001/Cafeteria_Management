@@ -4,6 +4,7 @@ class MenuItemsController < ApplicationController
   # before_action :ensure_admin_logged_in, except: [:menu_items]
   # renders the index page from view
   def index
+    @menu_categories = MenuCategory.all
   end
 
   # stores id received from parameter and renders the new page from views
@@ -15,7 +16,7 @@ class MenuItemsController < ApplicationController
   def create
     new_menu_item = MenuItem.new(
       :menu_category_id => params[:id],
-      :name => params[:name],
+      :name => params[:name].capitalize,
       :description => params[:description],
       :price => params[:price],
       :status => params[:status],
@@ -57,5 +58,10 @@ class MenuItemsController < ApplicationController
   # renders menu item page for customers
   def menu_items
     @id = params[:id]
+    if (@id.nil?)
+      @menu_category = MenuCategory.first
+    else
+      @menu_category = MenuCategory.find(@id)
+    end
   end
 end

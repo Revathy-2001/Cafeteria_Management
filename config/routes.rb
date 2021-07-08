@@ -28,4 +28,7 @@ Rails.application.routes.draw do
   get "reports" => "orders#reports", as: :reports
   get "dashboard" => "orders#dashboard"
   post "cancel_order/:id" => "orders#cancel_order", as: :cancel_order
+  get "/customer_reports" => "orders#customer_reports", as: :customer_reports
+  get "/single_customer_reports" => "orders#single_customer_reports", as: :single_customer_reports
+  get "/single_customer_view_details" => "orders#single_customer_view_details", as: :single_customer_view_details
 end

@@ -26,7 +26,7 @@
              <div class = "Navbar_users_contents"><a href="/clerks">Home</a></div>
           <% end %>
           <div class = "Navbar_users_contents"><a href="/categories">Menu Categories</a></div>
-          <div class = "Navbar_users_contents"><%= link_to "Menu Items",show_menu_items_path(id: MenuCategory.first.id) %></div>
+          <div class = "Navbar_users_contents"><%= link_to "Menu Items",show_menu_items_path %></div>
 
           <div class="dropdown">
             <button class="Navbar_profile" type="button" data-toggle="dropdown"><%= @current_user.first_name%>

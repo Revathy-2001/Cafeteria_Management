@@ -1,0 +1,45 @@
+<%# renders reports page %>
+<section class = "Reports_page">
+    <section class = "Reports_head">
+        <h1 class = "Orders-title">
+          <%= link_to reports_path,class: "back_to_reports" do %>
+             	&larr; Back to Reports
+          <% end %>
+        </h1>
+    </section>
+    <%# reports section %>
+    <div class = "Reports_section">
+      <table  class="table table-bordered table-dark">
+          <thead>
+            <tr>
+              <th class="col_id">User Id</th>
+              <th class="col_name">Name</th>
+              <th class="col_phone_No">Mobile No</th>
+              <th class="col_email">Email</th>
+              <th class="col_checkout">Customer Reports</th>
+            </tr>
+          </thead>
+      </table>
+      <section class = "Reports_section_body">
+        <table class="table table-bordered">
+          <tbody class = "Orders_body">
+            <% if(@users.empty?) %>
+                  <%= image_tag "no-result.png",class:"no-reports" %>
+                  <p class = "No-record-found-text">No Record Found</p>
+            <% else %>
+               <%# each order from given date range %>
+                <% @users.each do |user| %>
+                      <tr class = "Orders_row">
+                        <td class="column_id">USERID-<%= user.id %></td>
+                        <td class="column_name"><%= user.first_name %></td>
+                        <td class="column_phone_no"><%= user.phone_no %></td>
+                        <td class="column_email"><%= user.email %></td>
+                        <td class="column_checkout"><%= link_to "View Reports",single_customer_reports_path(id: user.id),class:"see_customer_reports" %></td>
+                      </tr>
+                  <% end %>
+              <% end %>
+          </tbody>
+        </table>
+      </section>
+    </div>
+</section>

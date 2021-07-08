@@ -86,6 +86,31 @@ class OrdersController < ApplicationController
   # renders dashboard page for admin
   def dashboard
   end
+
+  def customer_reports
+    @users = User.where("role = ?", "user")
+  end
+
+  def single_customer_reports
+    @id = params[:id]
+    @user = User.find(@id)
+    start_date = params[:start_date]
+    if (start_date.nil?)
+      @date_arr = @user.orders.all
+    else
+      end_date = params[:end_date]
+      @date_arr = []
+      @user.orders.each do |order|
+        if (order.date.strftime("%Y-%m-%d").to_date >= start_date.to_date && order.date.strftime("%Y-%m-%d").to_date <= end_date.to_date)
+          @date_arr.push(order)
+        end
+      end
+    end
+  end
+
+  def single_customer_view_details
+    @id = params[:id]
+  end
 end
 
 # (((Order.find(55).date).to_s).slice(0, 10).to_date)
