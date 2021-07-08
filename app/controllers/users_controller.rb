@@ -25,6 +25,8 @@ class UsersController < ApplicationController
         redirect_to "/dashboard"
       else
         session[:current_user_id] = user.id
+        cart = Cart.new(user_id: user.id, date: DateTime.now)
+        cart.save
         redirect_to categories_path
       end
     else
