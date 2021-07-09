@@ -38,9 +38,13 @@ class UsersController < ApplicationController
   # updates profile for all the users
   def update_profile
     user = @current_user
-    user.first_name = params[:first_name]
-    user.phone_no = params[:phone_no]
-    user.email = params[:email]
+    old_name = user.first_name
+    old_ph_no = user.phone_no
+    old_email = user.email
+
+    user.first_name = (params[:first_name].empty?) ? old_name : params[:first_name]
+    user.phone_no = ((params[:phone_no]).empty? || (params[:phone_no].length < 6 && params[:phone_no].length > 12)) ? old_ph_no : params[:phone_no]
+    user.email = (params[:email].empty?) ? old_email : params[:email]
     user.save!
     if (user.role == "user")
       redirect_to categories_path
@@ -55,7 +59,7 @@ class UsersController < ApplicationController
   def update
     user = User.find(params[:id])
     user_phone_no = user.phone_no
-    if (params[:phone_no].length < 4 || params[:phone_no].length >= 12)
+    if (params[:phone_no].length < 6 || params[:phone_no].length >= 12)
       user.phone_no = user_phone_no
     else
       user.phone_no = params[:phone_no]

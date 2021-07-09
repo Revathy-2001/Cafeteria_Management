@@ -20,12 +20,12 @@
 
                     <div class = "Form-section">
                       <p class = "FormInput-label">Email: </p>
-                      <%= email_field_tag "email",@current_user.email, class:"Profile-input" %>
+                      <%= email_field_tag "email",@current_user.email, :pattern => "^(.+)@(.+)\.?(.+)$",class:"Profile-input" %>
                     </div>  <%# accepts email %>
 
                     <div class = "Form-section">
                       <p class = "FormInput-label">Phone No: </p>
-                      <%= telephone_field_tag "phone_no",@current_user.phone_no,class:"Profile-input" %>
+                      <%= telephone_field_tag "phone_no",@current_user.phone_no,:pattern => "[0-9]{6,12}",class:"Profile-input" %>
                     </div>  <%# accepts phone no %>
 
                     <div class = "Form-section">

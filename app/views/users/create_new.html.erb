@@ -24,7 +24,7 @@
                 placeholder:"Email" ,
                 class:"signup-input",
                 required:true ,
-                :pattern => "^(.+)@(.+)$",
+                :pattern => "^(.+)@(.+)\.?(.+)$",
                 :title=> "example@gmail.com" %>
           </div>  <%# accepts email input feild %>
 
@@ -33,7 +33,7 @@
             placeholder:"Phone Number" ,
             class:"signup-input",
             required:true,
-            :pattern => "[0-9]{4,12}",
+            :pattern => "[0-9]{6,12}",
             :title=> "Example => 1234567890"   %>
           </div>  <%# accepts phone no input feild %>
 
