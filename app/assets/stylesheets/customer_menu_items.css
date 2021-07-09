@@ -138,8 +138,10 @@
 }
 
 .Item_name {
-  font-size: 20px;
+  font-size: 16px;
+  overflow-wrap: break-word;
   color: #554f4f;
+  margin-bottom: 30px;
 }
 .Item_price {
   font-size: 18px;
