@@ -59,7 +59,7 @@ class MenuItemsController < ApplicationController
   def menu_items
     @id = params[:id]
     if (@id.nil?)
-      @menu_category = MenuCategory.first
+      @menu_category = MenuCategory.find_by(status: "Active")
       unless (@menu_category.nil?)
         @id = @menu_category.id
       end

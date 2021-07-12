@@ -17,7 +17,7 @@
             <p class = "Category_label"> Category Name:</p>
             <div class = "Enable_option">
                 <label>Enable Category for customer</label>
-                <%= check_box_tag "status", value = "Active", checked: true,class: "Enable_checkbox" %>
+                <%= check_box_tag "status",value= "Active",checked = @category.status == "Active" ? true : false, class: "Enable_checkbox" %>
             </div>  <%# owner can update status of a category%>
          </div>
 
