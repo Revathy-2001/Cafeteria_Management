@@ -93,6 +93,6 @@ ActiveRecord::Schema.define(version: 2021_07_12_051036) do
     t.string "phone_no"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "archived_by"
   end
-
 end

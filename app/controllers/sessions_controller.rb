@@ -10,12 +10,19 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
-      session[:current_user_id] = user.id
       if (user.role == "user")
+        session[:current_user_id] = user.id
         redirect_to categories_path
       elsif (user.role == "clerk")
-        redirect_to clerks_path
+        if (user.archived_by)
+          flash[:error] = "Your Account is de-activated by admin!!"
+          redirect_to new_sessions_path
+        else
+          session[:current_user_id] = user.id
+          redirect_to clerks_path
+        end
       else
+        session[:current_user_id] = user.id
         redirect_to menu_categories_path
       end
     else

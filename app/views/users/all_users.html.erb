@@ -1,0 +1,56 @@
+<%# renders all users list page %>
+<section class = "Users_list_page">
+    <section class = "All_users_head">
+        <h1 class = "Orders-title">List of users</h1>
+         <%= link_to "/dashboard", class: "Back_to_orders" do %>
+           <span aria-hidden="true">&times;</span>
+        <% end %>
+    </section>
+    <%# all users section %>
+    <div class = "All_users_section">
+      <div class="table-responsive">
+      <table  class="table table-bordered table-dark">
+          <thead>
+            <tr>
+              <th class="name_column">Name</th>
+              <th class="ph_no_column">Mobile No</th>
+              <th class="email_column">Email</th>
+              <th class="column_role">Role</th>
+              <th class="column_transactions">Transactions</th>
+            </tr>
+          </thead>
+      </table>
+      <section class = "All_users_list_body">
+        <table class="table table-bordered">
+          <tbody>
+            <%# renders each user details %>
+            <% User.where("archived_by = ?",false).each do |user| %>
+                  <tr class = "Orders_row">
+                      <td class="name_column"><%= user.first_name %></td>
+                      <td class="ph_no_column"><%= user.phone_no %></td>
+                      <td class="email_column"><%=user.email %></td>
+                      <td class="column_role"><%= user.role %></td>
+                      <% if(user.role == "user") %>
+                        <td class="column_transactions">---</td>
+                      <% else %>
+                        <td class="column_transactions">
+                          <div class = "operations">
+                            <% if(user.role != "clerk") %>
+                              <%= link_to "Create",create_new_path,class:"Create_operation" %>
+                            <% end %>
+                            <%= link_to "Update",update_users_view_path(id: user.id),class:"Update_operation" %>
+                            <% if(user.email != "admincms@gmail.com") %>
+                               <%= link_to "Delete",destroy_user_path(id: user.id),method: :delete,data:{confirm: "Are you sure want to delete?"},
+                               class:"Delete_operation" %>
+                            <% end %>
+                          </div>
+                        </td>
+                      <% end %>
+                  </tr>
+              <% end %>
+          </tbody>
+        </table>
+        </div>
+      </section>
+    </div>
+</section>

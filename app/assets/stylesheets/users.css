@@ -1,0 +1,125 @@
+.Users_list_page {
+  font-family: Opens Sans, sans-serif;
+  max-height: fit-content;
+  overflow-x: hidden;
+  padding: 20px;
+  color: black;
+  display: block;
+  margin-top: 5px;
+}
+.All_users_head {
+  background-color: white;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  overflow-x: hidden;
+  border-bottom: 2px solid #0807074d;
+  margin-left: 200px;
+}
+.back_to_dashboard {
+  border: 1px solid #dce0e8;
+  background-color: #f8f9f9;
+  padding: 2px 8px;
+  border-radius: 3px;
+  color: #000;
+  margin-right: 16%;
+  font-size: 24px;
+}
+.All_users_section {
+  margin: 10px auto;
+  max-width: 100%;
+  margin-top: 100px;
+  justify-content: center;
+  padding: 10px;
+  height: 440px;
+  margin-left: 200px;
+  background-color: white;
+}
+
+.All_users_list_body {
+  overflow-y: scroll;
+  height: 360px;
+}
+.name_column {
+  width: 150px;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+.column_role {
+  width: 100px;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+.ph_no_column {
+  width: 180px;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+
+.email_column {
+  width: 240px;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+.column_transactions {
+  width: 230px;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+.operations {
+  margin: 0px auto;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.Create_operation {
+  border: 1px solid #dce0e8;
+  color: green;
+  padding: 8px;
+  border-radius: 3px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+.Create_operation:hover {
+  background-color: green;
+  color: white;
+  text-decoration: none;
+}
+.Update_operation {
+  border: 1px solid #dce0e8;
+  color: navy;
+  padding: 8px;
+  border-radius: 3px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+.Update_operation:hover {
+  background-color: navy;
+  color: white;
+  text-decoration: none;
+}
+.Delete_operation {
+  border: 1px solid #dce0e8;
+  color: darkred;
+  padding: 8px;
+  border-radius: 3px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+.Delete_operation:hover {
+  background-color: darkred;
+  color: white;
+  text-decoration: none;
+}
+.update_users_view_form {
+  margin: 10px auto;
+  justify-content: center;
+  max-width: 300px;
+  margin-top: 100px;
+}

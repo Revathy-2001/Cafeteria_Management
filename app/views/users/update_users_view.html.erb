@@ -1,0 +1,34 @@
+<%# renders page for owners to create clerks or other owners %>
+
+<section class = "Signup-form-page">
+
+    <section class = "New_clerk_head">
+        <h1 class = "new_user-title">Update Owner or Clerk</h1>
+        <%= link_to all_users_path, class: "Back_to_orders" do %>
+           <span aria-hidden="true">&times;</span>
+        <% end %>
+    </section> <%# renders heading section %>
+
+    <section class = "Usersnew">
+       <%= form_with(url: update_user_path(id: @user.id),method: "post",class:"update_users_view_form") do %>
+                    <div  class = "Form-section">
+                      <p class = "FormInput-label">Name: </p>
+                      <%= text_field_tag 'first_name',@user.first_name, class: 'Profile-input' %>
+                    </div>  <%# accepts name to update the existing value %>
+
+                    <div class = "Form-section">
+                      <p class = "FormInput-label">Email: </p>
+                      <%= email_field_tag "email",@user.email, :pattern => "^(.+)@(.+)\.?(.+)$",class:"Profile-input" %>
+                    </div>  <%# accepts email %>
+
+                    <div class = "Form-section">
+                      <p class = "FormInput-label">Phone No: </p>
+                      <%= telephone_field_tag "phone_no",@user.phone_no,:pattern => "[0-9]{6,12}",class:"Profile-input" %>
+                    </div>  <%# accepts phone no %>
+
+                    <div class = "Form-section">
+                      <%= submit_tag "Update", class:"Form-submit"  %>
+                    </div> <%# submits the form with the details given %>
+              <% end %>
+    </section>
+</section>

@@ -31,4 +31,8 @@ Rails.application.routes.draw do
   get "/customer_reports" => "orders#customer_reports", as: :customer_reports
   get "/single_customer_reports" => "orders#single_customer_reports", as: :single_customer_reports
   get "/single_customer_view_details" => "orders#single_customer_view_details", as: :single_customer_view_details
+  get "all_users" => "users#all_users", as: :all_users
+  get "update_users_view/:id" => "users#update_users_view", as: :update_users_view
+  post "update_user/:id" => "users#update_user", as: :update_user
+  delete "destroy_user/:id" => "users#destroy_user", as: :destroy_user
 end
