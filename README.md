@@ -10,13 +10,6 @@ Clerk Details:
 Email: clerk1cms@gmail.com
 password: Clerk1@cms
 
-Customer Details:
-
-Email:
-
-Email:customer1cms@gmail.com
-password: customer1cms@gmail.com
-
 Cafeteria Management System
 
 Cafeteria Management System has three roles custumer,admin and billing clerks.

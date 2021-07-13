@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  skip_before_action :has_any_user_logged_in, only: [:new, :create]
-  before_action :ensure_not_customer, only: [:create_new, :all_users, :update_users_view, :update_user, :destroy_user]
-  before_action :ensure_clerk_logged_in, only: [:clerks]
-  before_action :ensure_customer_logged_in, only: [:update]
+  skip_before_action :has_any_user_logged_in, only: [:new, :create] # these two methods should execute even if no user logged in.
+  before_action :ensure_not_customer, only: [:create_new, :all_users, :update_users_view, :update_user, :destroy_user] # customer should not view all these methods.
+  before_action :ensure_clerk_logged_in, only: [:clerks] # this method is only accessible to clerks
+  before_action :ensure_customer_logged_in, only: [:update] # this method is only accessible to customers
 
   # renders signup page
   def new
