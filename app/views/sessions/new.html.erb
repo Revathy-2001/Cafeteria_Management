@@ -1,5 +1,4 @@
 <%# renders sign in page %>
-
 <% if flash[:error] %>
   <p class = "Flash-error">
       <%= flash[:error] %>
@@ -7,15 +6,15 @@
 <% end %>
 <%# shows flash message when the feilds given by the user doesn't match %>
 
-<section class = "Signin-form"> <%# show sign in form%>
+<section class = "Signin-form"> <%# renders sign in form%>
 
-  <p class = "NewUsers-title">Sign In</p>  <%# show welcome message when user signs in %>
+  <p class = "NewUsers-title">Sign In</p>
   <section class = "ExistingUser">
       <%# shows form for the existing user %>
       <%= form_with(url: new_sessions_path) do |form| %>
           <div class = "Form-section">
             <p class = "FormInput-label">Email: </p>
-            <%= form.email_field :email, class:"Form-input",required:true  %>
+            <%= form.email_field :email, class:"Form-input",required:true %>
           </div>    <%# accepts name %>
 
           <div class = "Form-section">

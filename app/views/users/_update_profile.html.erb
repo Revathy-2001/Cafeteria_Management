@@ -15,17 +15,17 @@
               <%= form_with(url: user_update_profile_path,method: "post",class:"update_profile_form") do %>
                     <div  class = "Form-section">
                       <p class = "FormInput-label">Name: </p>
-                      <%= text_field_tag 'first_name',@current_user.first_name, class: 'Profile-input' %>
+                      <%= text_field_tag 'first_name',@current_user.first_name,minlength:3,required:true, class: 'Profile-input' %>
                     </div>  <%# accepts name to update the existing value %>
 
                     <div class = "Form-section">
                       <p class = "FormInput-label">Email: </p>
-                      <%= email_field_tag "email",@current_user.email, :pattern => "^(.+)@(.+)\.?(.+)$",class:"Profile-input" %>
+                      <%= email_field_tag "email",@current_user.email,required:true, :pattern => "^(.+)@(.+)\.?(.+)$",class:"Profile-input" %>
                     </div>  <%# accepts email %>
 
                     <div class = "Form-section">
                       <p class = "FormInput-label">Phone No: </p>
-                      <%= telephone_field_tag "phone_no",@current_user.phone_no,:pattern => "[0-9]{6,12}",class:"Profile-input" %>
+                      <%= telephone_field_tag "phone_no",@current_user.phone_no,required:true,:pattern => "[0-9]{6,12}",class:"Profile-input" %>
                     </div>  <%# accepts phone no %>
 
                     <div class = "Form-section">

@@ -30,7 +30,6 @@
             <%= image_tag "no_categories.png",class:"no_categories_image" %>
             <p class = "no_categories_text">No Categories Found</p>
         <% else %>
-
                 <%# iterates over each category item and renders it %>
                 <% MenuCategory.all.each do |category| %>
                     <section class = "CategorySection-item">

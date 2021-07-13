@@ -50,6 +50,7 @@ class MenuCategoriesController < ApplicationController
     redirect_to menu_categories_path
   end
 
+  # renders categories view to customer
   def categories
     @menu_categories = MenuCategory.all
   end

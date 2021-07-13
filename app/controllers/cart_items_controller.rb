@@ -43,6 +43,6 @@ class CartItemsController < ApplicationController
   def destroy_all
     cart = Cart.find_by(user_id: @current_user.id)
     cart.cart_items.destroy_all
-    redirect_to show_menu_items_path(id: MenuCategory.first.id)
+    redirect_to show_menu_items_path
   end
 end

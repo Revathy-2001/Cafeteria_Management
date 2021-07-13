@@ -18,6 +18,7 @@ class UsersController < ApplicationController
                     role: params[:role],
                     archived_by: false)
     if user.save
+      # if owner tries to create any clerk,it will create a cart for the clerk and redirects to owner's homepage.
       if (@current_user && @current_user.role == "owner")
         if (user.role == "clerk")
           cart = Cart.new(user_id: user.id)
@@ -25,6 +26,7 @@ class UsersController < ApplicationController
         end
         redirect_to "/dashboard"
       else
+        # if any customers creates account, customer's id will be stored in cookie and cart will be created.
         session[:current_user_id] = user.id
         cart = Cart.new(user_id: user.id)
         cart.save
@@ -39,13 +41,9 @@ class UsersController < ApplicationController
   # updates profile for all the users
   def update_profile
     user = @current_user
-    old_name = user.first_name
-    old_ph_no = user.phone_no
-    old_email = user.email
-
-    user.first_name = (params[:first_name].empty?) ? old_name : params[:first_name]
-    user.phone_no = ((params[:phone_no]).empty? || (params[:phone_no].length < 6 && params[:phone_no].length > 12)) ? old_ph_no : params[:phone_no]
-    user.email = (params[:email].empty?) ? old_email : params[:email]
+    user.first_name = params[:first_name]
+    user.phone_no = params[:phone_no]
+    user.email = params[:email]
     user.save!
     if (user.role == "user")
       redirect_to categories_path
@@ -59,17 +57,12 @@ class UsersController < ApplicationController
   # updates phone number of an user when ordering
   def update
     user = User.find(params[:id])
-    user_phone_no = user.phone_no
-    if (params[:phone_no].length < 6 || params[:phone_no].length >= 12)
-      user.phone_no = user_phone_no
-    else
-      user.phone_no = params[:phone_no]
-    end
+    user.phone_no = params[:phone_no]
     user.save!
     redirect_to cart_items_path
   end
 
-  # shows a page to create other owners and clerks for owners
+  # shows a page to create other owners and clerks
   def create_new
     render "create_new"
   end
@@ -79,30 +72,27 @@ class UsersController < ApplicationController
     render "clerks"
   end
 
+  # renders page to show the list of users to owner
   def all_users
     render "all_users"
   end
 
+  # renders view to update user
   def update_users_view
-    @id = params[:id]
-    @user = User.find(@id)
+    @user = User.find(params[:id])
   end
 
+  # updates the record
   def update_user
-    id = params[:id]
-
-    user = User.find(id)
-    old_name = user.first_name
-    old_ph_no = user.phone_no
-    old_email = user.email
-
-    user.first_name = (params[:first_name].empty?) ? old_name : params[:first_name]
-    user.phone_no = ((params[:phone_no]).empty? || (params[:phone_no].length < 6 && params[:phone_no].length > 12)) ? old_ph_no : params[:phone_no]
-    user.email = (params[:email].empty?) ? old_email : params[:email]
+    user = User.find(params[:id])
+    user.first_name = params[:first_name]
+    user.phone_no = params[:phone_no]
+    user.email = params[:email]
     user.save!
     redirect_to all_users_path
   end
 
+  # destroys clerk
   def destroy_user
     user = User.find(params[:id])
     user.archived_by = true

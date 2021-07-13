@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
 
   # check which user has currently logged in
   def current_user
-    return @current_user if @current_user
+    return @current_user if @current_user # memoization
 
     current_user_id = session[:current_user_id]
     if (current_user_id)

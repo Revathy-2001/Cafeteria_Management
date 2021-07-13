@@ -1,6 +1,6 @@
 class MenuItemsController < ApplicationController
-  before_action :ensure_not_owner, only: [:menu_items]
-  before_action :ensure_owner_logged_in, except: [:menu_items]
+  before_action :ensure_not_owner, only: [:menu_items] # If not owner, he/she can see only menu_items
+  before_action :ensure_owner_logged_in, except: [:menu_items] # If owner logged in,he/she can view everything except menu_items
 
   # renders the index page from view
   def index
@@ -31,8 +31,7 @@ class MenuItemsController < ApplicationController
 
   # stores id from parameter and  renders show edit from views
   def show_update
-    @menu_item_id = params[:id]
-    @menu_item = MenuItem.find(@menu_item_id)
+    @menu_item = MenuItem.find(params[:id])
   end
 
   # updates the menu item

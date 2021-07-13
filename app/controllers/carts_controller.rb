@@ -1,13 +1,14 @@
 class CartsController < ApplicationController
   before_action :ensure_not_owner
 
+  # creates cart items
   def create
-    id = params[:id]
+    id = params[:id] # menu item id
     menu_item = MenuItem.find(id)
-    category_id = menu_item.menu_category_id
+    category_id = menu_item.menu_category_id # finds category id to redirect
     user = @current_user
-    cart = Cart.find_by(user_id: user.id)
-    item = cart.cart_items.find_by(menu_item_id: id)
+    cart = Cart.find_by(user_id: user.id) # finds the cart for the currently signed in user
+    item = cart.cart_items.find_by(menu_item_id: id) # finds the existing cart item for the currently signed in user
     if (item)
       item.quantity += 1
       item.temp_price += item.menu_item_price

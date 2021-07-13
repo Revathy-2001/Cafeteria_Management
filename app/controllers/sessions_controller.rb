@@ -8,12 +8,13 @@ class SessionsController < ApplicationController
 
   # checks for an existing user
   def create
-    user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
+    user = User.find_by(email: params[:email]) # finds the user with the given email
+    if user && user.authenticate(params[:password]) # checks whether the email and the password matches?
       if (user.role == "user")
         session[:current_user_id] = user.id
         redirect_to categories_path
       elsif (user.role == "clerk")
+        # checks whether clerks account is activated?
         if (user.archived_by)
           flash[:error] = "Your Account is de-activated by admin!!"
           redirect_to new_sessions_path

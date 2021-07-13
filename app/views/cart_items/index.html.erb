@@ -47,7 +47,7 @@
                     <%# shows phone number update section %>
                     <div class="collapse phone_no" id="PhoneNo_collapse">
                       <div class="collapse_body">
-                          <%= text_field_tag "phone_no",@current_user.phone_no,class:"phone_no_text_collapse",id:"Change_ph_no"%>
+                          <%= text_field_tag "phone_no",@current_user.phone_no,required:true,:pattern => "[0-9]{6,12}",class:"phone_no_text_collapse",id:"Change_ph_no"%>
                           <%= submit_tag "Update",class: "Update_phone_no"%>
                       </div>
                     </div>

@@ -12,7 +12,7 @@
         <div class="card-body">
 
           <%# form to update an existing item %>
-          <%= form_with(url: "/menu_items/#{@menu_item_id}", method: "put") do %>
+          <%= form_with(url: "/menu_items/#{@menu_item.id}", method: "put") do %>
 
               <div class = "Enable_option_menu_item">
                   <label>Enable MenuItem for customer</label>

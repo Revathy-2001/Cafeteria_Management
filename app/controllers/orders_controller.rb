@@ -1,17 +1,13 @@
 class OrdersController < ApplicationController
-
-  # before_action :ensure_user_logged_in, only: [:create, :customer_orders, :customer_order_details_path]
-  # before_action :ensure_clerk_logged_in, except: [:reports, :dashboard]
-  # before_action :ensure_admin_logged_in, only: [:mark_as_delivered, :cancel_order, :index, :admin_order_details, :reports, :dashboard]
-
   before_action :ensure_not_owner, only: [:create, :customer_orders, :customer_order_details_path]
   before_action :ensure_owner_logged_in, only: [:reports, :dashboard, :single_customer_view_details, :single_customer_reports, :customer_reports]
   before_action :ensure_not_customer, only: [:index, :mark_as_delivered]
 
+  # shows all orders to owners
   def index
   end
 
-  # creates customer orders
+  # creates customer orders once user or clerk confirms an order
   def create
     cart = Cart.find_by(user_id: @current_user.id)
     order = Order.new(user_id: @current_user.id,
@@ -89,12 +85,14 @@ class OrdersController < ApplicationController
   def dashboard
   end
 
+  # shows customers reports page for the owner
   def customer_reports
     @users = User.where("role = ?", "user")
   end
 
+  # shows all the orders made by single customer
   def single_customer_reports
-    @id = params[:id]
+    @id = params[:id] # stores customer id
     @user = User.find(@id)
     start_date = params[:start_date]
     if (start_date.nil?)
@@ -110,6 +108,7 @@ class OrdersController < ApplicationController
     end
   end
 
+  # shows single customer order details when owner clicks from reports page
   def single_customer_view_details
     @id = params[:id]
   end
