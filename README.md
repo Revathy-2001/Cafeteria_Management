@@ -32,6 +32,12 @@ d) Customer can finalize the order with a “checkout” button
 e) Customer can see the status of orders
 f) The shopping cart should be durable and available across sessions
 
+Security:
+
+CSRF attacks that is cross site request forgery attacks are prevented by my application because I used form_with
+rails helper tag which generates a authenticity token so whenever a request hits controller action it knows request
+is coming from our application.
+
 Home-page
 ![home_page](https://user-images.githubusercontent.com/77260440/124909439-10bb4280-e008-11eb-99cc-ad174214fd03.png)
 
@@ -41,9 +47,10 @@ Sign-up page
 Sign-in page
 ![sign_up](https://user-images.githubusercontent.com/77260440/124909476-1add4100-e008-11eb-96ab-c7136393d358.png)
 
-Admin side Access:
+ADMIN'S ACCESS:
 
-![dashboard](https://user-images.githubusercontent.com/77260440/124909433-0e58e880-e008-11eb-88b8-da9577468493.png)
+Dashboard Page:
+![Screenshot (490)](https://user-images.githubusercontent.com/77260440/125746379-be44cdcc-a182-464c-878f-cd1418fcf35a.png)
 
 MENU CATEGORY: [VIEW,ADD,UPDATE,DELETE]
 
@@ -67,41 +74,64 @@ MENU ITEM: [VIEW,ADD,UPDATE,DELETE]
 
 OTHER ADMIN ACCESS: [UPDATE PROFILE,ADD CLERK OR OWNER,ORDERS]
 
-![admin-update-profile](https://user-images.githubusercontent.com/77260440/124909383-01d49000-e008-11eb-9524-11565a4dcbd8.png)
+Single order of a customer
+![single_order_of_customer](https://user-images.githubusercontent.com/77260440/125747058-e1f7d40a-a90e-4b1f-b72e-fb83de4ab4da.png)
 
+All orders of a customers
+![Screenshot (498)](https://user-images.githubusercontent.com/77260440/125747520-b3c5285b-6250-45b9-9a5b-6ea19fbb85a5.png)
+
+Reports:
+Customers reports
+![Screenshot (492)](https://user-images.githubusercontent.com/77260440/125749312-ace0efab-fa6b-4042-9a8c-4e256ca83ff4.png)
+
+Single customer reports
+![Screenshot (495)](https://user-images.githubusercontent.com/77260440/125749367-03febb5f-386d-4f1b-bef6-c41ef2e80611.png)
+
+Manage Users:
+Create clerks or other owners
 ![add_clerk](https://user-images.githubusercontent.com/77260440/124909375-000acc80-e008-11eb-8145-67085d52ad5f.png)
 
-![orders](https://user-images.githubusercontent.com/77260440/124909454-144ec980-e008-11eb-9f58-e4f112d4148e.png)
+Update clerks or other owners
+![Screenshot (500)](https://user-images.githubusercontent.com/77260440/125747991-a7ae3c7f-1d95-4778-b487-800046ee64a9.png)
 
-CLERK AND CUSTOMER ACCESS: [HOME PAGE]
+Delete clerks or other clerks
+![Screenshot (501)](https://user-images.githubusercontent.com/77260440/125747984-e7099c64-19f2-42db-81a2-30758538d56a.png)
 
-Clerk-home page
-![clerk-home-page](https://user-images.githubusercontent.com/77260440/124909429-0d27bb80-e008-11eb-8e52-7619680c1d21.png)
+Update Profile or owner
+![admin-update-profile](https://user-images.githubusercontent.com/77260440/124909383-01d49000-e008-11eb-9524-11565a4dcbd8.png)
 
-User profile
+CUSTOMER's ACCESS:
 
-![user-profile](https://user-images.githubusercontent.com/77260440/124909485-1dd83180-e008-11eb-97f8-6987aaf9f306.png)
-
-HOME PAGE FOR CUSTOMERS
+home page for customers
 ![categories](https://user-images.githubusercontent.com/77260440/124909395-0436ea00-e008-11eb-85ff-1d00c2701eb5.png)
 
-ORDERING PAGE
+ordering page
 ![menu_items-users](https://user-images.githubusercontent.com/77260440/124909449-131d9c80-e008-11eb-9dd7-1a025648a837.png)
 
-CART ITEMS
+cart items
 ![cart-items](https://user-images.githubusercontent.com/77260440/124909390-0305bd00-e008-11eb-8b3c-bf9d71b469b1.png)
 
-CLEAR CART
+clear cart
 ![clearcart](https://user-images.githubusercontent.com/77260440/124909421-0bf68e80-e008-11eb-8a0c-99960f027c56.png)
 
-ADDRESS PAGE
+address page
 ![add-address](https://user-images.githubusercontent.com/77260440/124909380-013bf980-e008-11eb-9d48-ddcb8f58c449.png)
 
-UPDATE ADDRESS
+update address
 ![update-address](https://user-images.githubusercontent.com/77260440/124909477-1b75d780-e008-11eb-8a2e-4f8aefffd88c.png)
 
-CHECKOUT PAGE
+checkout page
 ![checkout-page](https://user-images.githubusercontent.com/77260440/124909417-0ac56180-e008-11eb-9ee6-13bc00f71475.png)
 
-CUSTOMER ORDERS PAGE
+customers order page
 ![customer-orders](https://user-images.githubusercontent.com/77260440/124909430-0dc05200-e008-11eb-9065-f219870858fa.png)
+
+all orders
+![orders](https://user-images.githubusercontent.com/77260440/124909454-144ec980-e008-11eb-9f58-e4f112d4148e.png)
+
+User profile
+![user-profile](https://user-images.githubusercontent.com/77260440/124909485-1dd83180-e008-11eb-97f8-6987aaf9f306.png)
+
+CLERK'S ACCESS:
+Clerk-home page
+![clerk-home-page](https://user-images.githubusercontent.com/77260440/124909429-0d27bb80-e008-11eb-8e52-7619680c1d21.png)
